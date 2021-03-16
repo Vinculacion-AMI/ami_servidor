@@ -10,14 +10,14 @@ function Registro() {
         
         <Grid container   >
             
-        <Grid item  sm={1}>
+        <Grid item  sm={4}>
              
         </Grid>
         <Grid  
         style={{          
             textAlign: 'center',
             padding: 20,  marginTop: 20   }}
-         className="card" item xl={12} sm={10}>
+         className="card" item xl={12} sm={4}>
         <Card  width="300" justifyContent="center" className="content">
           <h1>Registrate</h1> 
           <br></br>  
@@ -85,7 +85,7 @@ function Registro() {
  </form>
  </Card>
   </Grid>
-    <Grid sm={1} >
+    <Grid sm={4} >
     </Grid>  
      
  </Grid>

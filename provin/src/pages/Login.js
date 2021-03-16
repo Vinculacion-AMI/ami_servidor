@@ -6,13 +6,13 @@ function Login() {
   return (
   <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
         <Grid container   >
-        <Grid   sm={1}>   
+        <Grid   sm={4}>   
         </Grid>
         <Grid  
         style={{          
             textAlign: 'center',
             padding: 20,  marginTop: 40 }}
-         className="card" item xs={12} sm={10}>
+         className="card" item xs={12} sm={4}>
         <Card  width="300" justifyContent="center" className="content">
           <h1>Bienvenidos</h1> 
           <br></br>  
@@ -74,7 +74,7 @@ function Login() {
  </form>
  </Card>
         </Grid>
-        <Grid   sm={1}>
+        <Grid   sm={4}>
             
         </Grid>
      
