@@ -55,7 +55,7 @@ export default function Inicio({navigation}) {
                   mode="contained"
                   theme= {{ roundness: 50  }}
           
-                  onPress={() => navigation.navigate('Login')}
+                  onPress={() => navigation.navigate('Draw')}
                   >Jugar</Button>
                   </View>
               </Card>

@@ -1,0 +1,15 @@
+
+  .each-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 400px;
+    margin-bottom: 40px;
+   
+  }
+
+  .name{
+      position: relative;
+      top: 30px;
+  }
