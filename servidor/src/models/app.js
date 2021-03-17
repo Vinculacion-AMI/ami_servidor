@@ -7,7 +7,7 @@ const app = express();
 
 
 //conectando a la db
-mongoose.connect('mongodb://localhost/local')
+mongoose.connect('mongodb://localhost/encuestas')
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
 
