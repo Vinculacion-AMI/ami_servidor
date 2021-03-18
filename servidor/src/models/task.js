@@ -14,6 +14,7 @@ const persons = new Schema(
   {
     nombre: String,
     apellido: String,
+    correo: String,
     imagen: String,
     contrasena: String,
   },
@@ -33,7 +34,7 @@ const score = new this.schema(
   {
     timestamps: true,
   }
-);git 
+);
 const contentLevel = new this.schema(
   {
     titulo: String,
