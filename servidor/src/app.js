@@ -7,7 +7,7 @@ const app = express();
 
 
 //conectando a la db
-mongoose.connect('mongodb://localhost/en3.5base')
+mongoose.connect('mongodb://localhost:27017/en4')
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
 
@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/en3.5base')
 const indexRoutes = require('./routes/index');
 
 //settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

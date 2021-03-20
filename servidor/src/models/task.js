@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //example
-const TaskSchema = new Schema({
+const TaskSchema =  Schema({
   title: String,
   description: String,
   status: {
@@ -10,7 +10,7 @@ const TaskSchema = new Schema({
     default: false,
   },
 });
-const persons = new Schema(
+const persons =  Schema(
   {
     nombre: String,
     apellido: String,
@@ -22,11 +22,11 @@ const persons = new Schema(
     timestamps: true,
   }
 );
-const score = new this.schema(
+const score =  Schema(
   {
     person: {
       type: mongoose.Schema.ObjectId,
-      ref: persons,
+      ref: 'persons',
     },
     nivel: String,
     Ptotal: String,
@@ -35,7 +35,7 @@ const score = new this.schema(
     timestamps: true,
   }
 );
-const contentLevel = new this.schema(
+const contentLevel =  Schema(
   {
     titulo: String,
     imagen: String,
