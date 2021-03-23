@@ -15,7 +15,6 @@ export default function Draw() {
     const clear = () => {
         lienzo.current.clear() 
     }
-
     // const style = {
     //     width: brush + "px",
     //     background: canvas,
