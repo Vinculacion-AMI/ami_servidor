@@ -4,32 +4,35 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import { Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
-function Draw() {
+import { useStyles } from "./style";
+
+export default function Draw() {
+ 
     const [canvas, setBrush] = useState("#FCA5A5");
     const [brush, setThick] = useState(20);
     const lienzo = useState(null);
-
+    const classes = useStyles();
     const clear = () => {
         lienzo.current.clear() 
     }
 
-    const style = {
-        width: brush + "px",
-        background: canvas,
-        marginLeft: "50%"
-      };
-      console.log(style.width);
+    // const style = {
+    //     width: brush + "px",
+    //     background: canvas,
+    //     marginLeft: "50%"
+    //   };
+    //   console.log(style.width);
   return (
   <div >
      <Grid container 
         
      >
-            <Grid style={{ textAlign: 'center', alignItems: 'center' }} xs={12} sm={5}>
+            <Grid  xs={12} sm={5}>
             <h2>Replica</h2>
-        <Grid style={{ margin: 5, marginTop: 65, position: 'relative', left : 30 }}>
+        <Grid >
             <Card >
                 
-                    <CardMedia style={{  height:450 }}
+                    <CardMedia className={classes.collapseCard}
                     image="../../images/slide_2.jpg"
                     
                     />
@@ -59,7 +62,7 @@ function Draw() {
         <br />
         <label>Brush Thickness</label>
         
-        <div className="thickness" style={style}></div>
+        <div className="thickness" ></div>
         <input
           min="2"
           max="50"
@@ -106,4 +109,3 @@ function Draw() {
   );
 }
 
-export default Draw;
