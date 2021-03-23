@@ -46,7 +46,7 @@ function Draw() {
         <Card className={classes.root}>
           <CardMedia
             className={classes.media}
-            image="../../images/slide_2.jpg"
+            image="../../../images/slide_2.jpg"
             title="Contemplative Reptile"
           />
       </Card>
@@ -55,7 +55,7 @@ function Draw() {
         <Card className={classes.root}>
           <CardMedia
             className={classes.media}
-            image="../../images/slide_2.jpg"
+            image="../../../images/slide_2.jpg"
             title="Contemplative Reptile"
           />
       </Card>
@@ -64,7 +64,7 @@ function Draw() {
         <Card className={classes.root}>
           <CardMedia
             className={classes.media}
-            image="../../images/slide_2.jpg"
+            image="../../../images/slide_2.jpg"
             title="Contemplative Reptile"
           />
       </Card>
