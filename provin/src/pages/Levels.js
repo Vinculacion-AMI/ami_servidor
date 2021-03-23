@@ -29,13 +29,13 @@ function Levels() {
         <Grid sm={1}>
         </Grid>
         <Grid item xs={12} sm={10}>
-        <Grid  className="name" style={{ margin: 20, }} >
+        <Grid  className="name" style={{ margin: 15, }} >
             <h2 >Nombre del Usuario</h2>
         </Grid>
         <Grid style={{ marginTop:60, textAlign: 'center', }} >
             <h2>Juegos</h2>
         </Grid>
-        <div className="slide-container">
+        <div  style={{ margin: 8 }} className="slide-container">
         <Slide  indicators={false}  autoplay={false}>
           <div style={{ marging: 40 }} className="each-slide">
             

@@ -4,8 +4,8 @@ import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
 
 function Draw2() {
-    const [canvas, setBrush] = useState("#FCA5A5");
-    const [brush, setThick] = useState(20);
+  const [canvas,] = useState("#4FA1F3 ");
+    const [brush, ] = useState(6);
     const lienzo = useState(null);
 
     const clear = () => {
@@ -28,32 +28,7 @@ function Draw2() {
    
             <Grid style={{ margin: 8  }}>
             <Grid container>
-              <Grid sm={2} >
-              <label>Colour picker</label>
-              <br />
-              <input
-                  style={{ background: { canvas } }}
-                  type="color"
-                  value={canvas}
-                  onChange={(event) => {
-                  console.log(event.target.value);
-                  setBrush(event.target.value);
-                  }}
-              />
-              <br />
-              <label>Brush Thickness</label>
-              
-              <div className="thickness" style={style}></div>
-              <input
-                min="2"
-                max="50"
-                type="range"
-                onChange={(event) => {
-                  console.log(event.target.value);
-                  setThick(event.target.value);
-                }}
-              />
-              </Grid>
+            
               <Grid sm={2} >
               <Button onClick={clear}
               type="submit"

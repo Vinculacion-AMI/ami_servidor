@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
-
 import Card from '@material-ui/core/Card';
 import { Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 560,
+  },
+  media: {
+    height: 440,
+  },
+});
+
+
 function Draw() {
-    const [canvas, setBrush] = useState("#FCA5A5");
-    const [brush, setThick] = useState(20);
+  const classes = useStyles();
+    const [canvas,] = useState("#4FA1F3 ");
+    const [brush, ] = useState(6);
     const lienzo = useState(null);
 
     const clear = () => {
@@ -27,14 +41,35 @@ function Draw() {
             <Grid style={{ textAlign: 'center', alignItems: 'center' }} xs={12} sm={5}>
             <h2>Replica</h2>
         <Grid style={{ margin: 5, marginTop: 65, position: 'relative', left : 30 }}>
-            <Card >
-                
-                    <CardMedia style={{  height:450 }}
-                    image="../../images/slide_2.jpg"
-                    
-                    />
-                
-            </Card>
+        <Carousel autoPlay={false} emulateTouch={true}>
+        <div>
+        <Card className={classes.root}>
+          <CardMedia
+            className={classes.media}
+            image="../../images/slide_2.jpg"
+            title="Contemplative Reptile"
+          />
+      </Card>
+        </div>
+        <div>
+        <Card className={classes.root}>
+          <CardMedia
+            className={classes.media}
+            image="../../images/slide_2.jpg"
+            title="Contemplative Reptile"
+          />
+      </Card>
+        </div>
+        <div>
+        <Card className={classes.root}>
+          <CardMedia
+            className={classes.media}
+            image="../../images/slide_2.jpg"
+            title="Contemplative Reptile"
+          />
+      </Card>
+        </div>
+    </Carousel>
         </Grid>
        
         </Grid>
@@ -44,32 +79,7 @@ function Draw() {
         <Grid style={{ position: 'relative', top: 20,  }}>
         
         <Grid container>
-        <Grid sm={2} >
-        <label>Colour picker</label>
-        <br />
-        <input
-            style={{ background: { canvas } }}
-            type="color"
-            value={canvas}
-            onChange={(event) => {
-            console.log(event.target.value);
-            setBrush(event.target.value);
-            }}
-        />
-        <br />
-        <label>Brush Thickness</label>
         
-        <div className="thickness" style={style}></div>
-        <input
-          min="2"
-          max="50"
-          type="range"
-          onChange={(event) => {
-            console.log(event.target.value);
-            setThick(event.target.value);
-          }}
-        />
-        </Grid>
         <Grid sm={2} >
         <Button onClick={clear}
         type="submit"
@@ -84,7 +94,7 @@ function Draw() {
         </Grid>
 
       </Grid>
-            <Card style={{ width: 600, border: '2px solid #14181C' }}>
+            <Card style={{ width: 600, border: '2px solid #14181C', marginTop: 50 }}>
                 <CanvasDraw
                 ref={lienzo}
                     brushColor={canvas}
