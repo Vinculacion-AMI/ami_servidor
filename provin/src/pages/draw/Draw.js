@@ -16,9 +16,9 @@ const useStyles = makeStyles({
    
   },
   media: {
-    height: 420,
+    height: 0,
     width: '100%',
-  
+    paddingTop: "60.25%"
     
   },
   ancho:{
