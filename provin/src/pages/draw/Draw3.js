@@ -1,36 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
-
-const useStyles = makeStyles({
-  root: {
-   
-    maxWidth: "100%",
-    maxHeight: "100%",
-   
-  },
-  media: {
-    height: 400,
-    
-    paddingTop: "60.25%"
-    
-  },
-  ancho:{
-    margin: 10,
-    maxWidth: "100%",
-  },
-  btn : {
-    justifyContent: 'center',
-    left: "20%"
-  },
- 
-});
+import Icon from '@material-ui/core/Icon';
+import clsx from 'clsx';
 
 
-function Draw2() {
-  const classes = useStyles();
-  const [canvas,] = useState("#4FA1F3 ");
+function Draw3() {
+
+    const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
 
@@ -61,13 +38,25 @@ function Draw2() {
               fullWidth
               variant="contained"
               color="primary"
-  
-              //style={{ borderRadius: 20 }}
             >
               Limpiar
             </Button>
               </Grid>
-              <Grid sm={8}>
+              <br />
+              <Grid sm={6}>
+              </Grid>
+              <br />
+              <Grid sm={2}>
+                <Button 
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                href="/draw2"
+                style={{ borderRadius: 20, width: 120}}
+              >
+                Back
+              </Button>
               </Grid>
               <Grid sm={2}>
                 <Button 
@@ -75,33 +64,30 @@ function Draw2() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw3"
+                href="/draw4"
                 style={{ borderRadius: 20, width: 120}}
-              >
+               
+              > 
                 Next
+               
               </Button>
               </Grid>
             </Grid>
-           
-          
-                <Grid style={{ textAlign: 'center', }} >
-                    <h2 style={{ fontSize: 22 }} >Realiza las los circulos y las rayas</h2>
-                            
+              <Grid style={{ textAlign: 'center', }} >
+                <h2> Realiza las curvas</h2>
+              </Grid>                
                     <CanvasDraw
+                    
                     ref={lienzo}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={500}
+                    canvasHeight={450}
                     canvasWidth={'100%'}
-                    imgSrc="../../images/circulo.jpg"
                     hideGrid={false}
-                    style={{ border: '2px solid #14181C' }}
-                    
-                    />
-                </Grid> 
-              
-             
+                    imgSrc="../../images/curvas.jpg"
+                    style={{ border: '2px solid #14181C', }}
+                />
              </Grid>
             </Grid>
             <Grid sm={1}>
@@ -113,4 +99,4 @@ function Draw2() {
   );
 }
 
-export default Draw2;
+export default Draw3;

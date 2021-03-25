@@ -47,6 +47,9 @@ function Draw() {
       { photo: ['../../../images/abc1.jpg'] }, 
       { photo: ['../../../images/abc2.jpg'] }, 
       { photo: ['../../../images/abc3.jpg'] }, 
+      { photo: ['../../../images/abc4.jpg'] }, 
+      { photo: ['../../../images/abc5.jpg'] }, 
+      { photo: ['../../../images/abc6.jpg'] }, 
           
     ];
 
@@ -64,12 +67,14 @@ function Draw() {
             <h2>Replica</h2>
         <Grid style={{ margin: 25, marginTop: 70, position: 'relative',  }}>
         
-        <Carousel  autoPlay={false} emulateTouch={true}  >
+        <Carousel emulateTouch={true} onChange={clear}   >
+            
             { img.map(e =>          
               <Card className={classes.root}>
                 <CardMedia            
                   className={classes.media}
-                  image={e.photo}              
+                  image={e.photo}     
+                           
                 />
               </Card>
           ) }      
@@ -100,6 +105,7 @@ function Draw() {
             <Card className={classes.ancho}  style={{  border: '2px solid #14181C', marginTop: 50 }}>
                 <CanvasDraw
                 ref={lienzo}
+                lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
                     canvasHeight={450}
