@@ -7,12 +7,14 @@ require("dotenv").config(),
   (mongodb = require("../models/task"));
 
 const tokenEncrypt = process.env.TOKEN_SECRET;
+
 router.get("/example", (req, res) => {
   res.send("Hola mundo");
 });
+
 function authToken(req, res, next) {
   const bearerheader = req.headers["authorization"];
-  console.log(bearerheader);
+  // console.log(bearerheader);
   if (typeof bearerheader !== "undefined") {
     req.token = bearerheader;
     next();
@@ -20,7 +22,7 @@ function authToken(req, res, next) {
     res.sendStatus(403);
   }
 }
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   mongodb.Persons.find({
     correo: req.body.correo,
   }).exec((err, content) => {
@@ -53,8 +55,11 @@ router.post("/login", (req, res) => {
     }
   });
 });
-router.post("/register", (req, res) => {
-  console.log(req.body);
+
+
+router.post("/register", (req, res, next ) => {
+  //console.log(req.body);
+
   const saltRounds = 12;
   bcrypt.hash(req.body.contrasena, saltRounds, (err, hash) => {
     try {
@@ -71,6 +76,7 @@ router.post("/register", (req, res) => {
             res.status(404).send("error en el servidor");
           } else {
             res.status(200).send("creado exitosamente");
+            
           }
         }
       );
@@ -83,7 +89,7 @@ router.post("/score", authToken, (req, res) => {
   console.log("pasooooo");
   jwt.verify(req.token, tokenEncrypt, (err) => {
     if (err) {
-      res.status(404).send("error en el servidor");
+      res.status(404).send("error en el servidor1");
     } else {
       mongodb.Score.create(req.body, (err) => {
         if (err) {
