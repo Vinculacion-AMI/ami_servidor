@@ -7,15 +7,20 @@ require("dotenv").config(),
   (router = express.Router()),
   (mongodb = require("../models/task"));
 
+<<<<<<< HEAD
 const tokenEncrypt = key1;
 console.log(key1)
+=======
+const tokenEncrypt = process.env.TOKEN_SECRET;
+
+>>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
 router.get("/example", (req, res) => {
   res.send("Hola mundo");
 });
 
 function authToken(req, res, next) {
   const bearerheader = req.headers["authorization"];
-  console.log(bearerheader);
+  // console.log(bearerheader);
   if (typeof bearerheader !== "undefined") {
     req.token = bearerheader;
     next();
@@ -23,8 +28,12 @@ function authToken(req, res, next) {
     res.sendStatus(403);
   }
 }
+<<<<<<< HEAD
 
 router.post("/login", (req, res) => {
+=======
+router.post("/login", (req, res, next) => {
+>>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
   mongodb.Persons.find({
     correo: req.body.correo,
   }).exec((err, content) => {
@@ -58,8 +67,15 @@ router.post("/login", (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 router.post("/register", (req, res) => {
   console.log(req.body);
+=======
+
+router.post("/register", (req, res, next ) => {
+  //console.log(req.body);
+
+>>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
   const saltRounds = 12;
   bcrypt.hash(req.body.contrasena, saltRounds, (err, hash) => {
     try {
@@ -76,6 +92,7 @@ router.post("/register", (req, res) => {
             res.status(404).send("error en el servidor");
           } else {
             res.status(200).send("creado exitosamente");
+            
           }
         }
       );
@@ -89,7 +106,7 @@ router.post("/score", authToken, (req, res) => {
 
   jwt.verify(req.token, tokenEncrypt, (err) => {
     if (err) {
-      res.status(404).send("error en el servidor");
+      res.status(404).send("error en el servidor1");
     } else {
       mongodb.Score.create(req.body, (err) => {
         if (err) {

@@ -7,7 +7,15 @@ const app = express();
 
 
 //conectando a la db
+<<<<<<< HEAD
 mongoose.connect('mongodb://localhost:27017/ami', { useNewUrlParser: true, useUnifiedTopology: true })
+=======
+mongoose.connect('mongodb://localhost:27017/user', 
+    { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+    }) 
+>>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
 

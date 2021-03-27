@@ -1,16 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
 
 //example
-const TaskSchema = Schema({
+const TaskSchema = new Schema({
   title: String,
   description: String,
   status: {
     type: Boolean,
     default: false,
   },
+
 });
-const persons = Schema(
+const persons = new Schema(
   {
     nombre: String,
     apellido: String,
@@ -22,6 +24,13 @@ const persons = Schema(
     timestamps: true,
   }
 );
+
+persons.methods.encryptPassword = async (contrasena) =>{
+  const salt = await bcrypt.genSalt(10);
+  bcrypt.hash(contrasena, salt);
+};
+
+
 const score = Schema(
   {
     person: {
@@ -37,6 +46,10 @@ const score = Schema(
 );
 const Persons = mongoose.model("Persons", persons),
   Score = mongoose.model("Score", score);
+
+
+
+
 
 module.exports = {
   Persons,
