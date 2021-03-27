@@ -7,7 +7,7 @@ const app = express();
 
 
 //conectando a la db
-mongoose.connect('mongodb://localhost:27017/en4', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/ami', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(db => console.log('Db connected'))
     .catch(err => console.log(err));
 
@@ -34,7 +34,7 @@ app.use(express.json());
 //Estudio url body-parse
 app.use(express.urlencoded({ extended: false }))
 //routes
-app.use('/', indexRoutes);
+app.use('/api', indexRoutes);
 
 
 //starting the server
