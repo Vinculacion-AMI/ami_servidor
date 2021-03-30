@@ -1,11 +1,37 @@
 import React, { useState } from 'react';
-
+import { makeStyles } from '@material-ui/core/styles';
 import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
 
+const useStyles = makeStyles({
+  root: {
+   
+    maxWidth: "100%",
+    maxHeight: "100%",
+   
+  },
+  media: {
+    height: 400,
+    
+    paddingTop: "60.25%"
+    
+  },
+  ancho:{
+    margin: 10,
+    maxWidth: "100%",
+  },
+  btn : {
+    justifyContent: 'center',
+    left: "20%"
+  },
+ 
+});
+
+
 function Draw2() {
-    const [canvas, setBrush] = useState("#FCA5A5");
-    const [brush, setThick] = useState(20);
+  const classes = useStyles();
+  const [canvas,] = useState("#4FA1F3 ");
+    const [brush, ] = useState(6);
     const lienzo = useState(null);
 
     const clear = () => {
@@ -28,32 +54,7 @@ function Draw2() {
    
             <Grid style={{ margin: 8  }}>
             <Grid container>
-              <Grid sm={2} >
-              <label>Colour picker</label>
-              <br />
-              <input
-                  style={{ background: { canvas } }}
-                  type="color"
-                  value={canvas}
-                  onChange={(event) => {
-                  console.log(event.target.value);
-                  setBrush(event.target.value);
-                  }}
-              />
-              <br />
-              <label>Brush Thickness</label>
-              
-              <div className="thickness" style={style}></div>
-              <input
-                min="2"
-                max="50"
-                type="range"
-                onChange={(event) => {
-                  console.log(event.target.value);
-                  setThick(event.target.value);
-                }}
-              />
-              </Grid>
+            
               <Grid sm={2} >
               <Button onClick={clear}
               type="submit"
@@ -66,21 +67,41 @@ function Draw2() {
               Limpiar
             </Button>
               </Grid>
-
+              <Grid sm={8}>
+              </Grid>
+              <Grid sm={2}>
+                <Button 
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                href="/draw3"
+                style={{ borderRadius: 20, width: 120}}
+              >
+                Next
+              </Button>
+              </Grid>
             </Grid>
-                <h2> Dibuja</h2>
+           
+          
+                <Grid style={{ textAlign: 'center', }} >
+                    <h2 style={{ fontSize: 22 }} >Realiza las los circulos y las rayas</h2>
+                            
                     <CanvasDraw
                     ref={lienzo}
+                    lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={450}
+                    canvasHeight={500}
                     canvasWidth={'100%'}
+                    imgSrc="../../images/circulo.jpg"
                     hideGrid={false}
                     style={{ border: '2px solid #14181C' }}
-                  
-                />
+                    
+                    />
+                </Grid> 
+              
              
-            
              </Grid>
             </Grid>
             <Grid sm={1}>
