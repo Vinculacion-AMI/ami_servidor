@@ -7,13 +7,8 @@ require("dotenv").config(),
   (router = express.Router()),
   (mongodb = require("../models/task"));
 
-<<<<<<< HEAD
 const tokenEncrypt = key1;
 console.log(key1)
-=======
-const tokenEncrypt = process.env.TOKEN_SECRET;
-
->>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
 router.get("/example", (req, res) => {
   res.send("Hola mundo");
 });
@@ -28,12 +23,7 @@ function authToken(req, res, next) {
     res.sendStatus(403);
   }
 }
-<<<<<<< HEAD
-
-router.post("/login", (req, res) => {
-=======
 router.post("/login", (req, res, next) => {
->>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
   mongodb.Persons.find({
     correo: req.body.correo,
   }).exec((err, content) => {
@@ -67,15 +57,10 @@ router.post("/login", (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-router.post("/register", (req, res) => {
-  console.log(req.body);
-=======
 
 router.post("/register", (req, res, next ) => {
   //console.log(req.body);
 
->>>>>>> c80693398cd05fb256c5b5ebae7487b56288034e
   const saltRounds = 12;
   bcrypt.hash(req.body.contrasena, saltRounds, (err, hash) => {
     try {
