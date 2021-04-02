@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import DraggablePiece from "./DraggablePiece";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useStyles } from "./style";
+import TransitionsSnackbar from "../dialogNotifications/notification";
 export default function JigSaw() {
   const [word, setWord] = useState(false),
-    [openDraggable, setOpenDraggable] = useState(false);
+    [openDraggable, setOpenDraggable] = useState(false),
+    [arrayWord, setArrayWord] = useState([]);
   const classes = useStyles();
   const handleChangeWord = (event) => {
     setWord(event.target.value);
   };
+  const childRef = useRef();
   const handleChangeOpenDraggable = () => {
+    let i = 0
+    let lettersContainer = [];
+    Array.from(word).forEach(element => {
+      lettersContainer.push(element+i)
+      i+=1
+      
+    });
+    setArrayWord(lettersContainer)
     openDraggable ? setOpenDraggable(false) : setOpenDraggable(true);
   };
   return (
@@ -19,7 +30,7 @@ export default function JigSaw() {
         <form className={classes.form} noValidate autoComplete="off">
           <TextField
             id="outlined-basic"
-            label="Outlined"
+            label="Palabra"
             variant="outlined"
             onChange={handleChangeWord}
           />
@@ -33,7 +44,9 @@ export default function JigSaw() {
           </Button>
         </form>
       </div>
-      {openDraggable ? <DraggablePiece word={word} /> : null}
+      {openDraggable ? <DraggablePiece arrayWord={arrayWord} /> : null}
+      {<div className={classes.root}><TransitionsSnackbar ref={childRef}/></div> }
+      <Button onClick={()=>{childRef.current.handleClick('success')}}>Press Me</Button>
     </>
   );
 }
