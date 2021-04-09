@@ -7,29 +7,66 @@ import { useStyles } from "./style";
 import useForceUpdate from "use-force-update";
 import { Button } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
+
 export default function DraggablePiece(props) {
   const [textContent, setTextContent] = useState(Array),
-    [anothertext, setanotherText] = useState(Array),
     [stateArrayItems, setStateArrayItems] = useState(Array),
     [puzzleSolve, setPuzzleSolve] = useState(Array);
   const classes = useStyles();
-
+ 
   useEffect(() => {
     begingComponents();
   }, []);
   const forceUpdate = useForceUpdate();
   const shuffle = (array)=>{
     const mix = array.sort(() => Math.random() - 0.5);
-    console.log(mix)
+   
     return mix
   }
   const begingComponents = () => {
-    setTextContent(shuffle(props.arrayWord));
-    setanotherText(props.arrayWord)
+    const word = props.arrayWord
+    // const shuf = Inmutable.Map()
+    setTextContent(shuffle(word));
+    
     setStateArrayItems(new Array(props.arrayWord.length));
     setPuzzleSolve(new Array(props.arrayWord.length));
   };
-
+  const fixWord = (a,b)=>{
+    
+    if(a && b && a!==undefined && b!== undefined && b[0]!==undefined){
+      console.log('hi a y b')
+      let option1 = new Array;
+      let option2 = new Array;
+      a.forEach(element => {
+        option1.push(element[0])
+      });
+      b.forEach(element => {
+        if(element!==undefined||element){
+          option2.push(element[0])
+        }
+      });
+     if(option1.length === option2.length && JSON.stringify(option1) === JSON.stringify(option2)){
+       console.log('verdadero',option1, option2)
+       return true
+     }else{
+      console.log('falso',option1, option2)
+       return false
+     }
+        
+        
+      }else{
+        return false
+      }
+    }
+ 
+  const finalSolve =()=>{
+    let solv = textContent.sort(((a, b) => {
+      let firstLetter =   a.split(a[0]) 
+      let secondLetter = b.split(b[0])
+      return firstLetter[1] - secondLetter[1]
+    }))
+    fixWord(solv, puzzleSolve)?props.switchAnswer('correct'):props.switchAnswer('wrong')
+  }
   const setText = (item, state) => {
     console.log(item);
     console.log(textContent);
@@ -141,11 +178,12 @@ export default function DraggablePiece(props) {
                 );
               })}
             </Grid>
-            <Grid>
-              <Button onClick={() => console.log(textContent, anothertext, props.arrayWord)}>
-                comprobar
-              </Button>
+            <Grid container justify="center">
+            <Button disabled={!puzzleSolve[0]} onClick={finalSolve} variant="contained" size="large" className={classes.buttonCheck}>
+          Siguiente
+        </Button>
             </Grid>
+           
           </Grid>
         </Grid>
       </div>

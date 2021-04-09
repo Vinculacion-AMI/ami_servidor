@@ -1,4 +1,9 @@
-import React, { useEffect, useState, useImperativeHandle, forwardRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import Grow from "@material-ui/core/Grow";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -9,13 +14,11 @@ import CardContent from "@material-ui/core/CardContent";
 import { useStyles } from "./style";
 import { Card } from "@material-ui/core";
 
-
-
 function GrowTransition(props) {
   return <Grow {...props} />;
 }
 
-const TransitionsSnackbar= forwardRef((props, ref)=> {
+const TransitionsSnackbar = forwardRef((props, ref) => {
   const [state, setState] = useState({
       open: false,
       type: false,
@@ -25,15 +28,14 @@ const TransitionsSnackbar= forwardRef((props, ref)=> {
   useEffect(() => {
     setLoading(false);
   }, []);
-  useImperativeHandle(ref, ()=>({
-    handleClick(element){
+  useImperativeHandle(ref, () => ({
+    handleClick(element) {
       setState({
         open: true,
         type: element,
       });
-    }
-  })
-  )
+    },
+  }));
   const handleClose = () => {
     setState({
       ...state,
@@ -42,7 +44,7 @@ const TransitionsSnackbar= forwardRef((props, ref)=> {
   };
   if (loading) {
     return <Typography>Cargando...</Typography>;
-  } else if (state.type === "success") {
+  } else if (state.type === "correct") {
     return (
       <div className={classes.root}>
         <Dialog
@@ -94,8 +96,8 @@ const TransitionsSnackbar= forwardRef((props, ref)=> {
         </Dialog>
       </div>
     );
-  }else{
-    return null
+  } else {
+    return null;
   }
-})
+});
 export default TransitionsSnackbar;
