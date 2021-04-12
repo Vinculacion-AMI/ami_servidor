@@ -13,63 +13,64 @@ export default function DraggablePiece(props) {
     [stateArrayItems, setStateArrayItems] = useState(Array),
     [puzzleSolve, setPuzzleSolve] = useState(Array);
   const classes = useStyles();
- 
+
   useEffect(() => {
     begingComponents();
+    forceUpdate()
   }, []);
   const forceUpdate = useForceUpdate();
-  const shuffle = (array)=>{
+  const shuffle = (array) => {
     const mix = array.sort(() => Math.random() - 0.5);
-   
-    return mix
-  }
+
+    return mix;
+  };
   const begingComponents = () => {
-    const word = props.arrayWord
+    const word = props.arrayWord;
     // const shuf = Inmutable.Map()
     setTextContent(shuffle(word));
-    
+
     setStateArrayItems(new Array(props.arrayWord.length));
     setPuzzleSolve(new Array(props.arrayWord.length));
   };
-  const fixWord = (a,b)=>{
-    
-    if(a && b && a!==undefined && b!== undefined && b[0]!==undefined){
-      console.log('hi a y b')
-      let option1 = new Array;
-      let option2 = new Array;
-      a.forEach(element => {
-        option1.push(element[0])
+  const fixWord = (a, b) => {
+    if (a && b && a !== undefined && b !== undefined && b[0] !== undefined) {
+      let option1 = new Array();
+      let option2 = new Array();
+      a.forEach((element) => {
+        option1.push(element[0]);
       });
-      b.forEach(element => {
-        if(element!==undefined||element){
-          option2.push(element[0])
+      b.forEach((element) => {
+        if (element !== undefined || element) {
+          option2.push(element[0]);
         }
       });
-     if(option1.length === option2.length && JSON.stringify(option1) === JSON.stringify(option2)){
-       console.log('verdadero',option1, option2)
-       return true
-     }else{
-      console.log('falso',option1, option2)
-       return false
-     }
-        
-        
-      }else{
-        return false
+      if (
+        option1.length === option2.length &&
+        JSON.stringify(option1) === JSON.stringify(option2)
+      ) {
+        return true;
+      } else {
+        return false;
       }
+    } else {
+      return false;
     }
- 
-  const finalSolve =()=>{
-    let solv = textContent.sort(((a, b) => {
-      let firstLetter =   a.split(a[0]) 
-      let secondLetter = b.split(b[0])
-      return firstLetter[1] - secondLetter[1]
-    }))
-    fixWord(solv, puzzleSolve)?props.switchAnswer('correct'):props.switchAnswer('wrong')
+  };
+
+  const finalSolve = () => {
+    let solv = textContent.sort((a, b) => {
+      let firstLetter = a.split(a[0]);
+      let secondLetter = b.split(b[0]);
+      return firstLetter[1] - secondLetter[1];
+    });
+    fixWord(solv, puzzleSolve)
+      ? props.switchAnswer("correct")
+      : props.switchAnswer("wrong");
+  };
+  const previousLevel = ()=>{
+    props.previousLevel()
   }
   const setText = (item, state) => {
-    console.log(item);
-    console.log(textContent);
     let arrayUpdated = stateArrayItems;
     let i = textContent.indexOf(item);
     arrayUpdated[i] === undefined
@@ -91,7 +92,7 @@ export default function DraggablePiece(props) {
         if (arrayPuzzleDisolve[index] === item) {
           arrayPuzzleDisolve[index] = undefined;
           setPuzzleSolve(arrayPuzzleDisolve);
-          console.log(index);
+
           break;
         }
       }
@@ -131,38 +132,32 @@ export default function DraggablePiece(props) {
                 ikey += 1;
                 return (
                   <Grid key={ikey} item>
-                    <Zoom in={content!==undefined}>
-                    <Card className={classes.rootEmptyCard}>
-                      {content === undefined ? (
-                        null
-                      ) : (
-                        <CardContent onClick={() => setText(content, false)}>
-                          <Typography className={classes.title}>
-                            {content === undefined
-                              ? null
-                              : Array.from(content)[0]}
-                          </Typography>
-                        </CardContent>
-                      )}
-                    </Card>
+                    <Zoom in={content !== undefined}>
+                      <Card className={classes.rootEmptyCard}>
+                        {content === undefined ? null : (
+                          <CardContent onClick={() => setText(content, false)}>
+                            <Typography className={classes.title}>
+                              {content === undefined
+                                ? null
+                                : Array.from(content)[0]}
+                            </Typography>
+                          </CardContent>
+                        )}
+                      </Card>
                     </Zoom>
-                
                   </Grid>
                 );
               })}
             </Grid>
             <Grid container justify="center">
               {textContent.map((content) => {
-                ikey += 1;
+                ikey += 10;
                 let i = textContent.indexOf(content);
                 return (
                   <Grid key={ikey} item>
                     <Zoom in={stateArrayItems[i] === undefined}>
-                    <Card className={classes.rootCard}>
-                      {stateArrayItems[i] !== undefined ? (
-                        null
-                      ) : (
-                        
+                      <Card className={classes.rootCard}>
+                        {stateArrayItems[i] !== undefined ? null : (
                           <CardContent onClick={() => setText(content, true)}>
                             <Typography className={classes.title}>
                               {stateArrayItems[i] !== undefined
@@ -170,20 +165,38 @@ export default function DraggablePiece(props) {
                                 : Array.from(content)[0]}
                             </Typography>
                           </CardContent>
-                     
-                      )}
-                    </Card>
+                        )}
+                      </Card>
                     </Zoom>
                   </Grid>
                 );
               })}
             </Grid>
             <Grid container justify="center">
-            <Button disabled={!puzzleSolve[0]} onClick={finalSolve} variant="contained" size="large" className={classes.buttonCheck}>
-          Siguiente
-        </Button>
+              <Grid item>
+              <Button
+                disabled={!puzzleSolve[0]}
+                onClick={finalSolve}
+                variant="contained"
+                size="large"
+                className={classes.buttonCheck}
+              >
+                Siguiente
+              </Button>
+              </Grid>
+              <Grid item>
+              <Button
+
+                onClick={previousLevel}
+                variant="contained"
+                size="large"
+                className={classes.buttonCheck}
+              >
+                Anterior
+              </Button>
+              </Grid>
+              
             </Grid>
-           
           </Grid>
         </Grid>
       </div>
