@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import DraggablePiece from "./DraggablePiece";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import { useStyles } from "./style";
 import TransitionsSnackbar from "../dialogNotifications/notification";
 import useForceUpdate from "use-force-update";

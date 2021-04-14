@@ -22,23 +22,33 @@ const persons = Schema(
     timestamps: true,
   }
 );
-const score = Schema(
+const scores = Schema(
   {
-    person: {
+    _person: {
       type: mongoose.Schema.ObjectId,
       ref: "Persons",
     },
-    nivel: String,
+    _nivel: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Stages",
+      
+    },
     Ptotal: String,
   },
   {
     timestamps: true,
   }
 );
+const stages = Schema({
+  _person: mongoose.Schema.ObjectId,
+  etapa: String,
+  nivel: String,
+})
 const Persons = mongoose.model("Persons", persons),
-  Score = mongoose.model("Score", score);
-
+  Score = mongoose.model("Score", scores),
+  Stages = mongoose.model("Stages", stages);
 module.exports = {
   Persons,
   Score,
+  Stages
 };

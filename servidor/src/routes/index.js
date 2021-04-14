@@ -96,6 +96,41 @@ router.post("/score", authToken, (req, res) => {
     }
   });
 });
+router.post("/stage", (req, res) => {
+  console.log(req.body)
+      // mongodb.Stages.findById(req.body)
+      mongodb.Stages.create(req.body, (err) => {
+        console.log(err)
+        if (err) {
+          res.status(404).send("error en el servidor");
+        } else {
+          res.status(200);
+          res.json("creado exitosamente");
+        }
+      });
+    }
+  
+);
+router.get("/stage/:idPerson/:stage", (req, res) => {
+  // jwt.verify(req.token, tokenEncrypt, (err) => {
+  //   if (err) {
+      
+    // } else {
+      const idPerson = req.params.idPerson
+      const stage = req.params.stage
+      mongodb.Stages.find({_person: idPerson}, (err, doc) => {
+        if (err || doc.length===0 || !doc) {
+          
+          res.status(404).send("error en el servidor");
+        } else {
+          console.log(doc)
+          res.json(doc);
+          res.status(200);
+        }
+      });
+    // }
+  });
+// });
 router.get("/getscore/:id", authToken, (req, res) => {
   jwt.verify(req.token, tokenEncrypt, (err) => {
     if (err) {
@@ -106,8 +141,11 @@ router.get("/getscore/:id", authToken, (req, res) => {
 
       mongodb.Score.find({ _id: id })
         .populate({
-          path: "person",
+          path: "_person",
           select: "nombre apellido",
+        })
+        .populate({
+          path: "_nivel"
         })
         .exec((err, doc) => {
           console.log(doc);
