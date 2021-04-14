@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import Registro from './pages/Registro';
 import JigSaw from "./pages/draggable/Jigsaw";
 import ButtonAppBar from './pages/components/Navigation';
+import Puntajes from './pages/puntajes';
+import Resultados from './pages/resultados';
+
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
       <Route path="/draw" name="/draws" component={Draw} />
       <Route path="/draw2" name="/draws2" component={Draw2} />
       <Route path="/puzzle" name="/puzzle" component={JigSaw} />
+      <Route path="/puntajes" name="/puntajes" component={Puntajes} />
+      <Route path="/resultados" name="/resultados" component={Resultados} />
+
      </Router>
     </div>
    
