@@ -12,17 +12,21 @@ import { useStyles } from "./style";
 import { Button } from "@material-ui/core";
 import dataJson from "./data.js";
 import useForceUpdate from "use-force-update";
-import getData from "../../util/get";
+import getDataUser from "../../util/get";
+import postDataUser from "../../util/post";
+const nameLvls = ['Monosílabas', 'Bísilabas']
 export const Syllables = React.memo(function SolidGameCard() {
   const [data, setData] = useState(false),
+  [dataId, setDataId] = useState(false),
     [level, setLevel] = useState(false),
+    [subLevel, setSubLevel] = useState(false),
     [stage, setStage] = useState(false);
   const classes = useStyles();
   useEffect(() => {
     getData();
 
     // setLevel("nivel2");
-  }, [!data, !level, !stage]);
+  }, [!data, !level, !stage, !subLevel]);
   const forceUpdate = useForceUpdate();
   const gridStyles = useGridStyles();
   const styles = useStyles({ color: "#203f52" });
@@ -31,29 +35,48 @@ export const Syllables = React.memo(function SolidGameCard() {
   const styles4 = useStyles({ color: "#34241e" });
   const getData = async () => {
     const url =
-      "http://localhost:4000/stage/6077083499b25a0c64418012/bisilabas";
-    // await getData(url).then((response) => {
-    //   console.log(response);
-    // });
-    const currentlvl = "nivel1";
-    const currentStage = "monosilabas";
-    setLevel(currentlvl);
-    setStage(currentStage);
-    getContentLvlData(currentlvl, currentStage);
+      "http://localhost:4000/stage/6077083499b25a0c64418012/silabas";
+    await getDataUser(url).then((response) => {
+      const currentSubLvl = response[0] .sub_nivel;
+      const currentLvl = response[0].nivel
+      console.log(response)
+      setDataId(response[0]._id)
+      setSubLevel(currentSubLvl);
+      setStage('silabas')
+      setLevel(currentLvl);
+      getContentLvlData(currentSubLvl, currentLvl);
+    })
+
   };
   const getContentLvlData = (lvl, stageCate) => {
-    setData(dataJson[stageCate][lvl]);
     console.log(`recuperando ${dataJson[stageCate][lvl]}`);
+    setData(dataJson[stageCate][lvl]);
+  
   };
-  const nextLevel = () => {
+  const nextLevel = async() => {
+    const url =
+    "http://localhost:4000/stage";
     setData(false);
-    const nxt = parseInt(level.split("nivel")[1]) + 1;
-    setLevel(`nivel${nxt}`);
-    setTimeout(() => {
-      getContentLvlData(nxt, stage);
-    }, 500);
+    let arr = Object.keys(dataJson[level])
+    let lastItem =   Object.keys(dataJson[level]).length-1
+    const nxt = subLevel===arr[lastItem]?1:parseInt(subLevel.split("nivel")[1]) + 1;
+    const nxtStage = level===nameLvls[nameLvls.length-1]?level:nameLvls[nameLvls.indexOf(level)+1]
+    const dataNxtLvl = JSON.stringify({
+      _id: dataId,
+      nivel: nxt===1?nxtStage:level,
+      sub_nivel: `nivel${nxt}`
+    })
+    await postDataUser(url,dataNxtLvl).then(response =>{
+      if(response){
+        getData()
+      }
+    })
+  
+    // setTimeout(() => {
+    //   getContentLvlData(nxt, stage);
+    // }, 500);
 
-    console.log(nxt);
+    // console.log(nxt);
     // forceUpdate()
   };
   const CustomCard = ({ classes, image, title }) => {
@@ -112,7 +135,7 @@ export const Syllables = React.memo(function SolidGameCard() {
           </Grid>
           <Grid item>
             <Button
-              disabled={level === "nivel1"}
+              disabled={subLevel === "nivel1"}
               // onClick={previousLevel}
               variant="contained"
               size="large"

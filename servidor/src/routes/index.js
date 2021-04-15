@@ -79,33 +79,31 @@ router.post("/register", (req, res) => {
     }
   });
 });
-router.post("/score", authToken, (req, res) => {
-  console.log("pasooooo");
-  jwt.verify(req.token, tokenEncrypt, (err) => {
-    if (err) {
+router.post("/score", (req, res) => {
+  
+  // jwt.verify(req.token, tokenEncrypt, (err) => {
+  //   if (err) {
       res.status(404).send("error en el servidor");
-    } else {
+    // } else {
       mongodb.Score.create(req.body, (err) => {
         if (err) {
           res.status(404).send("error en el servidor");
         } else {
-          res.status(200);
-          res.json("creado exitosamente");
+          res.status(200).send("creado exitosamente");
         }
       });
-    }
-  });
+    // }
+  // });
 });
 router.post("/stage", (req, res) => {
   console.log(req.body)
       // mongodb.Stages.findById(req.body)
-      mongodb.Stages.create(req.body, (err) => {
-        console.log(err)
+      mongodb.Stages.findByIdAndUpdate(req.body._id,req.body, (err,doc) => {
+        
         if (err) {
           res.status(404).send("error en el servidor");
         } else {
-          res.status(200);
-          res.json("creado exitosamente");
+          res.status(200).send("creado exitosamente");
         }
       });
     }
@@ -118,12 +116,25 @@ router.get("/stage/:idPerson/:stage", (req, res) => {
     // } else {
       const idPerson = req.params.idPerson
       const stage = req.params.stage
-      mongodb.Stages.find({_person: idPerson}, (err, doc) => {
+      mongodb.Stages.find({_person: idPerson, etapa: stage}, (err, doc) => {
         if (err || doc.length===0 || !doc) {
-          
-          res.status(404).send("error en el servidor");
+          mongodb.Stages.create({
+            _person: idPerson,
+            etapa: stage,
+            nivel: 'Monosílabas',
+            sub_nivel: "nivel1"
+          } ,(err, doc)=>{
+            if(err){
+              res.status(404).send("error en el servidor");
+            }else{
+              
+              res.json(doc);
+              res.status(200);
+            }
+          })
+         
         } else {
-          console.log(doc)
+          
           res.json(doc);
           res.status(200);
         }
@@ -137,7 +148,7 @@ router.get("/getscore/:id", authToken, (req, res) => {
       res.status(404).send("no mames te la creiste");
     } else {
       const id = req.params.id;
-      console.log(id);
+      
 
       mongodb.Score.find({ _id: id })
         .populate({
@@ -148,7 +159,7 @@ router.get("/getscore/:id", authToken, (req, res) => {
           path: "_nivel"
         })
         .exec((err, doc) => {
-          console.log(doc);
+          
           if (err) {
             res.status(404).send("error en el servidor");
           } else if (doc === null) {

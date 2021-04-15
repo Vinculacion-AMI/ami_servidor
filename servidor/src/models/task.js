@@ -43,6 +43,7 @@ const stages = Schema({
   _person: mongoose.Schema.ObjectId,
   etapa: String,
   nivel: String,
+  sub_nivel: String,
 })
 const Persons = mongoose.model("Persons", persons),
   Score = mongoose.model("Score", scores),
