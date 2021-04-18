@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 
-import { Table, Thead, Tbody,th,  Tr, Th, Td } from 'react-super-responsive-table';
+import { Table } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import Paper from '@material-ui/core/Paper';
 
@@ -19,6 +19,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import ShareIcon from '@material-ui/icons/Share';
+import IconButton from '@material-ui/core/IconButton';
 
 
 // const useStyles = makeStyles({
@@ -48,11 +51,11 @@ function createData(name, calories, fat, carbs) {
   }
   
   const rows = [
-    createData('Frozen','Tabares', 15),
-    createData('sandwich','Gonzales', 23),
-    createData('Eclair','Castro', 22),
-    createData('Cupcake','Malquin', 305),
-    createData('Gingerbread','Quispe', 356),
+    createData('Lenin Sebastian','Tabares Gonzales', 1005),
+    createData('Juanita Maria','Gonzales Castro', 2300),
+    createData('Eclair ALma','luan bees', 2200),
+    createData('Jackeline Maria','Malquin Saenz', 3005),
+    createData('Gingerbread Joel','Quispe Quispe', 3056),
   ];
 
 // export default function Resultados() {
@@ -87,11 +90,6 @@ function createData(name, calories, fat, carbs) {
 //   );
 // }
 
-
-
-
-
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -103,7 +101,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     padding: ' 6px',
     margin: 0,
-    fontSize: 16,
+    fontSize: 18,
     
   },
 }))(TableCell);
@@ -113,6 +111,12 @@ const StyledTableRow = withStyles((theme) => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.disabledBackground
     },
+  // subcell:{
+  //     fontFamily: 'italic',
+  //     textAlign: 'left',
+  //     background: 'rgb(60, 60, 60)',
+  //     color: 'white'
+  //   },
     
   },
 }))(TableRow, StyledTableCell);
@@ -120,7 +124,7 @@ const StyledTableRow = withStyles((theme) => ({
 const useStyles = makeStyles({
   root:{
     width: "100%",
-    maxWidth: 875,
+    maxWidth: 975,
     height: '100%',
     textAlign: 'center',
     justifyContent: 'center',
@@ -132,31 +136,34 @@ const useStyles = makeStyles({
     padding: 20
   },
   table: {
-    minWidth: 100,
+    minWidth: 90,
     padding: 0,
-    textAlign: 'rigth',
+    textAlign: 'rigth'
     
+  },
+
+  media: {
+    height: 140,
+  },
+  paper: {
+    fontFamily: 'italic',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textShadow: '0 0 3px #FF0000, 0 0 5px #0000FF'
   },
   subcell:{
     fontFamily: 'italic',
-    textAlign: 'left',
-  },
-  media: {
-    height: 140,
+    fontWeight: 'bold'
   },
   
 });
 
 
 export default function Resultados(props) {
-
   const classes = useStyles();
-
   return (
-
     <Card className={classes.root}>
-
-<CardActionArea>
+      <CardActionArea>
         <CardMedia
           className={classes.media}
           image="/images/puntuacion.jpg"
@@ -164,7 +171,7 @@ export default function Resultados(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            Felicitaciones
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
@@ -172,50 +179,53 @@ export default function Resultados(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
+
       <CardActions>
-        <Button size="small" color="primary">
+        <Button variant="contained"   size="small" color="primary">
+          <Avatar alt="Remy Sharp" src="../images/slide_2.jpg" />
+
           Perfil
         </Button>
+
         <Button size="small" color="primary">
           Compartir
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
         </Button>
       </CardActions>
 
       <Grid item xs={12}>
-          <Paper className={classes.paper}>NOMBRE DEL JUEGO</Paper>
+          <Paper className={classes.paper}>GAME ROOM</Paper>
       </Grid>
 
       <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">TOTAL</StyledTableCell>
-            <StyledTableCell align="center">Nombre</StyledTableCell>
-            <StyledTableCell align="center">Apellido</StyledTableCell>
-            <StyledTableCell align="center">Puntos</StyledTableCell>
-            <StyledTableCell align="center"></StyledTableCell>
+        <Table className={classes.table} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">TOTAL</StyledTableCell>
+              <StyledTableCell align="center">Nombre</StyledTableCell>
+              <StyledTableCell align="center">Apellido</StyledTableCell>
+              <StyledTableCell align="center">Puntos</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell className={classes.subcell} >
-                PUNTUACIONES
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
-              <StyledTableCell align="center">{row.carbs}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-    
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell className={classes.subcell} >
+                  PUNTUACIONES
+                </StyledTableCell>
+                <StyledTableCell align="center">{row.name}</StyledTableCell>
+                <StyledTableCell align="center">{row.calories}</StyledTableCell>
+                <StyledTableCell align="center">{row.fat}</StyledTableCell>
+                <StyledTableCell align="center">{row.carbs}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Card>
-
-    
   );
 }
