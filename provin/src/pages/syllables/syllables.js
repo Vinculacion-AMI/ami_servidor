@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -12,9 +12,20 @@ import { useStyles } from "./style";
 import { Button } from "@material-ui/core";
 import dataJson from "./data.js";
 import useForceUpdate from "use-force-update";
+import TransitionsSnackbar from "../dialogNotifications/notification";
 import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
-const nameLvls = ['Monosílabas', 'Bísilabas']
+import  nofound  from "../../assets/nofound.png";
+let colors = [
+  "#FFC300",
+  "#2ECC71",
+  "#BEE37B",
+  "#FF5733",
+  "#884EA0",
+  "#3498DB",
+  "#2980B9",
+];
+const nameLvls = ['Monosílabas', 'Bisílabas']
 export const Syllables = React.memo(function SolidGameCard() {
   const [data, setData] = useState(false),
   [dataId, setDataId] = useState(false),
@@ -22,6 +33,7 @@ export const Syllables = React.memo(function SolidGameCard() {
     [subLevel, setSubLevel] = useState(false),
     [stage, setStage] = useState(false);
   const classes = useStyles();
+  const childRef = useRef();
   useEffect(() => {
     getData();
 
@@ -29,17 +41,15 @@ export const Syllables = React.memo(function SolidGameCard() {
   }, [!data, !level, !stage, !subLevel]);
   const forceUpdate = useForceUpdate();
   const gridStyles = useGridStyles();
-  const styles = useStyles({ color: "#203f52" });
-  const styles2 = useStyles({ color: "#4d137f" });
-  const styles3 = useStyles({ color: "#ff9900" });
-  const styles4 = useStyles({ color: "#34241e" });
+  const styles = useStyles({ color: colors[Math.floor(Math.random() * colors.length)] });
+
   const getData = async () => {
     const url =
       "http://localhost:4000/stage/6077083499b25a0c64418012/silabas";
     await getDataUser(url).then((response) => {
       const currentSubLvl = response[0] .sub_nivel;
       const currentLvl = response[0].nivel
-      console.log(response)
+      
       setDataId(response[0]._id)
       setSubLevel(currentSubLvl);
       setStage('silabas')
@@ -49,21 +59,59 @@ export const Syllables = React.memo(function SolidGameCard() {
 
   };
   const getContentLvlData = (lvl, stageCate) => {
-    console.log(`recuperando ${dataJson[stageCate][lvl]}`);
+    
     setData(dataJson[stageCate][lvl]);
   
   };
-  const nextLevel = async() => {
+  const nextLevel = async(value) => {
+    if (value === level) {
+      let arr = Object.keys(dataJson[level])
+      let lastItem =   Object.keys(dataJson[level]).length-1
+      const nxt = subLevel===arr[lastItem]?1:parseInt(subLevel.split("nivel")[1]) + 1;
+      const nxtStage = level===nameLvls[nameLvls.length-1]?level:nameLvls[nameLvls.indexOf(level)+1]
+      const dataNxtLvl = JSON.stringify({
+        _id: dataId,
+        nivel: nxt===1?nxtStage:level,
+        sub_nivel: subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]?subLevel:`nivel${nxt}`
+      })
+      if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
+        childRef.current.handleClick('finish');
+      }else{
+        childRef.current.handleClick('correct');
+      }
+      
+      const url =
+      "http://localhost:4000/stage";
+      
+ 
+      setTimeout(() => {
+        setData(false);
+         postDataUser(url,dataNxtLvl).then(response =>{
+          if(response){
+            getData()
+          }
+          if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
+            window.location.replace('http://localhost:3000')
+          }
+        })
+      }, 1000);
+    }else{
+      childRef.current.handleClick('wrong');
+    }
+
+  };
+  const previousLevel = async() => {
     const url =
     "http://localhost:4000/stage";
     setData(false);
     let arr = Object.keys(dataJson[level])
     let lastItem =   Object.keys(dataJson[level]).length-1
-    const nxt = subLevel===arr[lastItem]?1:parseInt(subLevel.split("nivel")[1]) + 1;
-    const nxtStage = level===nameLvls[nameLvls.length-1]?level:nameLvls[nameLvls.indexOf(level)+1]
+    console.log(lastItem)
+    const nxt = subLevel===arr[0]?lastItem+1:parseInt(subLevel.split("nivel")[1]) - 1;
+    const nxtStage = level===nameLvls[0]?level:nameLvls[nameLvls.indexOf(level)-1]
     const dataNxtLvl = JSON.stringify({
       _id: dataId,
-      nivel: nxt===1?nxtStage:level,
+      nivel: subLevel===arr[0]?nxtStage:level,
       sub_nivel: `nivel${nxt}`
     })
     await postDataUser(url,dataNxtLvl).then(response =>{
@@ -71,15 +119,10 @@ export const Syllables = React.memo(function SolidGameCard() {
         getData()
       }
     })
-  
-    // setTimeout(() => {
-    //   getContentLvlData(nxt, stage);
-    // }, 500);
-
-    // console.log(nxt);
-    // forceUpdate()
+    
   };
-  const CustomCard = ({ classes, image, title }) => {
+
+  const CustomCard = ({ classes, image, title, content }) => {
     const mediaStyles = useFourThreeCardMediaStyles();
     if (!data || data === undefined) {
       return <Typography>Cargando...</Typography>;
@@ -87,7 +130,7 @@ export const Syllables = React.memo(function SolidGameCard() {
       return (
         <CardActionArea className={classes.actionArea}>
           <Card
-            className={data.length < 3 ? classes.card : classes.cardMinSize}
+            className={data.length < 3 ? classes.card : classes.cardMinSize}  onClick={()=>nextLevel(content)}
           >
             <CardMedia classes={mediaStyles} image={image} />
             <CardContent className={classes.content}>
@@ -105,17 +148,19 @@ export const Syllables = React.memo(function SolidGameCard() {
   } else {
     return (
       <>
-        <Typography>TITULO</Typography>
+        <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
             return (
               <Grid item>
                 <CustomCard
-                  classes={styles3}
+                  classes={styles}
+                  content={content.category}
                   title={content.title}
                   image={
-                    "https://www.itp.net/public/styles/full_img_sml/public/images/2019/05/27/44485-pubg_base1.jpg?itok=EF911Xan"
+                    !content.img||content.img===undefined?nofound:content.img
                   }
+                 
                 />
               </Grid>
             );
@@ -124,19 +169,18 @@ export const Syllables = React.memo(function SolidGameCard() {
         <Grid container justify="center">
           <Grid item>
             <Button
-              // disabled={!puzzleSolve[0]}
-              onClick={nextLevel}
+              onClick={()=>{window.location.replace("http://localhost:3000")}}
               variant="contained"
               size="large"
               className={classes.buttonCheck}
             >
-              Siguiente
+              Inicio
             </Button>
           </Grid>
           <Grid item>
             <Button
-              disabled={subLevel === "nivel1"}
-              // onClick={previousLevel}
+              disabled={subLevel === "nivel1" && level==='Monosílabas'}
+              onClick={previousLevel}
               variant="contained"
               size="large"
               className={classes.buttonCheck}
@@ -145,6 +189,9 @@ export const Syllables = React.memo(function SolidGameCard() {
             </Button>
           </Grid>
         </Grid>
+        <div className={classes.root}>
+              <TransitionsSnackbar ref={childRef} />
+            </div>
       </>
     );
   }

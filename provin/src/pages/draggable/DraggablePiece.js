@@ -16,7 +16,7 @@ export default function DraggablePiece(props) {
 
   useEffect(() => {
     begingComponents();
-    forceUpdate()
+    forceUpdate();
   }, []);
   const forceUpdate = useForceUpdate();
   const shuffle = (array) => {
@@ -67,9 +67,9 @@ export default function DraggablePiece(props) {
       ? props.switchAnswer("correct")
       : props.switchAnswer("wrong");
   };
-  const previousLevel = ()=>{
-    props.previousLevel()
-  }
+  const previousLevel = () => {
+    props.previousLevel();
+  };
   const setText = (item, state) => {
     let arrayUpdated = stateArrayItems;
     let i = textContent.indexOf(item);
@@ -174,28 +174,26 @@ export default function DraggablePiece(props) {
             </Grid>
             <Grid container justify="center">
               <Grid item>
-              <Button
-                disabled={!puzzleSolve[0]}
-                onClick={finalSolve}
-                variant="contained"
-                size="large"
-                className={classes.buttonCheck}
-              >
-                Siguiente
-              </Button>
+                <Button
+                  disabled={!puzzleSolve[0]}
+                  onClick={finalSolve}
+                  variant="contained"
+                  size="large"
+                  className={classes.buttonCheck}
+                >
+                  Siguiente
+                </Button>
               </Grid>
               <Grid item>
-              <Button
-
-                onClick={previousLevel}
-                variant="contained"
-                size="large"
-                className={classes.buttonCheck}
-              >
-                Anterior
-              </Button>
+                <Button
+                  onClick={previousLevel}
+                  variant="contained"
+                  size="large"
+                  className={classes.buttonCheck}
+                >
+                  Anterior
+                </Button>
               </Grid>
-              
             </Grid>
           </Grid>
         </Grid>

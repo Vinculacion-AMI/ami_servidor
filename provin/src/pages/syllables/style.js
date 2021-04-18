@@ -2,10 +2,21 @@ import Color from 'color';
 import GoogleFont from 'react-google-font-loader';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+let colors = [
+  "#FFC300",
+  "#2ECC71",
+  "#BEE37B",
+  "#FF5733",
+  "#884EA0",
+  "#3498DB",
+  "#2980B9",
+];
+let titleColor = colors[Math.floor(Math.random() * colors.length)];
+
 export const useGridStyles = makeStyles(( theme ) => ({
     root: {
         margin: theme.spacing(0.5),
-        width: "99%",
+        width: "95%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -14,6 +25,29 @@ export const useGridStyles = makeStyles(( theme ) => ({
   }));
   console.log(window.screen.width)
 export  const useStyles = makeStyles((theme) => ({
+  
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
+  titleWord: {
+    color: titleColor,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 40,
+    },
+  },
     actionArea: {
       borderRadius: 14,
       transition: '0.3s',
@@ -80,7 +114,7 @@ export  const useStyles = makeStyles((theme) => ({
       },
     
         [theme.breakpoints.down("sm")]: {
-          minWidth: window.screen.width/3,
+          width: 160
         },
         [theme.breakpoints.up("md")]: {
           minWidth: window.screen.width/2.5,
@@ -96,13 +130,30 @@ export  const useStyles = makeStyles((theme) => ({
     content: ({ color }) => {
       return {
         backgroundColor: color,
-   
-        padding: '1rem 1.5rem 1.5rem',
+    
+        [theme.breakpoints.down("sm")]: {
+          padding: '0.8rem 1rem 1rem',
+        },
+        [theme.breakpoints.up("md")]: {
+          padding: '1rem 1.5rem 1.5rem',
+        },
+        [theme.breakpoints.up("lg")]: {
+          padding: '1rem 1.5rem 1.5rem',
+        },
+       
       };
     },
     titleCard: {
-      fontFamily: 'Keania One',
-      fontSize: '2rem',
+      fontFamily: 'Montserrat, sans-serif',
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1.5rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.7rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2rem",
+      },
       color: '#fff',
       textTransform: 'uppercase',
       display: "flex",
