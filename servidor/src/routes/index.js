@@ -83,7 +83,7 @@ router.post("/score", (req, res) => {
   
   // jwt.verify(req.token, tokenEncrypt, (err) => {
   //   if (err) {
-      res.status(404).send("error en el servidor");
+      // res.status(404).send("error en el servidor");
     // } else {
       mongodb.Score.create(req.body, (err) => {
         if (err) {
