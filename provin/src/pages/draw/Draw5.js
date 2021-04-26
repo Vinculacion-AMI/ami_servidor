@@ -3,13 +3,19 @@ import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
 import Icon from '@material-ui/core/Icon';
 import clsx from 'clsx';
-
+import { useHistory, withRouter } from "react-router-dom";
 
 function Draw5() {
 
     const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
+    let history = useHistory();
+   
+    const draw4  = () => {
+      history.push("/draw4")
+    }
+   
 
     const clear = () => {
         lienzo.current.clear() 
@@ -52,27 +58,13 @@ function Draw5() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw4"
+                onClick={draw4}
                 style={{ borderRadius: 20, width: 120}}
               >
                 Back
               </Button>
               </Grid>
-              <Grid sm={2}>
-                <Button 
-                
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                href="/draw4"
-                style={{ borderRadius: 20, width: 120, display: 'none'}}
-               
-              > 
-                Next
-               
-              </Button>
-              </Grid>
+            
             </Grid>
               <Grid style={{ textAlign: 'center', }} >
                 <h2> Realiza el Espiral</h2>

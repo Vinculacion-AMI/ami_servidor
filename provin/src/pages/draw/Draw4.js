@@ -5,12 +5,21 @@ import CanvasDraw from 'react-canvas-draw';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import '../../css/draw.css';
+import { useHistory, withRouter } from "react-router-dom";
 function Draw4() {
   
   const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
-
+    let history = useHistory();
+   
+    const draw3  = () => {
+      history.push("/draw3")
+    }
+    const draw5  = () => {
+      history.push("/draw5")
+    }
+    
     const clear = () => {
         lienzo.current.clear() 
     }
@@ -60,7 +69,7 @@ function Draw4() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw3"
+                onClick={draw3}
                 style={{ borderRadius: 20, width: 120}}
               >
                 Back
@@ -72,7 +81,7 @@ function Draw4() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw5"
+                onClick={draw5}
                 style={{ borderRadius: 20, width: 120}}
                
               > 

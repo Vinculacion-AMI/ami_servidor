@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
-
+import { useHistory, withRouter } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
    
@@ -33,7 +33,13 @@ function Draw2() {
   const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
-
+    let history = useHistory();
+   
+    const draw3  = () => {
+      history.push("/draw3")
+    }
+    
+  
     const clear = () => {
         lienzo.current.clear() 
     }
@@ -75,7 +81,7 @@ function Draw2() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw3"
+                onClick={draw3}
                 style={{ borderRadius: 20, width: 120}}
               >
                 Next

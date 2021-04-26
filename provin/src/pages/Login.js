@@ -1,7 +1,30 @@
-import React, {  } from 'react';
+import React, { useContext } from 'react';
 import '../css/login.css';
-import { Grid, form, TextField, Link, Button,  Card,    } from "@material-ui/core";
+
+import { Grid, form, TextField,  Button,  Card,    } from "@material-ui/core";
+import { Route, BrowserRouter as Router, Link, Redirect, useLocation, useHistory } from 'react-router-dom';
+
+
 function Login() {
+ 
+
+  const [correo, setCorreo] = React.useState("");
+  const [contrasena, setContrasena] = React.useState("");
+  let history = useHistory();
+ 
+
+
+ async function login () {
+    if ( correo === "" || contrasena === ""){
+      alert("Registrate por favor")
+    }else {
+      let data = {correo, contrasena};
+      
+      
+      history.push("/levels")
+    }
+    
+  }
 
   return (
   <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
@@ -12,7 +35,7 @@ function Login() {
         style={{          
             textAlign: 'center',
             padding: 20,  marginTop: 40 }}
-         className="card" item xs={12} sm={4}>
+         className="card" xs={12} sm={4}>
         <Card  width="300" justifyContent="center" className="content">
           <h1>Bienvenidos</h1> 
           <br></br>  
@@ -24,14 +47,14 @@ function Login() {
      <Grid style={{ margin: 20 }}   xs={12} >
      
        <TextField
-         name="Nombre"
+         value={correo}
          variant="outlined"
          required
          fullWidth
          id="name"
-         label="Nombre Completo"
+         label="Email"
          autoFocus
-        
+         onChange={(e)=>setCorreo(e.target.value)}
        />
      </Grid>
     
@@ -41,20 +64,21 @@ function Login() {
          variant="outlined"
          required
          fullWidth
-         name="contraseña"
+         value={contrasena}
          label="Contraseña"
          type="password"
-         id="password"
+         onChange={(e)=>setContrasena(e.target.value)}
          autoComplete="current-password"
        />
      </Grid>
-     <Grid item xs={4}>
+     <Grid  xs={4}>
       
      </Grid>
    </Grid>
    <Grid style={{ margin: 20,  }}>
       <Button
-      type="submit"
+      onClick={login}
+       
       fullWidth
       variant="contained"
       color="primary"
@@ -65,8 +89,8 @@ function Login() {
    </Grid>
    
    <Grid container justify="center">
-     <Grid item>
-       <Link href="/singIn" variant="body2">
+     <Grid >
+       <Link href="/signup" variant="body2">
          Aun no tienes cuenta??
        </Link>
      </Grid>

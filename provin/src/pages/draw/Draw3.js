@@ -3,7 +3,7 @@ import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
 import Icon from '@material-ui/core/Icon';
 import clsx from 'clsx';
-
+import { useHistory, withRouter } from "react-router-dom";
 
 function Draw3() {
 
@@ -11,6 +11,16 @@ function Draw3() {
     const [brush, ] = useState(6);
     const lienzo = useState(null);
 
+    let history = useHistory();
+   
+    const draw4  = () => {
+      history.push("/draw4")
+    }
+    
+    const draw2  = () => {
+      history.push("/draw2")
+    }
+  
     const clear = () => {
         lienzo.current.clear() 
     }
@@ -52,7 +62,7 @@ function Draw3() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw2"
+                onClick={draw2}
                 style={{ borderRadius: 20, width: 120}}
               >
                 Back
@@ -64,7 +74,7 @@ function Draw3() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                href="/draw4"
+                onClick={draw4}
                 style={{ borderRadius: 20, width: 120}}
                
               > 

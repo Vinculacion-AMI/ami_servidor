@@ -26,7 +26,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 // autorización CORS
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: '*',
     credentials: true
 }))
 //Autorización del uso de json
@@ -34,7 +34,7 @@ app.use(express.json());
 //Estudio url body-parse
 app.use(express.urlencoded({ extended: false }))
 //routes
-app.use('/api', indexRoutes);
+app.use('/', indexRoutes);
 
 
 //starting the server

@@ -50,6 +50,27 @@ function Draw() {
       { photo: ['../../../images/abc4.jpg'] }, 
       { photo: ['../../../images/abc5.jpg'] }, 
       { photo: ['../../../images/abc6.jpg'] }, 
+      { photo: ['../../../images/abc7.jpg'] }, 
+      { photo: ['../../../images/abc8.jpg'] }, 
+      { photo: ['../../../images/abc9.jpg'] }, 
+      { photo: ['../../../images/abc10.jpg'] }, 
+      { photo: ['../../../images/abc11.jpg'] }, 
+      { photo: ['../../../images/abc12.jpg'] }, 
+      { photo: ['../../../images/abc13.jpg'] }, 
+      { photo: ['../../../images/abc14.jpg'] }, 
+      { photo: ['../../../images/abc15.jpg'] }, 
+      { photo: ['../../../images/abc16.jpg'] }, 
+      { photo: ['../../../images/abc17.jpg'] }, 
+      { photo: ['../../../images/abc18.jpg'] }, 
+      { photo: ['../../../images/abc19.jpg'] }, 
+      { photo: ['../../../images/abc20.jpg'] }, 
+      { photo: ['../../../images/abc21.jpg'] }, 
+      { photo: ['../../../images/abc22.jpg'] }, 
+      { photo: ['../../../images/abc23.jpg'] }, 
+      { photo: ['../../../images/abc24.jpg'] }, 
+      { photo: ['../../../images/abc25.jpg'] }, 
+      { photo: ['../../../images/abc26.jpg'] }, 
+      { photo: ['../../../images/abc27.jpg'] }, 
           
     ];
 
@@ -60,7 +81,7 @@ function Draw() {
       };
       console.log(style.width);
   return (
-  <div >
+  <div style={{ backgroundColor: "#FFFD5F", height: 659 }} >
      <Grid container>
             
             <Grid style={{ textAlign: 'center', alignItems: 'center' }} xs={12} sm={6}>
@@ -104,8 +125,8 @@ function Draw() {
       </Grid>
             <Card className={classes.ancho}  style={{  border: '2px solid #14181C', marginTop: 50 }}>
                 <CanvasDraw
-                ref={lienzo}
-                lazyRadius={1}
+                    ref={lienzo}
+                    lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
                     canvasHeight={450}
