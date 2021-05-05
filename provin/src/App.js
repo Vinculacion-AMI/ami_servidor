@@ -10,6 +10,8 @@ import Draw3 from './pages/draw/Draw3';
 import Draw4 from './pages/draw/Draw4';
 import Draw5 from './pages/draw/Draw5';
 import Levels from './pages/levels/Levels';
+import JigSaw from "./pages/draggable/Jigsaw";
+import Syllables from "./pages/syllables/syllables";
 
 import Registro from './pages/Registro';
 
@@ -253,6 +255,8 @@ function App() {
           <SecuredRoute path="/draw4" component={Draw4} />
           <SecuredRoute path="/draw5" component={Draw5} />
           <SecuredRoute path="/game1" component={Game1} />
+          <SecuredRoute path="/syllables" component={Syllables}/>
+          <SecuredRoute path="/puzzle" component={JigSaw} />
       
       </div>
     
