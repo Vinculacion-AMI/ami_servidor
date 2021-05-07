@@ -12,6 +12,7 @@ import Draw5 from './pages/draw/Draw5';
 import Levels from './pages/levels/Levels';
 import JigSaw from "./pages/draggable/Jigsaw";
 import Syllables from "./pages/syllables/syllables";
+import Home from './pages/home/home'
 
 import Registro from './pages/Registro';
 
@@ -90,7 +91,7 @@ function Login (props){
       localStorage.setItem("token", result.token);
       localStorage.setItem("user_id", result.data._id);
       authenticate.onAuthentication();
-      history.push("/levels")
+      history.push("/home")
      
     }
     
@@ -248,6 +249,7 @@ function App() {
     
           <Route path="/" exact component={Login} />
           <Route path="/signup" component={Registro} />
+          <SecuredRoute path="/home" component={Home} />
           <SecuredRoute path="/levels" component={Levels} />
           <SecuredRoute path='/draw'   component={Draw} />      
           <SecuredRoute path="/draw2" component={Draw2} />

@@ -47,7 +47,9 @@ function Levels({ logout, ...rest }) {
   const game1  = () => {
     history.push("/game1")
   }
-
+  const puzzle  = () => {
+    history.push("/puzzle")
+  }
     
   
 
@@ -68,12 +70,12 @@ function Levels({ logout, ...rest }) {
             
                 <CardMedia
                   className={classes.media2}
-                  image="../../images/logo.jpg"
+                  image="../../images/trazos.jpg"
             
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                   SketchBook
+                   Desarrolla tu motricidad
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
                   Aqui pondras en prueba tus habilidades 
@@ -117,6 +119,29 @@ function Levels({ logout, ...rest }) {
       
               <CardMedia
                 className={classes.media}
+                image="../../images/forma_palabras.png"
+          
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Forma las palabras
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  Deberas ordenar las letras para formar las palabras
+                </Typography>
+                <br />  
+                <Button
+              onClick={puzzle}
+              variant="contained"
+              color="primary"
+              style={{ borderRadius: 20 }}
+              >Jugar</Button>
+              </CardContent>              
+        </Card>
+        <Card className={classes.root}>
+      
+              <CardMedia
+                className={classes.media}
                 image="../../images/logo3.jpg"
           
               />
@@ -137,6 +162,7 @@ function Levels({ logout, ...rest }) {
               >Jugar</Button>
               </CardContent>              
         </Card>
+        
             </Carousel>
         </Grid>
         </Grid>
