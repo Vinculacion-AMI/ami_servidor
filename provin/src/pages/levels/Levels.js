@@ -50,6 +50,9 @@ function Levels({ logout, ...rest }) {
   const puzzle  = () => {
     history.push("/puzzle")
   }
+  const syllables  = () => {
+    history.push("/syllables")
+  }
     
   
 
@@ -119,7 +122,7 @@ function Levels({ logout, ...rest }) {
       
               <CardMedia
                 className={classes.media}
-                image="../../images/forma_palabras.png"
+                image="../../images/forma_palabras1.png"
           
               />
               <CardContent>
@@ -162,15 +165,37 @@ function Levels({ logout, ...rest }) {
               >Jugar</Button>
               </CardContent>              
         </Card>
+        <Card className={classes.root}>
+      
+              <CardMedia
+                className={classes.media}
+                image="../../images/forma_palabras.png"
+          
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Identifica las silabas
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                Deberas reconocer las fraces monosilabas y bisilabas
+                </Typography>
+                <br />  
+                <Button
+              
+              onClick={syllables}
+              variant="contained"
+              color="primary"
+              style={{ borderRadius: 20 }}
+              >Jugar</Button>
+              </CardContent>              
+        </Card>
         
             </Carousel>
         </Grid>
         </Grid>
         <Grid sm={2}>
         </Grid>
-    </Grid>
-     
-
+    </Grid> 
   );
 }
 
