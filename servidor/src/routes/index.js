@@ -159,7 +159,6 @@ router.get("/getscore/:id", authToken, (req, res) => {
           path: "_nivel"
         })
         .exec((err, doc) => {
-          
           if (err) {
             res.status(404).send("error en el servidor");
           } else if (doc === null) {
