@@ -19,6 +19,32 @@ function authToken(req, res, next) {
     res.sendStatus(403);
   }
 }
+router.post("/register", (req, res) => {
+  console.log(req.body);
+  const saltRounds = 12;
+  bcrypt.hash(req.body.contrasena, saltRounds, (err, hash) => {
+    try {
+      mongodb.Persons.insertMany(
+        {
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          correo: req.body.correo,
+          imagen: req.body.imagen,
+          contrasena: hash,
+        },
+        (err) => {
+          if (err) {
+            res.status(404).send("error en el servidor");
+          } else {
+            res.status(200).send("creado exitosamente");
+          }
+        }
+      );
+    } catch (error) {
+      res.status(404).send("error en el servidor");
+    }
+  });
+});
 router.post("/login", (req, res) => {
   mongodb.Persons.find({
     correo: req.body.correo,
@@ -52,32 +78,7 @@ router.post("/login", (req, res) => {
     }
   });
 });
-router.post("/register", (req, res) => {
-  console.log(req.body);
-  const saltRounds = 12;
-  bcrypt.hash(req.body.contrasena, saltRounds, (err, hash) => {
-    try {
-      mongodb.Persons.insertMany(
-        {
-          nombre: req.body.nombre,
-          apellido: req.body.apellido,
-          correo: req.body.correo,
-          imagen: req.body.imagen,
-          contrasena: hash,
-        },
-        (err) => {
-          if (err) {
-            res.status(404).send("error en el servidor");
-          } else {
-            res.status(200).send("creado exitosamente");
-          }
-        }
-      );
-    } catch (error) {
-      res.status(404).send("error en el servidor");
-    }
-  });
-});
+
 router.post("/score", (req, res) => {
   
   // jwt.verify(req.token, tokenEncrypt, (err) => {
@@ -144,7 +145,7 @@ router.get("/stage/:idPerson/:stage", (req, res) => {
 router.get("/getscore/:id", authToken, (req, res) => {
   jwt.verify(req.token, tokenEncrypt, (err) => {
     if (err) {
-      res.status(404).send("no mames te la creiste");
+      res.status(404).send("Error en el servidor");
     } else {
       const id = req.params.id;
       

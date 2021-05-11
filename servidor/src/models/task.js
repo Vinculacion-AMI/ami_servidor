@@ -45,6 +45,7 @@ const stages = Schema({
 const Persons = mongoose.model("Persons", persons),
   Score = mongoose.model("Score", scores),
   Stages = mongoose.model("Stages", stages);
+  
 module.exports = {
   Persons,
   Score,
