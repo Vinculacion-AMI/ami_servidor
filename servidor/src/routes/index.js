@@ -7,9 +7,8 @@ require("dotenv").config(),
   (mongodb = require("../models/task"));
 
 const tokenEncrypt = process.env.TOKEN_SECRET;
-router.get("/example", (req, res) => {
-  res.send("Hola mundo");
-});
+
+
 function authToken(req, res, next) {
   const bearerheader = req.headers["authorization"];
   console.log(bearerheader);
