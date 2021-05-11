@@ -27,10 +27,9 @@ export default function Home() {
 const levels  = () => {
   history.push("/levels")
 }
-const score  = () => {
-  history.push("/score")
+const resultados  = () => {
+  history.push("/resultados")
 }
-
   return (
     <div>
       <AppNavBar />
@@ -42,7 +41,7 @@ const score  = () => {
                   className={classes.media}
                   
                   image="../../images/forma_palabras.png"
-                  title="Contemplative Reptile"
+                  title="Niveles"
                   onClick={levels}
                 />
                 <CardContent>
@@ -60,7 +59,9 @@ const score  = () => {
                 <CardMedia
                   className={classes.media}
                   image="../../images/puntajes.jpg"
-                  title="Contemplative Reptile"
+                  title="Puntajes"
+                  onClick={resultados}
+
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">

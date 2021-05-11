@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory} from "react-router-dom";
+import AppNavBar from '../../components/navbar'
+
 const useStyles = makeStyles({
   root: {
    
@@ -52,6 +54,7 @@ function Draw2() {
       console.log(style.width);
   return (
   <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+      <AppNavBar/> 
         <Grid container>
             <Grid sm={1}>
             

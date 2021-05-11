@@ -1,7 +1,7 @@
-import React, { useState  } from 'react';
+import React from 'react';
 import './css/login.css';
-import { Grid, form, TextField,  Button,  Card,    } from "@material-ui/core";
-import { Route, BrowserRouter as Router, Link, Redirect, useLocation, useHistory } from 'react-router-dom';
+import { Grid,  TextField,  Button,  Card,    } from "@material-ui/core";
+import { Route, BrowserRouter as Router, Link, Redirect, useHistory } from 'react-router-dom';
 import './App.css';
 import Game1 from './pages/dragDrop/game1';
 import Draw from './pages/draw/Draw';
@@ -15,23 +15,8 @@ import Syllables from "./pages/syllables/syllables";
 import Home from './pages/home/home'
 
 import Registro from './pages/Registro';
-
-import Protected from './Protected';
-
-
-/*const validar = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100) // fake async
-  }
-}*/
-
-//let validar2 = "";
+import Puntajes from './pages/puntajes';
+import Resultados from './pages/resultados';
 
 const authenticate = {
   isLoggedIn: false,
@@ -53,23 +38,9 @@ function SecuredRoute(props){
 }
 
 function Login (props){
- /*const [redirectToReferrer, setRedirectToReferrer ] = React.useState(false)
-  const { state } = useLocation();*/
   const [correo, setCorreo] = React.useState("");
   const [contrasena, setContrasena] = React.useState("");
   let history = useHistory();
-  
-
- /* const entrar = () => {
-    validar.authenticate(() => {
-      setRedirectToReferrer(true)
-  }) 
-    
-    
-  }*/
-
-  
- 
 
  async function login () {
     if ( correo === "" || contrasena === ""){
@@ -96,9 +67,6 @@ function Login (props){
     }
     
   }
-    /*if (redirectToReferrer === true) {
-    return <Redirect to={state.from || '/'} />
-  }*/
 
   return (
     
@@ -178,75 +146,18 @@ function Login (props){
    </Card>
           </Grid>
           <Grid   sm={4}>
-              
+          
           </Grid>
-       
    </Grid>
           
    </div>
   
     );
 }
-
-/*function PrivateRoute({ children, ...rest }) {
-  console.log(validar)
-  return (
-   <Route {...rest} render={({ location }) => {
-     
-      return validar.isAuthenticated === true
-        ? children
-        : <Redirect to={{
-            pathname: '/',
-            state: { from: location }
-          }} />
-    }} />
-    
-  )
-  
-
-}*/
-
-
-
-/*function AuthButton () {
-  const history = useHistory()
-
-  return validar.isAuthenticated === true
-    ? <p>
-        Welcome! <button onClick={() => {
-          validar.signout(() => history.push('/'))
-        }}>Sign out</button>
-      </p>
-    : <p>You are not logged in.</p>
-}
-
-  function Levels2 (){
-    return (
-      <div>
-      <h2>Hola</h2>
-      <h2>Hola</h2>
-      <h2>Hola</h2>
-      <h2>Hola</h2>
-      <h2>Hola</h2>
-      <h2>Hola</h2>
-    </div>
-    )
-
-  }
-*/
-
-//         <Route path="/levels" component={Levels} />
-//   <Protected path="/levels" component={Levels} isAuth={isAuth} />
-
-
 function App() {
-  //const [isAuth, setIsAuth] = React.useState(false);
-
   return (
-    
     <Router>
        <div>
-    
           <Route path="/" exact component={Login} />
           <Route path="/signup" component={Registro} />
           <SecuredRoute path="/home" component={Home} />
@@ -259,19 +170,10 @@ function App() {
           <SecuredRoute path="/game1" component={Game1} />
           <SecuredRoute path="/syllables" component={Syllables}/>
           <SecuredRoute path="/puzzle" component={JigSaw} />
-      
+          <SecuredRoute path="/puntajes" component={Puntajes} />
+          <SecuredRoute path="/resultados" component={Resultados} />
       </div>
-    
-      
-      
      </Router>
-     
-   
-   
-   
   );
 }
-
-
-
 export default App;

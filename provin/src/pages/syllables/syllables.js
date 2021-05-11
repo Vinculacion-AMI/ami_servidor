@@ -16,6 +16,8 @@ import TransitionsSnackbar from "../dialogNotifications/notification";
 import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
+
+
 let colors = [
   "#FFC300",
   "#2ECC71",
@@ -128,7 +130,8 @@ export const Syllables = React.memo(function SolidGameCard() {
       return <Typography>Cargando...</Typography>;
     } else {
       return (
-        <CardActionArea className={classes.actionArea}>
+        <div>
+          <CardActionArea className={classes.actionArea}>
           <Card
             className={data.length < 3 ? classes.card : classes.cardMinSize}  onClick={()=>nextLevel(content)}
           >
@@ -140,6 +143,8 @@ export const Syllables = React.memo(function SolidGameCard() {
             </CardContent>
           </Card>
         </CardActionArea>
+        </div>
+        
       );
     }
   };

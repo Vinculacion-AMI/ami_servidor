@@ -7,6 +7,7 @@ import CanvasDraw from 'react-canvas-draw';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import '../../css/draw.css';
+import AppNavBar from '../../components/navbar'
 
 const useStyles = makeStyles({
   root: {
@@ -81,7 +82,10 @@ function Draw() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: "#FFFD5F", height: 659 }} >
+    <div>
+      <div style={{ backgroundColor: "#FFFD5F", height: 659 }} >
+      <AppNavBar/> 
+
      <Grid container>
             
             <Grid style={{ textAlign: 'center', alignItems: 'center' }} xs={12} sm={6}>
@@ -142,7 +146,7 @@ function Draw() {
      </Grid>
         
  </div>
-
+  </div>
   );
 }
 
