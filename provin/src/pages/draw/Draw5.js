@@ -61,7 +61,7 @@ function Draw5() {
                 onClick={draw4}
                 style={{ borderRadius: 20, width: 120}}
               >
-                Back
+                Regresar
               </Button>
               </Grid>
             

@@ -38,7 +38,7 @@ function Draw4() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 700 }}>
         <Grid container>
             <Grid sm={1}>
             
@@ -72,7 +72,7 @@ function Draw4() {
                 onClick={draw3}
                 style={{ borderRadius: 20, width: 120}}
               >
-                Back
+                Regresar
               </Button>
               </Grid>
               <Grid sm={2}>
@@ -85,7 +85,7 @@ function Draw4() {
                 style={{ borderRadius: 20, width: 120}}
                
               > 
-                Next
+                Siguiente
                
               </Button>
               </Grid>
@@ -101,7 +101,7 @@ function Draw4() {
               brushColor={canvas}
               lazyRadius={1}
               brushRadius={brush}
-              canvasHeight={480}
+              canvasHeight={550}
               canvasWidth={'100%'}
               imgSrc="../../images/curvas2.jpg"
               hideGrid={false}

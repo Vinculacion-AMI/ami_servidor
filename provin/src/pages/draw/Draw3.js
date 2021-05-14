@@ -65,7 +65,7 @@ function Draw3() {
                 onClick={draw2}
                 style={{ borderRadius: 20, width: 120}}
               >
-                Back
+                Regresar
               </Button>
               </Grid>
               <Grid sm={2}>
@@ -78,7 +78,7 @@ function Draw3() {
                 style={{ borderRadius: 20, width: 120}}
                
               > 
-                Next
+                Siguiente
                
               </Button>
               </Grid>
@@ -92,7 +92,7 @@ function Draw3() {
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={450}
+                    canvasHeight={650}
                     canvasWidth={'100%'}
                     hideGrid={false}
                     imgSrc="../../images/curvas.jpg"
