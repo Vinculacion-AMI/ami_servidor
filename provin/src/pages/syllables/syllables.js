@@ -27,7 +27,7 @@ let colors = [
   "#3498DB",
   "#2980B9",
 ];
-const nameLvls = ['Monosílabas', 'Bisílabas']
+const nameLvls = ['Monosílabas', 'Bisílabas', "Trisílabas"]
 export const Syllables = React.memo(function SolidGameCard() {
   const [data, setData] = useState(false),
   [dataId, setDataId] = useState(false),
@@ -137,7 +137,7 @@ export const Syllables = React.memo(function SolidGameCard() {
           >
             <CardMedia classes={mediaStyles} image={image} />
             <CardContent className={classes.content}>
-              <Typography className={classes.titleCard} variant={"h2"}>
+              <Typography className={classes.titleCard} variant={"h3"}>
                 {title}
               </Typography>
             </CardContent>

@@ -57,8 +57,6 @@ export  const useStyles = makeStyles((theme) => ({
       },
     },
     card: ({ color }) => ({
-
-      
       borderRadius: 14,
       boxShadow: 'none',
       
@@ -91,13 +89,13 @@ export  const useStyles = makeStyles((theme) => ({
       color: "white",
       boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
       [theme.breakpoints.down("sm")]: {
-        fontSize: 20,
+        fontSize: 2,
       },
       [theme.breakpoints.up("md")]: {
-        fontSize: 30,
+        fontSize: 10,
       },
       [theme.breakpoints.up("lg")]: {
-        fontSize: 40,
+        fontSize: 20,
       },
     },
     cardMinSize: ({ color }) => ({
