@@ -5,11 +5,13 @@ import Card from '@material-ui/core/Card';
 import TransitionsSnackbar from "../dialogNotifications/notification";
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
+import { useHistory } from "react-router";
 
 import {   CardActionArea,  Grid } from "@material-ui/core";
 
 
 import '../../css/game1.css'
+import { Router } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,6 +47,7 @@ function Game1() {
     const [contador, setContador] = React.useState(0);
   
    const [alerta, setAlerta] = React.useState("");
+   let history = useHistory();
     
     let img = [
 
@@ -143,15 +146,14 @@ function Game1() {
        // console.log(verificar)
         if(contador == 5) 
         {
-          
-          setAlerta("Fin");
+          console.log(contador);
           setContador(0);
           
           let token = localStorage.getItem("token")
           let user = localStorage.getItem("user_id")
           let data = {
-            _person: user,
-            _nivel: 2,
+            persons: user,
+            nivel: 2,
             Ptotal: 5
           }
           let result = await fetch("http://localhost:4000/score", {
@@ -159,13 +161,21 @@ function Game1() {
             body: JSON.stringify(data),
             headers: {
               "Content-Type" : 'application/json',
-              "Accept" : 'application/json'
-              //"authorization" : token
+              "Accept" : 'application/json',
+              "authorization" : token
             }
           })
-       
-          result = await result.json()
-          console.log(result)
+          console.log(result);
+          if(result.status == 200){
+            // result = await result.json()
+            // console.log(result)
+            setAlerta("Fin");
+            alert("Fin del juego gracias por jugar");
+            history.push("/levels");
+          }else{
+            setAlerta("Algo paso con el servidor comuniquese con el administrador");    
+            history.push("/levels");
+          }
           
        //   data2=[];
         //  setVerificar(data2)
