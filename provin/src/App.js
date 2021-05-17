@@ -69,111 +69,98 @@ function Login (props){
   }
 
   return (
-    
-    <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
-          <Grid container   >
-          <Grid   sm={4}>   
-          </Grid>
-          <Grid  
-          style={{          
-              textAlign: 'center',
-              padding: 20,  marginTop: 40 }}
-           className="card" xs={12} sm={4}>
-          <Card  width="300" justifyContent="center" className="content">
-            <h1>Bienvenidos</h1> 
-            <br></br>  
-          <form  noValidate>
-          
-     <Grid container >
-     
-        
-       <Grid style={{ margin: 20 }}   xs={12} >
-       
-         <TextField
-           value={correo}
-           variant="outlined"
-           required
-           fullWidth
-           id="name"
-           label="Email"
-           autoFocus
-           onChange={(e)=>setCorreo(e.target.value)}
-         />
-       </Grid>
-      
-   
-       <Grid style={{ margin: 20 }}  xs={12}>
-         <TextField
-           variant="outlined"
-           required
-           fullWidth
-           value={contrasena}
-           label="Contraseña"
-           type="password"
-           onChange={(e)=>setContrasena(e.target.value)}
-           autoComplete="current-password"
-         />
-       </Grid>
-       <Grid  xs={4}>
-        
-       </Grid>
-     </Grid>
-     <Grid style={{ margin: 20,  }}>
-        <Button
-      /* onClick={() => {
-         setIsAuth(true)
-       }}*/
-       onClick={login}
-        fullWidth
-       
-        variant="contained"
-        color="primary"
-        style={{ borderRadius: 20 }}
-      >
-        Ingresar
-      </Button>
-      
-     </Grid>
-     
-     <Grid container justify="center">
-       <Grid >
-         <Link href="/signup" variant="body2">
-           Aun no tienes cuenta??
-         </Link>
-       </Grid>
-     </Grid>
-   </form>
-   </Card>
-          </Grid>
-          <Grid   sm={4}>
-          
-          </Grid>
-   </Grid>
-          
-   </div>
-  
-    );
+    <div style={{ backgroundColor: "#5DADEF", height: "100vh" }}>
+      <Grid container>
+        <Grid sm={4}></Grid>
+        <Grid
+          style={{
+            textAlign: "center",
+            padding: 20,
+            marginTop: 40,
+          }}
+          className="card"
+          xs={12}
+          sm={4}
+        >
+          <Card width="300" justifyContent="center" className="content">
+            <h1>Bienvenidos</h1>
+            <br></br>
+            <form noValidate>
+              <Grid container>
+                <Grid style={{ margin: 20 }} xs={12}>
+                  <TextField
+                    value={correo}
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Email"
+                    autoFocus
+                    onChange={(e) => setCorreo(e.target.value)}
+                  />
+                </Grid>
+
+                <Grid style={{ margin: 20 }} xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    value={contrasena}
+                    label="Contraseña"
+                    type="password"
+                    onChange={(e) => setContrasena(e.target.value)}
+                    autoComplete="current-password"
+                  />
+                </Grid>
+                <Grid xs={4}></Grid>
+              </Grid>
+              <Grid style={{ margin: 20 }}>
+                <Button
+                  onClick={login}
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{ borderRadius: 20 }}
+                >
+                  Ingresar
+                </Button>
+              </Grid>
+
+              <Grid container justify="center">
+                <Grid style={{ margin: 30 }}>
+                  <Link variant="body2" to='/signup' >
+                    Aun no tienes cuenta?
+                  </Link>
+                </Grid>
+              </Grid>
+              <Grid sm={4}></Grid>
+            </form>
+          </Card>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 function App() {
   return (
     <Router>
-       <div>
-          <Route path="/" exact component={Login} />
-          <Route path="/signup" component={Registro} />
-          <SecuredRoute path="/home" component={Home} />
-          <SecuredRoute path="/levels" component={Levels} />
-          <SecuredRoute path='/draw'   component={Draw} />      
-          <SecuredRoute path="/draw2" component={Draw2} />
-          <SecuredRoute path="/draw3" component={Draw3} />
-          <SecuredRoute path="/draw4" component={Draw4} />
-          <SecuredRoute path="/draw5" component={Draw5} />
-          <SecuredRoute path="/game1" component={Game1} />
-          <SecuredRoute path="/syllables" component={Syllables}/>
-          <SecuredRoute path="/puzzle" component={JigSaw} />
-          <SecuredRoute path="/puntajes" component={Puntajes} />
-          <SecuredRoute path="/resultados" component={Resultados} />
+      <div>
+        <Route path="/" exact component={Login} />
+        <Route path="/signup" component={Registro} />
+        <SecuredRoute path="/home" component={Home} />
+        <SecuredRoute path="/levels" component={Levels} />
+        <SecuredRoute path="/draw" component={Draw} />
+        <SecuredRoute path="/draw2" component={Draw2} />
+        <SecuredRoute path="/draw3" component={Draw3} />
+        <SecuredRoute path="/draw4" component={Draw4} />
+        <SecuredRoute path="/draw5" component={Draw5} />
+        <SecuredRoute path="/game1" component={Game1} />
+        <SecuredRoute path="/syllables" component={Syllables} />
+        <SecuredRoute path="/puzzle" component={JigSaw} />
+        <SecuredRoute path="/puntajes" component={Puntajes} />
+        <SecuredRoute path="/resultados" component={Resultados} />
       </div>
-     </Router>
+    </Router>
   );
 }
 export default App;
