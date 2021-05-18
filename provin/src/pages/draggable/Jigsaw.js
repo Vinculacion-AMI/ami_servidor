@@ -21,7 +21,7 @@ const words = [
   "VOCABULARIO",
   "LABERINTO",
 ];
-const JigSaw=()=> {
+const JigSaw = () => {
   const [word, setWord] = useState(false),
     [arrayWord, setArrayWord] = useState([]),
     [currentLevel, setCurrentLevel] = useState(false),
@@ -120,16 +120,17 @@ const JigSaw=()=> {
     } else if (!changeLvl) {
       return (
         <>
-          <div className={classes.root}>
-            <form noValidate autoComplete="off">
-              <Typography
-                variant="h4"
-                component="h4"
-                className={classes.titleWord}
-              >
-                {`Ordena las letras para formar la palabra "${word}"`}
-              </Typography>
-              {/* <TextField
+          <div style={{ backgroundColor: '#5DADEF', height: 1000, width: 1000}}>
+            <div className={classes.root}>
+              <form noValidate autoComplete="off">
+                <Typography
+                  variant="h4"
+                  component="h4"
+                  className={classes.titleWord}
+                >
+                  {`Ordena las letras para formar la palabra "${word}"`}
+                </Typography>
+                {/* <TextField
                 id="outlined-basic"
                 label="Palabra"
                 variant="outlined"
@@ -143,8 +144,9 @@ const JigSaw=()=> {
               >
                 Generar
               </Button> */}
-            </form>
-          </div>
+              </form>
+            </div>
+          
           <DraggablePiece
             arrayWord={arrayWord}
             switchAnswer={switchAction}
@@ -155,10 +157,11 @@ const JigSaw=()=> {
               <TransitionsSnackbar ref={childRef} />
             </div>
           }
+          </div>
         </>
       );
     }
   };
   return <>{DragabbleComponent()}</>;
 }
-export default  React.forwardRef(JigSaw)
+export default React.forwardRef(JigSaw)
