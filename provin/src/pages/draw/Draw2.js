@@ -53,8 +53,8 @@ function Draw2() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
-      <AppNavBar/> 
+  <div style={{ backgroundColor: '#5DADEF', height: 800 }}>
+
         <Grid container>
             <Grid sm={1}>
             
@@ -87,7 +87,7 @@ function Draw2() {
                 onClick={draw3}
                 style={{ borderRadius: 20, width: 120}}
               >
-                Next
+                Siguiente
               </Button>
               </Grid>
             </Grid>
@@ -101,7 +101,7 @@ function Draw2() {
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={500}
+                    canvasHeight={650}
                     canvasWidth={'100%'}
                     imgSrc="../../images/circulo.jpg"
                     hideGrid={false}
