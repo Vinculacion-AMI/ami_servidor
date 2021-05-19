@@ -6,6 +6,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import '../../css/draw.css';
 import { useHistory, withRouter } from "react-router-dom";
+import AppNavBar from '../../components/navbar'
+
+
 function Draw4() {
   
   const [canvas,] = useState("#4FA1F3 ");
@@ -39,6 +42,8 @@ function Draw4() {
       console.log(style.width);
   return (
   <div style={{ backgroundColor: '#5DADEF', height: 700 }}>
+
+      <AppNavBar/> 
         <Grid container>
             <Grid sm={1}>
             

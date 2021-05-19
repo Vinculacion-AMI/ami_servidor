@@ -4,6 +4,8 @@ import CanvasDraw from 'react-canvas-draw';
 import Icon from '@material-ui/core/Icon';
 import clsx from 'clsx';
 import { useHistory, withRouter } from "react-router-dom";
+import AppNavBar from '../../components/navbar'
+
 
 function Draw5() {
 
@@ -29,6 +31,8 @@ function Draw5() {
       console.log(style.width);
   return (
   <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+      <AppNavBar/> 
+
         <Grid container>
             <Grid sm={1}>
             
