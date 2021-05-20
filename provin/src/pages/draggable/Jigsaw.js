@@ -4,6 +4,8 @@ import { useStyles } from "./style";
 import TransitionsSnackbar from "../dialogNotifications/notification";
 import useForceUpdate from "use-force-update";
 import { Typography } from "@material-ui/core";
+import AppNavBar from '../../components/navbar'
+
 const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
@@ -120,6 +122,7 @@ const JigSaw = () => {
     } else if (!changeLvl) {
       return (
         <>
+        <AppNavBar />
           <div style={{ backgroundColor: '#5DADEF', height: 1000, width: 1000}}>
             <div className={classes.root}>
               <form noValidate autoComplete="off">

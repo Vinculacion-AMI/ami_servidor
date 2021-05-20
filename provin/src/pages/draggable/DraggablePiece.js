@@ -7,6 +7,8 @@ import { useStyles } from "./style";
 import useForceUpdate from "use-force-update";
 import { Button } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
+import AppNavBar from '../../components/navbar'
+
 
 export default function DraggablePiece(props) {
   const [textContent, setTextContent] = useState(Array),
@@ -125,6 +127,7 @@ export default function DraggablePiece(props) {
     let ikey = 0;
     return (
       <div>
+        <AppNavBar />
         <Grid container className={classes.rootGrid}>
           <Grid item xs={12}>
             <Grid container justify="center">
