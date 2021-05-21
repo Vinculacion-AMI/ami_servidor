@@ -1,12 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 let colors = [
-  "#FFC300",
-  "#2ECC71",
-  "#DAF7A6",
-  "#FF5733",
-  "#884EA0",
-  "#3498DB",
-  "#2980B9",
+  "#005792",
+  "#b6c9f0",
+  "#34656d",
+  "#0061a8",
+  "#45526c",
+  "#325288",
+  "#77acf1",
 ];
 let titleColor = colors[Math.floor(Math.random() * colors.length)];
 let color1 = colors[Math.floor(Math.random() * colors.length)];
@@ -82,7 +82,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   buttonCheck: {
     // color:'#ffffff' ,
-    margin: theme.spacing(2),
+    margin: theme.spacing(5),
     backgroundColor: "#2ECC71 ",
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
     color: "white",
