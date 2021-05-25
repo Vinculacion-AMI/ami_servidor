@@ -1,4 +1,4 @@
-import React, {  useEffect, useRef} from 'react';
+import React, {  useEffect, useRef, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
@@ -47,6 +47,7 @@ function Game1() {
     const [contador, setContador] = React.useState(0);
   
    const [alerta, setAlerta] = React.useState("");
+  //  const [datosModificados, setDatosModificados] = useState([]);
    let history = useHistory();
     
     let img = [
@@ -82,16 +83,37 @@ function Game1() {
     var data2 = [];
     let aleatorio = data.map(item => {
     
-      let random = data[Math.floor(Math.random() * data.length)]
-      
+      let random = data[Math.floor(Math.random() * data.length)];
+
       if(!data2.includes(random))
       {
-         data2.push(random)
-           
+         data2.push(random);         
       }
     })
-    data2.push(dato1)
-    return data2;
+    data2.push(dato1);
+    // data2.forEach(element => {
+    //   let sinRepeticion = element.name;
+    //   let separador = sinRepeticion.split(" ");
+    //   let palabraRepetida = separador[separador.length -1]
+    //   console.log(palabraRepetida);
+    //   // console.log(sinRepeticion.replace(repetido,''));
+    // });
+    console.log(data2.length);
+    var datos = [];
+    for (let i = 0; i<data2.length; i++){
+        datos.push(data2[i].name)
+    }
+    console.log(datos);
+    let sinRepeticion = [...new Set(datos)]; //Me quita los datos repetidos
+    console.log(sinRepeticion);
+
+    var objetoAnimales = sinRepeticion.map(function(elemento){
+      console.log(elemento);
+      var dividir = elemento.split(" ");
+      return {name: dividir[0]};
+    });
+    console.log(objetoAnimales);
+    return objetoAnimales;
 
   }
 
