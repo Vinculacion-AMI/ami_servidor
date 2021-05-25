@@ -21,7 +21,6 @@ export default function DraggablePiece(props) {
   const forceUpdate = useForceUpdate();
   const shuffle = (array) => {
     const mix = array.sort(() => Math.random() - 0.5);
-
     return mix;
   };
   const begingComponents = () => {

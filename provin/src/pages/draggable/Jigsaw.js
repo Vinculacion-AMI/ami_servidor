@@ -4,22 +4,24 @@ import { useStyles } from "./style";
 import TransitionsSnackbar from "../dialogNotifications/notification";
 import useForceUpdate from "use-force-update";
 import { Typography } from "@material-ui/core";
+import AppNavBar from '../../components/navbar'
+
 const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
 };
 const words = [
-  "PUMA",
-  "MISA",
-  "SAPO",
-  "PISA",
+  "MAMÁ",
+  "PAPÁ",
+  "MESA",
+  "PATO",
   "PEPE",
-  "SEIS",
+  "UNO",
   "RATÓN",
-  "DANIELA",
+  "ESFERO",
   "APRENDER",
-  "VOCABULARIO",
-  "LABERINTO",
+  "LIBRO",
+  "CUADERNO",
 ];
 const JigSaw = () => {
   const [word, setWord] = useState(false),
@@ -120,7 +122,9 @@ const JigSaw = () => {
     } else if (!changeLvl) {
       return (
         <>
-          <div style={{ backgroundColor: '#5DADEF', height: 1000, width: 1000}}>
+
+          <div style={{ backgroundColor: '#f8f5f1', height: 2000 }}>
+            <AppNavBar />
             <div className={classes.root}>
               <form noValidate autoComplete="off">
                 <Typography
@@ -146,17 +150,17 @@ const JigSaw = () => {
               </Button> */}
               </form>
             </div>
-          
-          <DraggablePiece
-            arrayWord={arrayWord}
-            switchAnswer={switchAction}
-            previousLevel={switchActionPrevLvl}
-          />
-          {
-            <div className={classes.root}>
-              <TransitionsSnackbar ref={childRef} />
-            </div>
-          }
+
+            <DraggablePiece
+              arrayWord={arrayWord}
+              switchAnswer={switchAction}
+              previousLevel={switchActionPrevLvl}
+            />
+            {
+              <div className={classes.root}>
+                <TransitionsSnackbar ref={childRef} />
+              </div>
+            }
           </div>
         </>
       );
