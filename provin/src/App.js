@@ -1,143 +1,177 @@
-import React from 'react';
-import './css/login.css';
-import { Grid,  TextField,  Button,  Card,    } from "@material-ui/core";
-import { Route, BrowserRouter as Router, Link, Redirect, useHistory } from 'react-router-dom';
-import './App.css';
-import Game1 from './pages/dragDrop/game1';
-import Draw from './pages/draw/Draw';
-import Draw2 from './pages/draw/Draw2';
-import Draw3 from './pages/draw/Draw3';
-import Draw4 from './pages/draw/Draw4';
-import Draw5 from './pages/draw/Draw5';
-import Levels from './pages/levels/Levels';
+//Componentes React
+import React from "react";
+import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
+import {
+  Route,
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
+
+//Componentes Juegos
+import Game1 from "./pages/dragDrop/game1";
+import Draw from "./pages/draw/Draw";
+import Draw2 from "./pages/draw/Draw2";
+import Draw3 from "./pages/draw/Draw3";
+import Draw4 from "./pages/draw/Draw4";
+import Draw5 from "./pages/draw/Draw5";
 import JigSaw from "./pages/draggable/Jigsaw";
 import Syllables from "./pages/syllables/syllables";
-import Home from './pages/home/home'
 
-import Registro from './pages/Registro';
-import Puntajes from './pages/puntajes';
-import Resultados from './pages/resultados';
+// Componentes de gestion/visualizacion
+import Puntajes from "./pages/puntajes";
+import Resultados from "./pages/resultados";
+import Levels from "./pages/levels/Levels";
+import session from "./util/session";
+
+//Componentes Iniciales
+import Home from "./pages/home/home";
+import Registro from "./pages/Registro";
+//import Login from "./pages/Login";
+
+//Componentes de estilos css
+import "./App.css";
+import "./css/login.css";
 
 const authenticate = {
   isLoggedIn: false,
-  onAuthentication(){
-    this.isLoggedIn=true;
+  onAuthentication() {
+    this.isLoggedIn = true;
   },
-  getLogInStatus(){
+  getLogInStatus() {
+    if (localStorage.getItem("token") != null) {
+      this.isLoggedIn = true;
+    }
     return this.isLoggedIn;
-  }
+  },
+  isLoggedInTK() {
+    return localStorage.getItem("token") != null;
+  },
+};
+
+function SecuredRoute(props) {
+  authenticate.getLogInStatus();
+  console.log("auth: ", authenticate.getLogInStatus());
+  console.log("props: ", authenticate.isLoggedInTK());
+  return (
+    <Route
+      path={props.path}
+      render={(data) =>
+        authenticate.getLogInStatus() === true ? (
+          <props.component {...data}></props.component>
+        ) : (
+          <Redirect to={{ pathname: "/" }}></Redirect>
+        )
+      }
+    ></Route>
+  );
 }
 
-function SecuredRoute(props){
-  return(
-    <Route path={props.path} render={data=>authenticate.getLogInStatus()?(
-      <props.component {...data}></props.component>): 
-      (<Redirect to={{ pathname: '/'}}></Redirect>)
-    }></Route>
-  )
-}
-
-function Login (props){
-  const [correo, setCorreo] = React.useState("");
-  const [contrasena, setContrasena] = React.useState("");
+function Login(props) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   let history = useHistory();
 
- async function login () {
-    if ( correo === "" || contrasena === ""){
-      alert("Registrate por favor")
-    }else {
-      let data = {correo, contrasena};
+  if (localStorage.getItem("token") != null) {
+    return props.history.goBack();
+  }
+
+  async function login() {
+    if (email === "" || password === "") {
+      alert("Registrate por favor");
+    } else {
+      let data = { email, password };
       console.warn(data);
       let result = await fetch("http://localhost:4000/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
-          "Content-Type" : 'application/json',
-          "Accept" : 'application/json'
-        }
-      })
-   
-      result = await result.json()
-      console.log("result", result.data._id)
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+
+      result = await result.json();
+      console.log("result", result.data._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("user_id", result.data._id);
+
       authenticate.onAuthentication();
-      history.push("/home")
-     
+      props.history.push("/home");
     }
-    
   }
-
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: "100vh" }}>
-      <Grid container>
-        <Grid sm={4}></Grid>
-        <Grid
-          style={{
-            textAlign: "center",
-            padding: 20,
-            marginTop: 40,
-          }}
-          className="card"
-          xs={12}
-          sm={4}
-        >
-          <Card width="300" justifyContent="center" className="content">
-            <h1>Bienvenidos</h1>
-            <br></br>
-            <form noValidate>
-              <Grid container>
-                <Grid style={{ margin: 20 }} xs={12}>
-                  <TextField
-                    value={correo}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Email"
-                    autoFocus
-                    onChange={(e) => setCorreo(e.target.value)}
-                  />
-                </Grid>
-
-                <Grid style={{ margin: 20 }} xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    value={contrasena}
-                    label="Contraseña"
-                    type="password"
-                    onChange={(e) => setContrasena(e.target.value)}
-                    autoComplete="current-password"
-                  />
-                </Grid>
-                <Grid xs={4}></Grid>
-              </Grid>
-              <Grid style={{ margin: 20 }}>
-                <Button
-                  onClick={login}
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={{ borderRadius: 20 }}
-                >
-                  Ingresar
-                </Button>
-              </Grid>
-
-              <Grid container justify="center">
-                <Grid style={{ margin: 30 }}>
-                  <Link variant="body2" to='/signup' >
-                    Aun no tienes cuenta?
-                  </Link>
-                </Grid>
-              </Grid>
-              <Grid sm={4}></Grid>
-            </form>
-          </Card>
+    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+      <Container>
+        <Grid container>
+          <Grid
+            style={{
+              textAlign: "center",
+              minHeight: "100vh",
+            }}
+            className="card"
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <Card className="content">
+              <h1>Bienvenidos</h1>
+              <form noValidate>
+                <Container>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={12} sm={6}>
+                      <TextField
+                        value={email}
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Email"
+                        autoFocus
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12} sm={6}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        value={password}
+                        label="Contraseña"
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="current-password"
+                      />
+                    </Grid>
+                    <Grid item xs={6} md={12}></Grid>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <Button
+                      onClick={login}
+                      fullWidth
+                      variant="outlined"
+                      color="primary"
+                      style={{ borderRadius: 20 }}
+                    >
+                      Ingresar
+                    </Button>
+                  </Grid>
+                  <Grid container justify="center">
+                    <Grid style={{ margin: 15 }}>
+                      <Link variant="body2" to="/signup">
+                        Aun no tienes cuenta?
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Container>
+              </form>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </div>
   );
 }

@@ -10,6 +10,8 @@ _Es necesario contar con las siguientes herramientas instaladas_
 - nodejs
 - mongodb
 ```
+## Pasos a seguir
+- Quitar ext .txt al archivo .evn.txt en la carpeta servidor
 
 ## Servidor
 ## Ejecutar el siguiente
@@ -25,7 +27,7 @@ _Es necesario contar con las siguientes herramientas instaladas_
 
 ## Pagina de registro
 
-![Algorithm schema](./img/login.png)
+![Algorithm schema](./img/registro.png)
 
 
 
