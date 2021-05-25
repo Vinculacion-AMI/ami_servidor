@@ -16,6 +16,7 @@ import TransitionsSnackbar from "../dialogNotifications/notification";
 import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
+import AppNavBar from '../../components/navbar'
 
 
 let colors = [
@@ -93,7 +94,7 @@ export const Syllables = React.memo(function SolidGameCard() {
             getData()
           }
           if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
-            window.location.replace('http://localhost:3000')
+            //window.location.replace('http://localhost:3000/home')
           }
         })
       }, 1000);
@@ -153,6 +154,8 @@ export const Syllables = React.memo(function SolidGameCard() {
   } else {
     return (
       <>
+          <AppNavBar/> 
+
         <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
