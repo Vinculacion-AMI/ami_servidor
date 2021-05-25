@@ -1,28 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//example
-const TaskSchema = Schema({
-  title: String,
-  description: String,
-  status: {
-    type: Boolean,
-    default: false,
-  },
-});
 const persons = Schema(
   {
-    nombre: String,
-    apellido: { 
-      type: String,
-      required: false
-    },
-    correo: String,
-    imagen:  { 
-      type: String,
-      required: false
-    },
-    contrasena: String,
+    name: { type: String, required: true },
+    lastname: { type: String, required: false },
+    email: { type: String, lowercase: true, required: true },
+    image: { type: String, required: false },
+    last_session: { type: Date, default: null },
+    password: { type: String, required: true },
+    token_session: { type: String, default: null },
+    active_session: { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -37,7 +25,6 @@ const scores = Schema(
     _nivel: {
       type: mongoose.Schema.ObjectId,
       ref: "Stages",
-      
     },
     Ptotal: String,
   },
@@ -47,15 +34,16 @@ const scores = Schema(
 );
 const stages = Schema({
   _person: mongoose.Schema.ObjectId,
-  etapa: String,
-  nivel: String,
-  sub_nivel: String,
-})
+  stage: String,
+  level: String,
+  sub_level: String,
+});
 const Persons = mongoose.model("Persons", persons),
   Score = mongoose.model("Score", scores),
   Stages = mongoose.model("Stages", stages);
+
 module.exports = {
   Persons,
   Score,
-  Stages
+  Stages,
 };

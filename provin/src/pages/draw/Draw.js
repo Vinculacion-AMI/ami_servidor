@@ -7,6 +7,7 @@ import CanvasDraw from 'react-canvas-draw';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import '../../css/draw.css';
+import AppNavBar from '../../components/navbar'
 
 const useStyles = makeStyles({
   root: {
@@ -44,33 +45,33 @@ function Draw() {
     }
 
     const img = [
-      { photo: ['../../../images/abc1.jpg'] }, 
-      { photo: ['../../../images/abc2.jpg'] }, 
-      { photo: ['../../../images/abc3.jpg'] }, 
-      { photo: ['../../../images/abc4.jpg'] }, 
-      { photo: ['../../../images/abc5.jpg'] }, 
-      { photo: ['../../../images/abc6.jpg'] }, 
-      { photo: ['../../../images/abc7.jpg'] }, 
-      { photo: ['../../../images/abc8.jpg'] }, 
-      { photo: ['../../../images/abc9.jpg'] }, 
-      { photo: ['../../../images/abc10.jpg'] }, 
-      { photo: ['../../../images/abc11.jpg'] }, 
-      { photo: ['../../../images/abc12.jpg'] }, 
-      { photo: ['../../../images/abc13.jpg'] }, 
-      { photo: ['../../../images/abc14.jpg'] }, 
-      { photo: ['../../../images/abc15.jpg'] }, 
-      { photo: ['../../../images/abc16.jpg'] }, 
-      { photo: ['../../../images/abc17.jpg'] }, 
-      { photo: ['../../../images/abc18.jpg'] }, 
-      { photo: ['../../../images/abc19.jpg'] }, 
-      { photo: ['../../../images/abc20.jpg'] }, 
-      { photo: ['../../../images/abc21.jpg'] }, 
-      { photo: ['../../../images/abc22.jpg'] }, 
-      { photo: ['../../../images/abc23.jpg'] }, 
-      { photo: ['../../../images/abc24.jpg'] }, 
-      { photo: ['../../../images/abc25.jpg'] }, 
-      { photo: ['../../../images/abc26.jpg'] }, 
-      { photo: ['../../../images/abc27.jpg'] }, 
+      { photo: ['../../../images/abc1.png'] }, 
+      { photo: ['../../../images/abc2.png'] }, 
+      { photo: ['../../../images/abc3.png'] }, 
+      { photo: ['../../../images/abc4.png'] }, 
+      { photo: ['../../../images/abc5.png'] }, 
+      { photo: ['../../../images/abc6.png'] }, 
+      { photo: ['../../../images/abc7.png'] }, 
+      { photo: ['../../../images/abc8.png'] }, 
+      { photo: ['../../../images/abc9.png'] }, 
+      { photo: ['../../../images/abc10.png'] }, 
+      { photo: ['../../../images/abc11.png'] }, 
+      { photo: ['../../../images/abc12.png'] }, 
+      { photo: ['../../../images/abc13.png'] }, 
+      { photo: ['../../../images/abc14.png'] }, 
+      { photo: ['../../../images/abc15.png'] }, 
+      { photo: ['../../../images/abc16.png'] }, 
+      { photo: ['../../../images/abc17.png'] }, 
+      { photo: ['../../../images/abc18.png'] }, 
+      { photo: ['../../../images/abc19.png'] }, 
+      { photo: ['../../../images/abc20.png'] }, 
+      { photo: ['../../../images/abc21.png'] }, 
+      { photo: ['../../../images/abc22.png'] }, 
+      { photo: ['../../../images/abc23.png'] }, 
+      { photo: ['../../../images/abc24.png'] }, 
+      { photo: ['../../../images/abc25.png'] }, 
+      { photo: ['../../../images/abc26.png'] }, 
+      { photo: ['../../../images/abc27.png'] }, 
           
     ];
 
@@ -81,7 +82,10 @@ function Draw() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: "#FFFD5F", height: 659 }} >
+    <div>
+      <div style={{ backgroundColor: "#FFFD5F", height: 659 }} >
+      <AppNavBar/> 
+
      <Grid container>
             
             <Grid style={{ textAlign: 'center', alignItems: 'center' }} xs={12} sm={6}>
@@ -142,7 +146,7 @@ function Draw() {
      </Grid>
         
  </div>
-
+  </div>
   );
 }
 

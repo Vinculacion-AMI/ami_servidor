@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {  Grid, Button  } from "@material-ui/core";
 import CanvasDraw from 'react-canvas-draw';
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory} from "react-router-dom";
+import AppNavBar from '../../components/navbar'
+
 const useStyles = makeStyles({
   root: {
    
@@ -51,7 +53,8 @@ function Draw2() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 800 }}>
+
         <Grid container>
             <Grid sm={1}>
             
@@ -84,7 +87,7 @@ function Draw2() {
                 onClick={draw3}
                 style={{ borderRadius: 20, width: 120}}
               >
-                Next
+                Siguiente
               </Button>
               </Grid>
             </Grid>
@@ -98,7 +101,7 @@ function Draw2() {
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={500}
+                    canvasHeight={650}
                     canvasWidth={'100%'}
                     imgSrc="../../images/circulo.jpg"
                     hideGrid={false}
