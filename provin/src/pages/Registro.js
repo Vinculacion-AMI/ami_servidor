@@ -1,11 +1,15 @@
-import React, {  } from 'react';
-import '../css/singin.css';
-import { Grid, TextField,  Button,  Card } from "@material-ui/core";
-import { Gmail, Search }  from '@trejgun/material-ui-icons-google'; 
-import { useHistory } from 'react-router';
+import React from "react";
+import "../css/singin.css";
+import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
+// import { Search } from "@trejgun/material-ui-icons-google";
+import { useHistory } from "react-router";
+
+//import { makeStyles } from "@material-ui/core/styles";
+
+import SaveIcon from "@material-ui/icons/Save";
 
 const validateEmail = (values) => {
-  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (re.test(values)) {
     return false;
   } else {
@@ -14,26 +18,26 @@ const validateEmail = (values) => {
 };
 
 function Registro() {
-  const [nombre, setNombre] = React.useState("");
-  const [correo, setCorreo] = React.useState("");
-  const [contrasena, setContrasena] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   let history = useHistory();
 
   const statusdisable =
-    correo.length === 0 ||
-    nombre.length === 0 ||
-    contrasena.length === 0 ||
-    validateEmail(correo)
+    email.length === 0 ||
+    name.length === 0 ||
+    password.length === 0 ||
+    validateEmail(email)
       ? true
       : false;
   const errorMessageNombre =
-    nombre.length === 0 ? "El nombre es obligatorio" : "";
+    name.length === 0 ? "El nombre es obligatorio" : "";
   const errorMessagePass =
-    contrasena.length === 0 ? "La contraseña es obligatoria" : "";
+    password.length === 0 ? "La contraseña es obligatoria" : "";
   const errorMessage =
-    correo.length === 0
+    email.length === 0
       ? "El email es obligatorio"
-      : validateEmail(correo) === true
+      : validateEmail(email) === true
       ? "El email no es válido"
       : "";
 
@@ -41,113 +45,122 @@ function Registro() {
     error: true,
   };
 
- async function signup () {
-    if (nombre === "" || correo === "" || contrasena === ""){
-      alert("Registrate por favor")
-    }else {
-      let data = {nombre, correo, contrasena};
+  function goLogin() {
+      history.push("/");
+  }
+  async function signup() {
+    if (name === "" || email === "" || password === "") {
+      alert("Registrate por favor");
+    } else {
+      let data = { name, email, password };
       console.warn(data);
       let result = await fetch("http://localhost:4000/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
-          "Content-Type" : 'application/json',
-          "Accept" : 'application/json'
-        }
-      }) 
-      result = await result.json()
-      console.warn("result", result)
-      history.push("/")
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      //result = await result.json();
+      console.warn("result", result);
+      history.push("/");
     }
-    
   }
 
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: "100vh" }}>
-      <Grid container>
-        <Grid item sm={4}></Grid>
-        <Grid
-          style={{
-            textAlign: "center",
-            padding: 10,
-            marginTop: 5,
-          }}
-          className="card"
-          item
-          xl={12}
-          sm={4}
-        >
-          <Card width="280" justifyContent="center" className="content">
-            <h1>Registrate</h1>
-            <br></br>
-            <form>
-              <Grid container>
-                <Grid style={{ margin: 15 }} item xs={12}>
-                  <TextField
-                    name="Nombre"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    value={nombre}
-                    FormHelperTextProps={helperTextProps}
-                    helperText={errorMessageNombre}
-                    label="Nombre Completo"
-                    autoFocus
-                    onChange={(e) => setNombre(e.target.value)}
-                  />
-                </Grid>
+    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+      <Container>
+        <Grid container>
+          <Grid
+            style={{
+              textAlign: "center",
+              minHeight: "100vh",
+            }}
+            className="card"
+            item
+            // xl={6}
+            // sm={6}
+            // xs={12}
+            // md={6}
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <Card className="content">
+              <h1>Registrate</h1>
+              <form>
+                <Container>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={12} sm={12}>
+                      <TextField
+                        name="Nombre"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        value={name}
+                        FormHelperTextProps={helperTextProps}
+                        helperText={errorMessageNombre}
+                        label="Nombre Completo"
+                        autoFocus
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </Grid>
 
-                <Grid style={{ margin: 15 }} item xs={12}>
-                  <TextField
-                    name="Email"
+                    <Grid item xs={12} md={12} sm={12}>
+                      <TextField
+                        name="Email"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        helperText={errorMessage}
+                        FormHelperTextProps={helperTextProps}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12} sm={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        value={password}
+                        label="Contraseña"
+                        type="password"
+                        id="password"
+                        FormHelperTextProps={helperTextProps}
+                        helperText={errorMessagePass}
+                        autoComplete="current-password"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Button
+                    // href="/"
                     variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    helperText={errorMessage}
-                    FormHelperTextProps={helperTextProps}
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
-                  />
-                </Grid>
+                    color="primary"
+                    style={{ margin: 15, borderRadius: 20 }}
+                    onClick={signup}
+                    disabled={statusdisable}
+                    startIcon={<SaveIcon />}
+                  >
+                    Registrarse
+                  </Button>
+                  <Button
+                    onClick={goLogin}
+                    variant="outlined"
+                    color="secondary"
+                    style={{ margin: 15, borderRadius: 20 }}
+                  >
+                    Cancelar
+                  </Button>
+                </Container>
 
-                <Grid style={{ margin: 15 }} item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    value={contrasena}
-                    label="Contraseña"
-                    type="password"
-                    id="password"
-                    FormHelperTextProps={helperTextProps}
-                    helperText={errorMessagePass}
-                    autoComplete="current-password"
-                    onChange={(e) => setContrasena(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={4}></Grid>
-              </Grid>
-              <Button
-                href="/"
-                variant="contained"
-                color="primary"
-                style={{ margin: 15, borderRadius: 20 }}
-                onClick={signup}
-                disabled={statusdisable}
-              >
-                Registrarse
-              </Button>
-              <Button
-                href="/"
-                variant="contained"
-                color="primary"
-                style={{ margin: 15, borderRadius: 20 }}
-              >
-                Cancelar
-              </Button>
-              <p>O</p>
+                {/* <p>O</p>
               <Grid style={{ margin: 20 }}>
                 <Button
                   type="submit"
@@ -159,16 +172,14 @@ function Registro() {
                 >
                   Registrarse con Google
                 </Button>
-              </Grid>
-            </form>
-          </Card>
+              </Grid> */}
+              </form>
+            </Card>
+          </Grid>
         </Grid>
-        <Grid sm={4}></Grid>
-      </Grid>
+      </Container>
     </div>
   );
 }
-
-
 
 export default Registro;
