@@ -93,7 +93,7 @@ function Login(props) {
       });
 
       result = await result.json();
-      console.log("result", result.data._id);
+      //console.log("result", result.data._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("user_id", result.data._id);
 
