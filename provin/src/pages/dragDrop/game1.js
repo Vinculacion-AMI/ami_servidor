@@ -106,11 +106,17 @@ function Game1() {
     console.log(datos);
     let sinRepeticion = [...new Set(datos)]; //Me quita los datos repetidos
     console.log(sinRepeticion);
+    var quitadoUndfine = [];
+      for(let i=0; i<sinRepeticion.length; i++){
+        if (sinRepeticion[i] !=undefined){
+          quitadoUndfine.push(sinRepeticion[i]);
+        }
+      }
+      console.log(quitadoUndfine);
 
-    var objetoAnimales = sinRepeticion.map(function(elemento){
-      console.log(elemento);
-      var dividir = elemento.split(" ");
-      return {name: dividir[0]};
+    var objetoAnimales = quitadoUndfine.map(function(elemento) {
+        var dividir = elemento.split(" ");
+        return {name: dividir[0]};
     });
     console.log(objetoAnimales);
     return objetoAnimales;
