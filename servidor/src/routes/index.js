@@ -172,7 +172,7 @@ router.get("/stage/:idPerson/:stage", (req, res) => {
   // } else {
   const idPerson = req.params.idPerson;
   const stage = req.params.stage;
-  mongodb.Stages.find({ _person: idPerson, etapa: stage }, (err, doc) => {
+  mongodb.Stages.find({ _person: idPerson, stage: stage }, (err, doc) => {
     if (err || doc.length === 0 || !doc) {
       mongodb.Stages.create(
         {
