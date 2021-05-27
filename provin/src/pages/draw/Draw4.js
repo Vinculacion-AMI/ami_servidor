@@ -41,7 +41,7 @@ function Draw4() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 700 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 900 }}>
 
       <AppNavBar/> 
         <Grid container>
@@ -100,19 +100,37 @@ function Draw4() {
            
             <Grid style={{ textAlign: 'center', }} >
               <h2 style={{ fontSize: 22 }} >Realiza las curvas</h2>
-                      
+              <center>        
               <CanvasDraw
               ref={lienzo}
               brushColor={canvas}
               lazyRadius={1}
               brushRadius={brush}
-              canvasHeight={550}
-              canvasWidth={'100%'}
-              imgSrc="../../images/curvas2.jpg"
+              canvasHeight={330}
+              canvasWidth={655}
+              imgSrc="../../images/draw4.jpg"
               hideGrid={false}
               style={{ border: '2px solid #14181C' }}
               
               /> 
+              </center>
+          </Grid> 
+          <Grid style={{ textAlign: 'center', }} >
+              <h2 style={{ fontSize: 22 }} ></h2>
+              <center>        
+              <CanvasDraw
+              ref={lienzo}
+              brushColor={canvas}
+              lazyRadius={1}
+              brushRadius={brush}
+              canvasHeight={350}
+              canvasWidth={655}
+              imgSrc="../../images/draw5.jpg"
+              hideGrid={false}
+              style={{ border: '2px solid #14181C' }}
+              
+              /> 
+              </center>
           </Grid> 
              </Grid>
             </Grid>
