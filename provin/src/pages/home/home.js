@@ -10,10 +10,10 @@ import { Grid, Card, Container } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 380,
   },
   media: {
-    height: 140,
+    height: 299,
   },
 });
 
@@ -31,9 +31,10 @@ export default function Home() {
     <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
       <div>
         <Container>
-          <AppNavBar />
         </Container>
+        <AppNavBar/>
         <Container>
+        
           <Grid
             style={{
               textAlign: "center",
