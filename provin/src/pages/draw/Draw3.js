@@ -32,7 +32,7 @@ function Draw3() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 850 }}>
       <AppNavBar/> 
 
         <Grid container>
@@ -87,19 +87,38 @@ function Draw3() {
             </Grid>
               <Grid style={{ textAlign: 'center', }} >
                 <h2> Realiza las curvas</h2>
-              </Grid>                
+              </Grid>  
+              <center>              
                     <CanvasDraw
                     
                     ref={lienzo}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={650}
-                    canvasWidth={'100%'}
+                    canvasHeight={300}
+                    canvasWidth={655}
                     hideGrid={false}
-                    imgSrc="../../images/curvas.jpg"
+                    imgSrc="../../images/draw2.jpg"
                     style={{ border: '2px solid #14181C', }}
                 />
+                </center>
+                <Grid style={{ textAlign: 'center', }} >
+                <h2> </h2>
+              </Grid>  
+              <center>              
+                    <CanvasDraw
+                    
+                    ref={lienzo}
+                    lazyRadius={1}
+                    brushColor={canvas}
+                    brushRadius={brush}
+                    canvasHeight={300}
+                    canvasWidth={655}
+                    hideGrid={false}
+                    imgSrc="../../images/draw3.jpg"
+                    style={{ border: '2px solid #14181C', }}
+                />
+                </center>
              </Grid>
             </Grid>
             <Grid sm={1}>
