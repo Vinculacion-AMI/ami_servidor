@@ -63,7 +63,7 @@ export  const useStyles = makeStyles((theme) => ({
       },
    
         [theme.breakpoints.down("sm")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/4,
         },
         [theme.breakpoints.up("md")]: {
           minWidth: window.screen.width/3,
@@ -84,7 +84,7 @@ export  const useStyles = makeStyles((theme) => ({
       color: "white",
       boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
       [theme.breakpoints.down("sm")]: {
-        fontSize: 15,
+        fontSize: 20,
 
       },
       [theme.breakpoints.up("md")]: {
@@ -107,10 +107,10 @@ export  const useStyles = makeStyles((theme) => ({
       },
     
         [theme.breakpoints.down("sm")]: {
-          width: 160
+          minWidth: window.screen.width/3,
         },
         [theme.breakpoints.up("md")]: {
-          minWidth: window.screen.width/2.5,
+          minWidth: window.screen.width/3,
          
         },
         [theme.breakpoints.up("lg")]: {

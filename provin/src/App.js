@@ -25,7 +25,6 @@ import Resultados from "./pages/resultados";
 import Levels from "./pages/levels/Levels";
 //import session from "./util/session";
 
-
 //Componentes Iniciales
 import Home from "./pages/home/home";
 import Registro from "./pages/Registro";

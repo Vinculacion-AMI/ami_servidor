@@ -93,9 +93,7 @@ export const Syllables = React.memo(function SolidGameCard() {
           if(response){
             getData()
           }
-          if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
-            //window.location.replace('http://localhost:3000/home')
-          }
+          if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){          }
         })
       }, 1000);
     }else{
@@ -153,7 +151,7 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
-      <div style={{ backgroundColor:  "#4682B4", height: 850 }}>
+      //<div style={{ backgroundColor:"#4682B4" }}>
 
       <>
           <AppNavBar/> 
@@ -204,7 +202,7 @@ export const Syllables = React.memo(function SolidGameCard() {
               <TransitionsSnackbar ref={childRef} />
             </div>
       </>
-      </div>
+     // </div>
     );
   }
   
