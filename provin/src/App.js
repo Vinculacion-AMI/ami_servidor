@@ -23,7 +23,7 @@ import Syllables from "./pages/syllables/syllables";
 import Puntajes from "./pages/puntajes";
 import Resultados from "./pages/resultados";
 import Levels from "./pages/levels/Levels";
-import session from "./util/session";
+//import session from "./util/session";
 
 //Componentes Iniciales
 import Home from "./pages/home/home";
