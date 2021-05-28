@@ -34,7 +34,6 @@ export default function MenuAppBar() {
   let history = useHistory();
 
   const handleChange = (event) => {
-    console.log(event.target.checked);
     setAuth(event.target.checked);
   };
 

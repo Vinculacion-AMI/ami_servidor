@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Link,
   Redirect,
-  useHistory,
 } from "react-router-dom";
 
 //Componentes Juegos
@@ -17,13 +16,14 @@ import Draw3 from "./pages/draw/Draw3";
 import Draw4 from "./pages/draw/Draw4";
 import Draw5 from "./pages/draw/Draw5";
 import JigSaw from "./pages/draggable/Jigsaw";
+import JigSawInit from "./pages/draggableFist/JigsawInit";
 import Syllables from "./pages/syllables/syllables";
 
 // Componentes de gestion/visualizacion
 import Puntajes from "./pages/puntajes";
 import Resultados from "./pages/resultados";
 import Levels from "./pages/levels/Levels";
-import session from "./util/session";
+//import session from "./util/session";
 
 //Componentes Iniciales
 import Home from "./pages/home/home";
@@ -52,8 +52,6 @@ const authenticate = {
 
 function SecuredRoute(props) {
   authenticate.getLogInStatus();
-  console.log("auth: ", authenticate.getLogInStatus());
-  console.log("props: ", authenticate.isLoggedInTK());
   return (
     <Route
       path={props.path}
@@ -71,7 +69,6 @@ function SecuredRoute(props) {
 function Login(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  let history = useHistory();
 
   if (localStorage.getItem("token") != null) {
     return props.history.goBack();
@@ -93,7 +90,6 @@ function Login(props) {
       });
 
       result = await result.json();
-      //console.log("result", result.data._id);
       localStorage.setItem("token", result.token);
       localStorage.setItem("user_id", result.data._id);
 
@@ -191,6 +187,7 @@ function App() {
         <SecuredRoute path="/game1" component={Game1} />
         <SecuredRoute path="/syllables" component={Syllables} />
         <SecuredRoute path="/puzzle" component={JigSaw} />
+        <SecuredRoute path="/puzzleInit" component={JigSawInit} />
         <SecuredRoute path="/puntajes" component={Puntajes} />
         <SecuredRoute path="/resultados" component={Resultados} />
       </div>
