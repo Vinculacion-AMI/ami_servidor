@@ -90,7 +90,6 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Perfil</MenuItem>
                 <MenuItem onClick={home}>Inicio</MenuItem>
                 <MenuItem onClick={logout}>Salir</MenuItem>
               </Menu>

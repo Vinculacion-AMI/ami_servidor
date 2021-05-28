@@ -31,9 +31,10 @@ export default function Home() {
     <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
       <div>
         <Container>
-          <AppNavBar />
         </Container>
+        <AppNavBar/>
         <Container>
+        
           <Grid
             style={{
               textAlign: "center",
