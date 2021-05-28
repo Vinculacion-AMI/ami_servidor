@@ -53,7 +53,8 @@ function Draw2() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 800 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 850 }}>
+    <AppNavBar/> 
 
         <Grid container>
             <Grid sm={1}>
@@ -95,20 +96,39 @@ function Draw2() {
           
                 <Grid style={{ textAlign: 'center', }} >
                     <h2 style={{ fontSize: 22 }} >Realiza las los circulos y las rayas</h2>
+                     <center>       
+                    <CanvasDraw
+                    ref={lienzo}
+                    lazyRadius={1}
+                    brushColor={canvas}
+                    brushRadius={brush}
+                    canvasHeight={300}
+                    canvasWidth={655}
+                    imgSrc="../../images/circulo2.jpg"
+                    hideGrid={false}
+                    style={{ border: '2px solid #14181C' }}                                      
+                    />
+                    </center>
+                </Grid> 
+                <Grid style={{ textAlign: 'center', }} >
+                    <h2 style={{ fontSize: 22 }} ></h2>
+                    <center>
                             
                     <CanvasDraw
                     ref={lienzo}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={650}
-                    canvasWidth={'100%'}
-                    imgSrc="../../images/circulo.jpg"
+                    canvasHeight={300}
+                    canvasWidth={655}
+                    imgSrc="../../images/circulo3.jpg"
                     hideGrid={false}
                     style={{ border: '2px solid #14181C' }}
                     
                     />
+                    </center>
                 </Grid> 
+                
               
              
              </Grid>
