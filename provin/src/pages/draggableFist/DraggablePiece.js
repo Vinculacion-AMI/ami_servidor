@@ -13,41 +13,43 @@ export default function DraggablePiece(props) {
     [stateArrayItems, setStateArrayItems] = useState(Array),
     [puzzleSolve, setPuzzleSolve] = useState(Array);
   const classes = useStyles();
-
+  const wordsxx = ["AEIOU", "DA", "DE"];
   useEffect(() => {
     begingComponents();
     forceUpdate();
   }, []);
-
   const forceUpdate = useForceUpdate();
   const shuffle = (array) => {
     const mix = array.sort(() => Math.random() - 0.5);
     return mix;
   };
-  
   const begingComponents = () => {
     const word = props.arrayWord;
+    // const shuf = Inmutable.Map()
     setTextContent(shuffle(word));
+
     setStateArrayItems(new Array(props.arrayWord.length));
     setPuzzleSolve(new Array(props.arrayWord.length));
   };
-
   const fixWord = (a, b) => {
     if (a && b && a !== undefined && b !== undefined && b[0] !== undefined) {
+      let worldtest = "";
       let option1 = [];
       let option2 = [];
       a.forEach((element) => {
         option1.push(element[0]);
       });
+
       b.forEach((element) => {
         if (element !== undefined || element) {
           option2.push(element[0]);
+          worldtest += element[0];
         }
       });
-      if (
-        option1.length === option2.length &&
-        JSON.stringify(option1) === JSON.stringify(option2)
-      ) {
+
+      var found = wordsxx.includes(worldtest.toString());
+
+      if (found) {
         return true;
       } else {
         return false;
@@ -67,17 +69,15 @@ export default function DraggablePiece(props) {
       ? props.switchAnswer("correct")
       : props.switchAnswer("wrong");
   };
-
   const previousLevel = () => {
     props.previousLevel();
   };
-
   const setText = (item, state) => {
     let arrayUpdated = stateArrayItems;
-    let i = textContent.indexOf(item);
-    arrayUpdated[i] === undefined
-      ? (arrayUpdated[i] = false)
-      : (arrayUpdated[i] = undefined);
+    // let i = textContent.indexOf(item);
+    // arrayUpdated[i] === undefined
+    //   ? (arrayUpdated[i] = false)
+    //   : (arrayUpdated[i] = undefined);
     if (state) {
       for (let index = 0; index < arrayUpdated.length; index++) {
         let arrayPuzzleSolve = puzzleSolve;
@@ -94,6 +94,7 @@ export default function DraggablePiece(props) {
         if (arrayPuzzleDisolve[index] === item) {
           arrayPuzzleDisolve[index] = undefined;
           setPuzzleSolve(arrayPuzzleDisolve);
+
           break;
         }
       }
@@ -105,7 +106,7 @@ export default function DraggablePiece(props) {
   if (textContent && stateArrayItems) {
     let ikey = 0;
     return (
-      <div>
+      <div style={{ backgroundColor: "#4682B4" }}>
         <Grid container className={classes.rootGrid}>
           <Grid item xs={12}>
             <Grid container justify="center">
@@ -160,7 +161,7 @@ export default function DraggablePiece(props) {
                   onClick={finalSolve}
                   variant="contained"
                   size="large"
-                  className={classes.buttonCheck}
+                  color="primary"
                 >
                   Siguiente
                 </Button>
@@ -170,7 +171,7 @@ export default function DraggablePiece(props) {
                   onClick={previousLevel}
                   variant="contained"
                   size="large"
-                  className={classes.buttonCheck}
+                  color="primary"
                 >
                   Anterior
                 </Button>

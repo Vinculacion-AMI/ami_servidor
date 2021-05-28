@@ -24,9 +24,9 @@ export default function Home() {
   const levels = () => {
     history.push("/levels");
   };
-  const resultados = () => {
-    history.push("/resultados");
-  };
+  // const resultados = () => {
+  //   history.push("/resultados");
+  // };
   return (
     <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
       <div>
@@ -49,7 +49,7 @@ export default function Home() {
           >
             <Container>
               <Grid spacing={2} container>
-                <Grid align="center" item xs={12} md={6} sm={6}>
+                <Grid align="center" item xs={12} md={12} sm={12}>
                   <Card className={classes.root}>
                     <CardActionArea>
                       <CardMedia
@@ -74,7 +74,7 @@ export default function Home() {
                     </CardActionArea>
                   </Card>
                 </Grid>
-                <Grid align="center" item xs={12} md={6} sm={6}>
+                {/* <Grid align="center" item xs={12} md={6} sm={6}>
                   <Card className={classes.root}>
                     <CardActionArea>
                       <CardMedia
@@ -98,7 +98,7 @@ export default function Home() {
                       </CardContent>
                     </CardActionArea>
                   </Card>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Container>
           </Grid>
