@@ -2,16 +2,14 @@ import React, {  useEffect, useRef, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
-import TransitionsSnackbar from "../dialogNotifications/notification";
-import { Alert, AlertTitle } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router";
 
 import {   CardActionArea,  Grid } from "@material-ui/core";
+import Swal from 'sweetalert2';
 
 
-import '../../css/game1.css'
-import { Router } from 'react-router';
+import '../../css/game1.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,27 +25,14 @@ const useStyles = makeStyles((theme) => ({
       height: 0,
       width: '100%',
       paddingTop: "50.25%"
-      
     },
-
-    
-
-   
-    
-    
-   
 }));
-
-  
 
 function Game1() {
     const classes = useStyles();
  
     const [dato1, setDato1] = React.useState({});
     const [contador, setContador] = React.useState(0);
-  
-   const [alerta, setAlerta] = React.useState("");
-  //  const [datosModificados, setDatosModificados] = useState([]);
    let history = useHistory();
     
     let img = [
@@ -91,34 +76,22 @@ function Game1() {
       }
     })
     data2.push(dato1);
-    // data2.forEach(element => {
-    //   let sinRepeticion = element.name;
-    //   let separador = sinRepeticion.split(" ");
-    //   let palabraRepetida = separador[separador.length -1]
-    //   console.log(palabraRepetida);
-    //   // console.log(sinRepeticion.replace(repetido,''));
-    // });
-    console.log(data2.length);
     var datos = [];
     for (let i = 0; i<data2.length; i++){
         datos.push(data2[i].name)
     }
-    console.log(datos);
     let sinRepeticion = [...new Set(datos)]; //Me quita los datos repetidos
-    console.log(sinRepeticion);
     var quitadoUndfine = [];
       for(let i=0; i<sinRepeticion.length; i++){
         if (sinRepeticion[i] !=undefined){
           quitadoUndfine.push(sinRepeticion[i]);
         }
       }
-      console.log(quitadoUndfine);
 
     var objetoAnimales = quitadoUndfine.map(function(elemento) {
         var dividir = elemento.split(" ");
         return {name: dividir[0]};
     });
-    console.log(objetoAnimales);
     return objetoAnimales;
 
   }
@@ -128,53 +101,32 @@ function Game1() {
   //let random = img[Math.floor(Math.random() * img.length)]
   
     useEffect(() => {
-      setDato1(prueba)
-     // console.log(data)
-    //  console.log(btnR)
-    
-     
+      setDato1(prueba);
+
       return () => {
         setDato1({})
 
       }
-    }, [])
-
-    console.log(data)
-    //console.log(btnR)
-
-  // const verificar = data2.filter(item => (item.name === dato1.name))
-   
+    }, []);
 
     const handleChange = async (dato) => {
-      //setChecked((prev) => !prev);
-    // let imagenes = Object.values(img).find(item => item.name === dato)
-      //console.log(imagenes)
-      /*let aleatorio2 = data.map(item => {
-    
-        let random = data[Math.floor(Math.random() * data.length)]
-        
-        if(!data2.includes(random))
-        {
-          data2.push(random)
-    
-        }
-      })*/
       if(dato === dato1.name)
       {
-        setAlerta("Correcto");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Felicitaciones',
+          text: ' Respuesta correcta',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        })
         prueba = img[numeros];
         setDato1(prueba)
         btnR = botones()
-        console.log(btnR)
-      //  setVerificar(btnR)
-       // data2=[];
         setContador(contador+1);
-       // console.log(data2)
-        console.log(contador)
-       // console.log(verificar)
         if(contador == 5) 
         {
-          console.log(contador);
           setContador(0);
           
           let token = localStorage.getItem("token")
@@ -195,27 +147,41 @@ function Game1() {
           })
           console.log(result);
           if(result.status == 200){
-            // result = await result.json()
-            // console.log(result)
-            setAlerta("Fin");
-            alert("Fin del juego gracias por jugar");
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Fin del juego',
+              text: ' Fecilicades has gando este nivel',
+              showConfirmButton: false,
+              width: '22rem',
+              timer: 1500
+            });
             history.push("/levels");
           }else{
-            setAlerta("Algo paso con el servidor comuniquese con el administrador");    
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Algo paso con el servidor',
+              text: 'comuniquese con el administrador',
+              showConfirmButton: false,
+              width: '22rem',
+              timer: 1500
+            });
             history.push("/levels");
           }
-          
-       //   data2=[];
-        //  setVerificar(data2)
         }
       }else {
-        setAlerta("Incorrecto");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Vuelve Intentar',
+          text: ' Respuesta Incorrecta',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        });
       }
-     
-
     };
-
-   
 
   return (
     <div style={{ backgroundColor: "#B7FAD4", height: 759 }}>
@@ -223,54 +189,28 @@ function Game1() {
       <div>
       <Grid container >
           
-              <Grid xs={12} sm={12}  >
+              <Grid xs={12} lg={12}  >
                   
                   <Grid className="perro" >
-                  
-                  <h2>Reconoce el animalito</h2>
+                    <h2>Reconoce el animalito</h2>
                  
-                      <Card className={classes.root}>
-                          <CardMedia
-                              className={classes.media}
-                              image={dato1.photo}
-                          />
-                      </Card>
-                      <br />
-                      { alerta === "Correcto" ? (
-                        <div className={classes.alerta} >
-                        <Alert  severity="success">
-                        <AlertTitle>Felicitaciones</AlertTitle>
-                        Respuesta Correcta — <strong>Muy Bien</strong>
-                      </Alert>
-                        </div>
-                      ): alerta === "Incorrecto" ? (
-                        <div className={classes.alerta} >
-                        <Alert severity="error">
-                        <AlertTitle>Vuelve Intentar</AlertTitle>
-                        Respuesta Incorrecta — <strong>Muy mal</strong>
-                      </Alert>
-                        </div>
-                      ): alerta === "Fin" ? (
-                        <div className={classes.alerta} >
-                        <Alert severity="warning">
-                        <AlertTitle>Fin del Juego</AlertTitle>
-                       Gracias por Jugar — <strong>Adios</strong>
-                      </Alert>
-                        </div>
-                      ): null
-                       }
+                 <Card className={classes.root}>
+                     <CardMedia
+                         className={classes.media}
+                         image={dato1.photo}
+                     />
+                 </Card>
                   </Grid>        
               </Grid>
-             
       </Grid>
       <Grid className="opciones">
       <Grid  container>
       <Grid   sm={2}>
       </Grid>
-      <Grid  xs={12} sm={8}>
+      <Grid  xs={8} md={6}>
       <Grid container>
       {Object.values(btnR).map(item => (
-          <Grid xs={12} sm={4}>
+          <Grid xs={3} sm={6}>
             
               <Grid className="cards">
               <CardActionArea  style={{borderRadius: 50,}} onClick={() => handleChange(item.name)} >
@@ -282,17 +222,27 @@ function Game1() {
               </Card>
               </CardActionArea>
           </Grid>
-  
           </Grid>
           ))}
-      
     </Grid>    
       </Grid>
   
       <Grid  sm={2}>
       </Grid>
-  </Grid>
       </Grid>
+      <Grid container justify="center">
+      <Button 
+              onClick={()=>{window.location.replace("http://localhost:3000")}}
+              color="primary"
+              variant="contained"
+              size="large"
+              className={classes.buttonCheck}
+            >
+              Inicio
+            </Button>
+            </Grid>
+  </Grid>
+      
       </div>
 
     </div> 
