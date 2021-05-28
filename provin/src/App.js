@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Link,
   Redirect,
-  useHistory,
 } from "react-router-dom";
 
 //Componentes Juegos
@@ -23,7 +22,6 @@ import Syllables from "./pages/syllables/syllables";
 import Puntajes from "./pages/puntajes";
 import Resultados from "./pages/resultados";
 import Levels from "./pages/levels/Levels";
-import session from "./util/session";
 
 //Componentes Iniciales
 import Home from "./pages/home/home";
@@ -71,7 +69,6 @@ function SecuredRoute(props) {
 function Login(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  let history = useHistory();
 
   if (localStorage.getItem("token") != null) {
     return props.history.goBack();

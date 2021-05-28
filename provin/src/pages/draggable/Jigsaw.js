@@ -10,18 +10,16 @@ const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
 };
-const words = [
-  "MAMÁ",
-  "PAPÁ",
-  "MESA",
-  "PATO",
-  "PEPE",
-  "UNO",
-  "RATÓN",
-  "ESFERO",
-  "APRENDER",
-  "LIBRO",
-  "CUADERNO",
+const words = ['AVIÓN','ÁRBOL','ABEJA',
+  'BALÓN','BARCO','CASA','CONEJO',
+  'DADO','DIENTE','CHOCOLATE','ESPEJO',
+  'ESCALERA','FRESA','FUEGO','JOYA','JARRA',
+  'GATO','GUANTE','KIWI','KARATE','ISLA','IGLU',
+  'LLAVE','LLAMA','LÁPIZ','LIMÓN','OSO','OJO',
+  'MANO','MAPA','PERA','PEZ','NAVE','NIÑO',
+  'QUESO','QUÍMICA','RAMA','RANA','UÑA','UVA',
+  'SANDIA','SILLA','VACA','VELA','TAZA','TIGRE',
+  'YATE','YUNQUE'
 ];
 const JigSaw = () => {
   const [word, setWord] = useState(false),
@@ -33,6 +31,7 @@ const JigSaw = () => {
   useEffect(() => {
     getClevel();
   }, []);
+
   const forceUpdate = useForceUpdate();
   const childRef = useRef();
   const getClevel = (value) => {
@@ -47,11 +46,11 @@ const JigSaw = () => {
       forceUpdate();
     }
   };
+
   const encodeLevels = (item) => {
-    let array = new Array();
+    let array = [];
     let i = 0;
     let lettersContainer = [];
-
     words.forEach((element) => {
       let i = words.indexOf(element) + 1;
       array.splice(i, 0, "nivel" + i);
@@ -67,17 +66,15 @@ const JigSaw = () => {
     setWord(lvlWord);
     setlevels(array);
   };
-  const classes = useStyles();
 
+  const classes = useStyles();
   const switchAction = (value) => {
     childRef.current.handleClick(value);
     if (value === "correct" && words[words.length - 1] !== word) {
       nextLevel();
     }
   };
-  // const switchActionPrev = (value)=>{
-  //   if()
-  // }
+
   const nextLevel = () => {
     setTimeout(() => {
       setchangeLvl(true);
@@ -85,16 +82,16 @@ const JigSaw = () => {
     let i = levels.indexOf(currentLevel) + 2;
     let changeLvlvar = "nivel" + i;
     httpGetProvin.currentLvl = changeLvlvar;
-    // setCurrentLevel(nextLevel)
     getClevel(changeLvlvar);
-
     forceUpdate();
   };
+
   const switchActionPrevLvl = () => {
     if (words[0] !== word) {
       previousLevel();
     }
   };
+
   const previousLevel = () => {
     setTimeout(() => {
       setchangeLvl(true);
@@ -107,6 +104,7 @@ const JigSaw = () => {
     getClevel(changeLvlvar);
     forceUpdate();
   };
+  
   const DragabbleComponent = () => {
     if (arrayWord.length === 0 && !currentLevel) {
       <Typography>Loading...</Typography>;
@@ -122,8 +120,7 @@ const JigSaw = () => {
     } else if (!changeLvl) {
       return (
         <>
-
-          <div style={{ backgroundColor: '#f8f5f1', height: 2000 }}>
+          <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
             <AppNavBar />
             <div className={classes.root}>
               <form noValidate autoComplete="off">
@@ -132,22 +129,8 @@ const JigSaw = () => {
                   component="h4"
                   className={classes.titleWord}
                 >
-                  {`Ordena las letras para formar la palabra "${word}"`}
+                  {`Forma la siguiente palabra "${word}"`}
                 </Typography>
-                {/* <TextField
-                id="outlined-basic"
-                label="Palabra"
-                variant="outlined"
-                onChange={handleChangeWord}
-              />
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                onClick={handleChangeOpenDraggable}
-              >
-                Generar
-              </Button> */}
               </form>
             </div>
 

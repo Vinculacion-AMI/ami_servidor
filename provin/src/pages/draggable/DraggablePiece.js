@@ -18,23 +18,24 @@ export default function DraggablePiece(props) {
     begingComponents();
     forceUpdate();
   }, []);
+
   const forceUpdate = useForceUpdate();
   const shuffle = (array) => {
     const mix = array.sort(() => Math.random() - 0.5);
     return mix;
   };
+  
   const begingComponents = () => {
     const word = props.arrayWord;
-    // const shuf = Inmutable.Map()
     setTextContent(shuffle(word));
-
     setStateArrayItems(new Array(props.arrayWord.length));
     setPuzzleSolve(new Array(props.arrayWord.length));
   };
+
   const fixWord = (a, b) => {
     if (a && b && a !== undefined && b !== undefined && b[0] !== undefined) {
-      let option1 = new Array();
-      let option2 = new Array();
+      let option1 = [];
+      let option2 = [];
       a.forEach((element) => {
         option1.push(element[0]);
       });
@@ -66,9 +67,11 @@ export default function DraggablePiece(props) {
       ? props.switchAnswer("correct")
       : props.switchAnswer("wrong");
   };
+
   const previousLevel = () => {
     props.previousLevel();
   };
+
   const setText = (item, state) => {
     let arrayUpdated = stateArrayItems;
     let i = textContent.indexOf(item);
@@ -91,31 +94,10 @@ export default function DraggablePiece(props) {
         if (arrayPuzzleDisolve[index] === item) {
           arrayPuzzleDisolve[index] = undefined;
           setPuzzleSolve(arrayPuzzleDisolve);
-
           break;
         }
       }
-      // setPuzzleSolve(arrayPuzzleDisolve)
     }
-    //   const found = stateArrayItems.find(element=> {
-
-    //     if(element === item){
-
-    //       return true
-    //     }else{
-    //       return false
-    //     }
-    //   });
-    //   if(found){
-    //     let i = arrayUpdated.indexOf(item)
-    //     arrayUpdated[i] = false
-    //     setStateArrayItems(arrayUpdated)
-    //     forceUpdate()
-    //   }
-    //   // arrayUpdated[item] = false
-    //   console.log(arrayUpdated)
-    //   // arrayUpdated[item]
-    //   // console.log(arrayUpdated[item])
     setStateArrayItems(arrayUpdated);
     forceUpdate();
   };
