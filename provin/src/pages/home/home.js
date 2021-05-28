@@ -10,10 +10,10 @@ import { Grid, Card, Container } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 380,
+    maxWidth: 345,
   },
   media: {
-    height: 299,
+    height: 140,
   },
 });
 

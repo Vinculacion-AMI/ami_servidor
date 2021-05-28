@@ -47,8 +47,9 @@ export const Syllables = React.memo(function SolidGameCard() {
   const styles = useStyles({ color: colors[Math.floor(Math.random() * colors.length)] });
 
   const getData = async () => {
+    const user = localStorage.getItem("user_id");
     const url =
-      "http://localhost:4000/stage/6077083499b25a0c64418012/silabas";
+      "http://localhost:4000/stage/"+user+"/silaba";
     await getDataUser(url).then((response) => {
       const currentSubLvl = response[0].sub_level;
       const currentLvl = response[0].level;
@@ -152,10 +153,13 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
+      <div style={{ backgroundColor:  "#4682B4", height: 850 }}>
+
       <>
           <AppNavBar/> 
-
+          
         <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
+
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
             return (
@@ -200,7 +204,9 @@ export const Syllables = React.memo(function SolidGameCard() {
               <TransitionsSnackbar ref={childRef} />
             </div>
       </>
+      </div>
     );
   }
+  
 });
 export default Syllables;
