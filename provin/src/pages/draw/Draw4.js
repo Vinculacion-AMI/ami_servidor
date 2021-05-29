@@ -14,6 +14,7 @@ function Draw4() {
   const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
+    const lienzo1 = useState(null);
     let history = useHistory();
    
     const draw3  = () => {
@@ -25,6 +26,7 @@ function Draw4() {
     
     const clear = () => {
         lienzo.current.clear() 
+        lienzo1.current.clear() 
     }
 
     const img = [
@@ -102,7 +104,7 @@ function Draw4() {
               <h2 style={{ fontSize: 22 }} >Realiza las curvas</h2>
               <center>        
               <CanvasDraw
-              ref={lienzo}
+              ref={lienzo1}
               brushColor={canvas}
               lazyRadius={1}
               brushRadius={brush}
