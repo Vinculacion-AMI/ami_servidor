@@ -34,6 +34,7 @@ function Draw2() {
   const classes = useStyles();
   const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
+    const lienzo1 = useState(null);
     const lienzo = useState(null);
     let history = useHistory();
    
@@ -43,7 +44,8 @@ function Draw2() {
     
   
     const clear = () => {
-        lienzo.current.clear() 
+        lienzo.current.clear()
+        lienzo1.current.clear()
     }
 
     const style = {
@@ -53,7 +55,7 @@ function Draw2() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 850 }}>
+  <div  style={{ backgroundColor: '#5DADEF', height: 850 }}>
     <AppNavBar/> 
 
         <Grid container>
@@ -98,7 +100,7 @@ function Draw2() {
                     <h2 style={{ fontSize: 22 }} >Realiza las los circulos y las rayas</h2>
                      <center>       
                     <CanvasDraw
-                    ref={lienzo}
+                    ref={lienzo1}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}

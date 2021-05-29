@@ -10,6 +10,7 @@ function Draw3() {
     const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
     const lienzo = useState(null);
+    const lienzo1 = useState(null);
 
     let history = useHistory();
    
@@ -23,6 +24,7 @@ function Draw3() {
   
     const clear = () => {
         lienzo.current.clear() 
+        lienzo1.current.clear()
     }
 
     const style = {
@@ -91,7 +93,7 @@ function Draw3() {
               <center>              
                     <CanvasDraw
                     
-                    ref={lienzo}
+                    ref={lienzo1}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
