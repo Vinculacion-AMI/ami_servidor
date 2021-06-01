@@ -10,14 +10,15 @@ const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
 };
-//ABCDEFGHIJKLMNÑOPQRSTUVWWXYZ
-const letters = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
+// const letters = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
 const words = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
+const wordsx = ["AEIOU", "DA", "DE"];
+
 
 const JigSawInit = () => {
   const [word, setWord] = useState(false),
     [arrayWord, setArrayWord] = useState([]),
-    [arrayWordOriginal, setArrayWordOriginal] = useState([]),
+    // [arrayWordOriginal, setArrayWordOriginal] = useState([]),
     [currentLevel, setCurrentLevel] = useState(false),
     [levels, setlevels] = useState([]),
     [changeLvl, setchangeLvl] = useState(false);
@@ -50,6 +51,7 @@ const JigSawInit = () => {
       array.splice(i, 0, "nivel" + i);
     });
     let lvlWord = words[0];
+    let lvlWordx = wordsx[i];
 
     Array.from(lvlWord).forEach((element) => {
       lettersContainer.push(element + i);
@@ -65,7 +67,7 @@ const JigSawInit = () => {
     lettersContainer = List(lettersContainer)._tail.array;
     setArrayWord(lettersContainer);
     // setArrayWordOriginal(lettersOriginal);
-    setWord(lvlWord);
+    setWord(lvlWordx);
     setlevels(array);
   };
   const classes = useStyles();
@@ -76,9 +78,7 @@ const JigSawInit = () => {
       nextLevel();
     }
   };
-  // const switchActionPrev = (value)=>{
-  //   if()
-  // }
+
   const nextLevel = () => {
     setTimeout(() => {
       setchangeLvl(true);
@@ -121,7 +121,7 @@ const JigSawInit = () => {
       );
     } else if (!changeLvl) {
       return (
-        <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
+        <div style={{ backgroundColor: "#4682B4"}}>
           <AppNavBar />
           <div className={classes.root}>
             <form noValidate autoComplete="off">
@@ -130,11 +130,10 @@ const JigSawInit = () => {
                 component="h4"
                 className={classes.titleWord}
               >
-                {`Ordena las letras para formar la palabra "${word}"`}
+                {`Selecciona las letras para formar "${word}"`}
               </Typography>
             </form>
           </div>
-
           <DraggablePiece
             arrayWord={arrayWord}
             switchAnswer={switchAction}
