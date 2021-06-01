@@ -29,6 +29,7 @@ export  const useStyles = makeStyles((theme) => ({
   
  
   titleWord: {
+    color:"white",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -66,11 +67,11 @@ export  const useStyles = makeStyles((theme) => ({
           minWidth: window.screen.width/4,
         },
         [theme.breakpoints.up("md")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/4,
          
         },
         [theme.breakpoints.up("lg")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/5,
           maxWidth: "100%",
         },
 
@@ -107,14 +108,14 @@ export  const useStyles = makeStyles((theme) => ({
       },
     
         [theme.breakpoints.down("sm")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/4,
         },
         [theme.breakpoints.up("md")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/4,
          
         },
         [theme.breakpoints.up("lg")]: {
-          minWidth: window.screen.width/4,
+          minWidth: window.screen.width/5,
           maxWidth: "100%",
         },
 
