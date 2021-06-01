@@ -106,14 +106,14 @@ export default function DraggablePiece(props) {
   if (textContent && stateArrayItems) {
     let ikey = 0;
     return (
-      <div style={{ backgroundColor: "#4682B4" }}>
+      <div style={{ backgroundColor: "#4682B4",height: "100vh",    }}>
         <Grid container className={classes.rootGrid}>
           <Grid item xs={12}>
             <Grid container justify="center">
               {puzzleSolve.map((content) => {
                 ikey += 1;
                 return (
-                  <Grid key={ikey} item>
+                  <Grid style={{ backgroundColor: "#4682B4"}} key={ikey} item>
                     <Zoom in={content !== undefined}>
                       <Card className={classes.rootEmptyCard}>
                         {content === undefined ? null : (
@@ -138,9 +138,9 @@ export default function DraggablePiece(props) {
                 return (
                   <Grid key={ikey} item>
                     <Zoom in={stateArrayItems[i] === undefined}>
-                      <Card className={classes.rootCard}>
+                      <Card className={classes.rootEmptyCard}>
                         {stateArrayItems[i] !== undefined ? null : (
-                          <CardContent onClick={() => setText(content, true)}>
+                          <CardContent  onClick={() => setText(content, true)}>
                             <Typography className={classes.title}>
                               {stateArrayItems[i] !== undefined
                                 ? null
