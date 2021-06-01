@@ -1,12 +1,12 @@
-import React, {  useEffect, useRef, useState} from 'react';
+import React, {  useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router";
 
 import {   CardActionArea,  Grid } from "@material-ui/core";
 import Swal from 'sweetalert2';
+import AppNavBar from '../../components/navbar';
 
 
 import '../../css/game1.css';
@@ -67,14 +67,15 @@ function Game1() {
 
     var data2 = [];
     let aleatorio = data.map(item => {
-    
       let random = data[Math.floor(Math.random() * data.length)];
 
       if(!data2.includes(random))
       {
          data2.push(random);         
       }
-    })
+      return data2;
+    });
+    console.log(aleatorio);
     data2.push(dato1);
     var datos = [];
     for (let i = 0; i<data2.length; i++){
@@ -83,7 +84,7 @@ function Game1() {
     let sinRepeticion = [...new Set(datos)]; //Me quita los datos repetidos
     var quitadoUndfine = [];
       for(let i=0; i<sinRepeticion.length; i++){
-        if (sinRepeticion[i] !=undefined){
+        if (sinRepeticion[i] !== undefined){
           quitadoUndfine.push(sinRepeticion[i]);
         }
       }
@@ -125,7 +126,7 @@ function Game1() {
         setDato1(prueba)
         btnR = botones()
         setContador(contador+1);
-        if(contador == 5) 
+        if(contador === 5) 
         {
           setContador(0);
           
@@ -146,7 +147,7 @@ function Game1() {
             }
           })
           console.log(result);
-          if(result.status == 200){
+          if(result.status === 200){
             Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -185,7 +186,7 @@ function Game1() {
 
   return (
     <div style={{ backgroundColor: "#B7FAD4", height: 759 }}>
-
+<AppNavBar/> 
       <div>
       <Grid container >
           
@@ -210,7 +211,8 @@ function Game1() {
       <Grid  xs={8} md={6}>
       <Grid container>
       {Object.values(btnR).map(item => (
-          <Grid xs={3} sm={6}>
+        // <Grid container justify="center">
+          <Grid xs={6} sm={3}>
             
               <Grid className="cards">
               <CardActionArea  style={{borderRadius: 50,}} onClick={() => handleChange(item.name)} >
@@ -223,24 +225,11 @@ function Game1() {
               </CardActionArea>
           </Grid>
           </Grid>
+          // </Grid>
           ))}
     </Grid>    
       </Grid>
-  
-      <Grid  sm={2}>
       </Grid>
-      </Grid>
-      <Grid container justify="center">
-      <Button 
-              onClick={()=>{window.location.replace("http://localhost:3000")}}
-              color="primary"
-              variant="contained"
-              size="large"
-              className={classes.buttonCheck}
-            >
-              Inicio
-            </Button>
-            </Grid>
   </Grid>
       
       </div>

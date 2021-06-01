@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   rootEmptyCard: {
     // margin: theme.spacing(2),
-    maxWidth: "90%",
+    maxWidth: "50%",
     maxHeight: "60%",
     minHeight: "60%",
     minWidth: "90%",
@@ -62,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
   },
   titleWord: {
-    color: titleColor,
+    color: "#FFFFFF",
     [theme.breakpoints.down("sm")]: {
       fontSize: 20,
     },
@@ -72,9 +72,12 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       fontSize: 40,
     },
+    
   },
   rootGrid: {
-    flexGrow: 1,
+    //flexGrow: 1,
+    textAlign: "center",
+    height: window.screen.width,
   },
 
   control: {
