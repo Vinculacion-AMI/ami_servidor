@@ -30,7 +30,7 @@ function Draw5() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 657 }}>
+  <div style={{ backgroundColor: '#5DADEF', height: 600 }}>
       <AppNavBar/> 
 
         <Grid container>
@@ -72,19 +72,26 @@ function Draw5() {
             </Grid>
               <Grid style={{ textAlign: 'center', }} >
                 <h2> Realiza el Espiral</h2>
-              </Grid>                
+              </Grid>  
+              
+
+                <Grid style={{ textAlign: 'center', }} >
+                <h2> </h2>
+              </Grid>  
+              <center>              
                     <CanvasDraw
                     
                     ref={lienzo}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={450}
-                    canvasWidth={'100%'}
+                    canvasHeight={380}
+                    canvasWidth={655}
                     hideGrid={false}
-                    imgSrc="../../images/espiral.jpg"
+                    imgSrc="../../images/draw7.jpg"
                     style={{ border: '2px solid #14181C', }}
                 />
+                </center>
              </Grid>
             </Grid>
             <Grid sm={1}>

@@ -34,6 +34,7 @@ function Draw2() {
   const classes = useStyles();
   const [canvas,] = useState("#4FA1F3 ");
     const [brush, ] = useState(6);
+    const lienzo1 = useState(null);
     const lienzo = useState(null);
     let history = useHistory();
    
@@ -43,7 +44,8 @@ function Draw2() {
     
   
     const clear = () => {
-        lienzo.current.clear() 
+        lienzo.current.clear()
+        lienzo1.current.clear()
     }
 
     const style = {
@@ -53,7 +55,8 @@ function Draw2() {
       };
       console.log(style.width);
   return (
-  <div style={{ backgroundColor: '#5DADEF', height: 800 }}>
+  <div  style={{ backgroundColor: '#5DADEF', height: 850 }}>
+    <AppNavBar/> 
 
         <Grid container>
             <Grid sm={1}>
@@ -95,20 +98,39 @@ function Draw2() {
           
                 <Grid style={{ textAlign: 'center', }} >
                     <h2 style={{ fontSize: 22 }} >Realiza las los circulos y las rayas</h2>
+                     <center>       
+                    <CanvasDraw
+                    ref={lienzo1}
+                    lazyRadius={1}
+                    brushColor={canvas}
+                    brushRadius={brush}
+                    canvasHeight={300}
+                    canvasWidth={655}
+                    imgSrc="../../images/circulo2.jpg"
+                    hideGrid={false}
+                    style={{ border: '2px solid #14181C' }}                                      
+                    />
+                    </center>
+                </Grid> 
+                <Grid style={{ textAlign: 'center', }} >
+                    <h2 style={{ fontSize: 22 }} ></h2>
+                    <center>
                             
                     <CanvasDraw
                     ref={lienzo}
                     lazyRadius={1}
                     brushColor={canvas}
                     brushRadius={brush}
-                    canvasHeight={650}
-                    canvasWidth={'100%'}
-                    imgSrc="../../images/circulo.jpg"
+                    canvasHeight={300}
+                    canvasWidth={655}
+                    imgSrc="../../images/circulo3.jpg"
                     hideGrid={false}
                     style={{ border: '2px solid #14181C' }}
                     
                     />
+                    </center>
                 </Grid> 
+                
               
              
              </Grid>

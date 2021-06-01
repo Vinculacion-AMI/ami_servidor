@@ -2,6 +2,7 @@ import Color from 'color';
 import GoogleFont from 'react-google-font-loader';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+import zIndex from '@material-ui/core/styles/zIndex';
 let colors = [
   "#FFC300",
   "#2ECC71",
@@ -26,20 +27,15 @@ export const useGridStyles = makeStyles(( theme ) => ({
   console.log(window.screen.width)
 export  const useStyles = makeStyles((theme) => ({
   
-  root: {
+ 
+  titleWord: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
 
-  },
-  titleWord: {
-    color: titleColor,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
 
     [theme.breakpoints.down("sm")]: {
-      fontSize: 20,
+      fontSize: 15,
     },
     [theme.breakpoints.up("md")]: {
       fontSize: 30,
@@ -51,7 +47,6 @@ export  const useStyles = makeStyles((theme) => ({
     actionArea: {
       borderRadius: 14,
       transition: '0.3s',
-      
       '&:hover': {
         transform: 'scale(1.1)',
       },
@@ -68,7 +63,7 @@ export  const useStyles = makeStyles((theme) => ({
       },
    
         [theme.breakpoints.down("sm")]: {
-          minWidth: window.screen.width/3,
+          minWidth: window.screen.width/4,
         },
         [theme.breakpoints.up("md")]: {
           minWidth: window.screen.width/3,
@@ -84,12 +79,13 @@ export  const useStyles = makeStyles((theme) => ({
     buttonCheck: {
       // color:'#ffffff' ,
       margin: theme.spacing(2),
-      backgroundColor: "#2ECC71 ",
+      backgroundColor: "#F3F3F3",
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
       color: "white",
       boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
       [theme.breakpoints.down("sm")]: {
-        fontSize: 2,
+        fontSize: 20,
+
       },
       [theme.breakpoints.up("md")]: {
         fontSize: 10,
@@ -99,8 +95,6 @@ export  const useStyles = makeStyles((theme) => ({
       },
     },
     cardMinSize: ({ color }) => ({
-
-      
       borderRadius: 14,
       boxShadow: 'none',
       
@@ -109,13 +103,14 @@ export  const useStyles = makeStyles((theme) => ({
           .rotate(-12)
           .darken(0.2)
           .fade(0.5)}`,
+          
       },
     
         [theme.breakpoints.down("sm")]: {
-          width: 160
+          minWidth: window.screen.width/3,
         },
         [theme.breakpoints.up("md")]: {
-          minWidth: window.screen.width/2.5,
+          minWidth: window.screen.width/3,
          
         },
         [theme.breakpoints.up("lg")]: {
@@ -145,6 +140,7 @@ export  const useStyles = makeStyles((theme) => ({
       fontFamily: 'Montserrat, sans-serif',
       [theme.breakpoints.down("sm")]: {
         fontSize: "1.5rem",
+        
       },
       [theme.breakpoints.up("md")]: {
         fontSize: "1.7rem",

@@ -47,11 +47,12 @@ export const Syllables = React.memo(function SolidGameCard() {
   const styles = useStyles({ color: colors[Math.floor(Math.random() * colors.length)] });
 
   const getData = async () => {
+    const user = localStorage.getItem("user_id");
     const url =
-      "http://localhost:4000/stage/6077083499b25a0c64418012/silabas";
+      "http://localhost:4000/stage/"+user+"/silaba";
     await getDataUser(url).then((response) => {
-      const currentSubLvl = response[0] .sub_nivel;
-      const currentLvl = response[0].nivel
+      const currentSubLvl = response[0].sub_level;
+      const currentLvl = response[0].level;
       
       setDataId(response[0]._id)
       setSubLevel(currentSubLvl);
@@ -74,8 +75,8 @@ export const Syllables = React.memo(function SolidGameCard() {
       const nxtStage = level===nameLvls[nameLvls.length-1]?level:nameLvls[nameLvls.indexOf(level)+1]
       const dataNxtLvl = JSON.stringify({
         _id: dataId,
-        nivel: nxt===1?nxtStage:level,
-        sub_nivel: subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]?subLevel:`nivel${nxt}`
+        level: nxt===1?nxtStage:level,
+        sub_level: subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]?subLevel:`nivel${nxt}`
       })
       if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
         childRef.current.handleClick('finish');
@@ -83,8 +84,7 @@ export const Syllables = React.memo(function SolidGameCard() {
         childRef.current.handleClick('correct');
       }
       
-      const url =
-      "http://localhost:4000/stage";
+      const url ="http://localhost:4000/stage";
       
  
       setTimeout(() => {
@@ -93,9 +93,7 @@ export const Syllables = React.memo(function SolidGameCard() {
           if(response){
             getData()
           }
-          if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
-            //window.location.replace('http://localhost:3000/home')
-          }
+          if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){          }
         })
       }, 1000);
     }else{
@@ -114,8 +112,8 @@ export const Syllables = React.memo(function SolidGameCard() {
     const nxtStage = level===nameLvls[0]?level:nameLvls[nameLvls.indexOf(level)-1]
     const dataNxtLvl = JSON.stringify({
       _id: dataId,
-      nivel: subLevel===arr[0]?nxtStage:level,
-      sub_nivel: `nivel${nxt}`
+      level: subLevel===arr[0]?nxtStage:level,
+      sub_level: `nivel${nxt}`
     })
     await postDataUser(url,dataNxtLvl).then(response =>{
       if(response){
@@ -153,10 +151,13 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
+      //<div style={{ backgroundColor:"#4682B4" }}>
+
       <>
           <AppNavBar/> 
-
+          
         <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
+
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
             return (
@@ -201,7 +202,9 @@ export const Syllables = React.memo(function SolidGameCard() {
               <TransitionsSnackbar ref={childRef} />
             </div>
       </>
+     // </div>
     );
   }
+  
 });
 export default Syllables;

@@ -4,26 +4,21 @@ import { useStyles } from "./style";
 import TransitionsSnackbar from "../dialogNotifications/notification";
 import useForceUpdate from "use-force-update";
 import { Typography } from "@material-ui/core";
-import AppNavBar from '../../components/navbar'
+import AppNavBar from "../../components/navbar";
 
 const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
 };
-const words = ['AVIÓN','ÁRBOL','ABEJA',
-  'BALÓN','BARCO','CASA','CONEJO',
-  'DADO','DIENTE','CHOCOLATE','ESPEJO',
-  'ESCALERA','FRESA','FUEGO','JOYA','JARRA',
-  'GATO','GUANTE','KIWI','KARATE','ISLA','IGLU',
-  'LLAVE','LLAMA','LÁPIZ','LIMÓN','OSO','OJO',
-  'MANO','MAPA','PERA','PEZ','NAVE','NIÑO',
-  'QUESO','QUÍMICA','RAMA','RANA','UÑA','UVA',
-  'SANDIA','SILLA','VACA','VELA','TAZA','TIGRE',
-  'YATE','YUNQUE'
-];
-const JigSaw = () => {
+// const letters = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
+const words = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
+const wordsx = ["AEIOU", "DA", "DE"];
+
+
+const JigSawInit = () => {
   const [word, setWord] = useState(false),
     [arrayWord, setArrayWord] = useState([]),
+    // [arrayWordOriginal, setArrayWordOriginal] = useState([]),
     [currentLevel, setCurrentLevel] = useState(false),
     [levels, setlevels] = useState([]),
     [changeLvl, setchangeLvl] = useState(false);
@@ -31,7 +26,6 @@ const JigSaw = () => {
   useEffect(() => {
     getClevel();
   }, []);
-
   const forceUpdate = useForceUpdate();
   const childRef = useRef();
   const getClevel = (value) => {
@@ -46,28 +40,38 @@ const JigSaw = () => {
       forceUpdate();
     }
   };
-
   const encodeLevels = (item) => {
-    let array = [];
+    let array = new Array();
     let i = 0;
     let lettersContainer = [];
+    let lettersOriginal = [];
+
     words.forEach((element) => {
       let i = words.indexOf(element) + 1;
       array.splice(i, 0, "nivel" + i);
     });
-    let lvlWord = words[array.indexOf(item)];
-    console.log(item);
+    let lvlWord = words[0];
+    let lvlWordx = wordsx[i];
+
     Array.from(lvlWord).forEach((element) => {
       lettersContainer.push(element + i);
       i += 1;
     });
+    // lettersOriginal = List(lettersContainer)._tail.array;
+    // let ramdomWord = letters[0];
+    // // Add other letter
+    // Array.from(ramdomWord).forEach((element) => {
+    //   lettersContainer.push(element + i);
+    //   i += 1;
+    // });
     lettersContainer = List(lettersContainer)._tail.array;
     setArrayWord(lettersContainer);
-    setWord(lvlWord);
+    // setArrayWordOriginal(lettersOriginal);
+    setWord(lvlWordx);
     setlevels(array);
   };
-
   const classes = useStyles();
+
   const switchAction = (value) => {
     childRef.current.handleClick(value);
     if (value === "correct" && words[words.length - 1] !== word) {
@@ -82,16 +86,16 @@ const JigSaw = () => {
     let i = levels.indexOf(currentLevel) + 2;
     let changeLvlvar = "nivel" + i;
     httpGetProvin.currentLvl = changeLvlvar;
+    // setCurrentLevel(nextLevel)
     getClevel(changeLvlvar);
+
     forceUpdate();
   };
-
   const switchActionPrevLvl = () => {
     if (words[0] !== word) {
       previousLevel();
     }
   };
-
   const previousLevel = () => {
     setTimeout(() => {
       setchangeLvl(true);
@@ -100,11 +104,9 @@ const JigSaw = () => {
     let i = levels.indexOf(currentLevel);
     let changeLvlvar = "nivel" + i;
     httpGetProvin.currentLvl = changeLvlvar;
-    console.log(changeLvlvar);
     getClevel(changeLvlvar);
     forceUpdate();
   };
-  
   const DragabbleComponent = () => {
     if (arrayWord.length === 0 && !currentLevel) {
       <Typography>Loading...</Typography>;
@@ -119,36 +121,31 @@ const JigSaw = () => {
       );
     } else if (!changeLvl) {
       return (
-        <>
-          <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
-            <AppNavBar />
-            <div className={classes.root}>
-              <form noValidate autoComplete="off">
-                <Typography
-                  variant="h4"
-                  component="h4"
-                  className={classes.titleWord}
-                >
-                  {`Forma la siguiente palabra "${word}"`}
-                </Typography>
-              </form>
-            </div>
-
-            <DraggablePiece
-              arrayWord={arrayWord}
-              switchAnswer={switchAction}
-              previousLevel={switchActionPrevLvl}
-            />
-            {
-              <div className={classes.root}>
-                <TransitionsSnackbar ref={childRef} />
-              </div>
-            }
+        <div style={{ backgroundColor: "#4682B4"}}>
+          <AppNavBar />
+          <div className={classes.root}>
+            <form noValidate autoComplete="off">
+              <Typography
+                variant="h4"
+                component="h4"
+                className={classes.titleWord}
+              >
+                {`Selecciona las letras para formar "${word}"`}
+              </Typography>
+            </form>
           </div>
-        </>
+          <DraggablePiece
+            arrayWord={arrayWord}
+            switchAnswer={switchAction}
+            previousLevel={switchActionPrevLvl}
+          />
+          <div className={classes.root}>
+            <TransitionsSnackbar ref={childRef} />
+          </div>
+        </div>
       );
     }
   };
   return <>{DragabbleComponent()}</>;
-}
-export default React.forwardRef(JigSaw)
+};
+export default React.forwardRef(JigSawInit);
