@@ -18,6 +18,7 @@ import Draw4 from "./pages/draw/Draw4";
 import Draw5 from "./pages/draw/Draw5";
 import JigSaw from "./pages/draggable/Jigsaw";
 import Syllables from "./pages/syllables/syllables";
+import LearnSyllabes from "./pages/Learn/LearnSyllabes";
 
 // Componentes de gestion/visualizacion
 import Puntajes from "./pages/puntajes";
@@ -193,6 +194,7 @@ function App() {
         <SecuredRoute path="/puzzle" component={JigSaw} />
         <SecuredRoute path="/puntajes" component={Puntajes} />
         <SecuredRoute path="/resultados" component={Resultados} />
+        <SecuredRoute path="/learn/syllables" component={LearnSyllabes} />
       </div>
     </Router>
   );
