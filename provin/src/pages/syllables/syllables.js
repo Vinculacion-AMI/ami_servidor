@@ -17,6 +17,7 @@ import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
 import AppNavBar from '../../components/navbar'
+import Swal from 'sweetalert2';
 
 
 let colors = [
@@ -36,7 +37,6 @@ export const Syllables = React.memo(function SolidGameCard() {
     [subLevel, setSubLevel] = useState(false),
     [stage, setStage] = useState(false);
   const classes = useStyles();
-  const childRef = useRef();
   useEffect(() => {
     getData();
 
@@ -79,9 +79,25 @@ export const Syllables = React.memo(function SolidGameCard() {
         sub_level: subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]?subLevel:`nivel${nxt}`
       })
       if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
-        childRef.current.handleClick('finish');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Fin del juego',
+          text: ' Fecilicades has gando este nivel',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        });        
       }else{
-        childRef.current.handleClick('correct');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Felicitaciones',
+          text: ' Respuesta correcta',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        })
       }
       
       const url ="http://localhost:4000/stage";
@@ -97,7 +113,15 @@ export const Syllables = React.memo(function SolidGameCard() {
         })
       }, 1000);
     }else{
-      childRef.current.handleClick('wrong');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Vuelve Intentar',
+        text: ' Respuesta Incorrecta',
+        showConfirmButton: false,
+        width: '22rem',
+        timer: 1500
+      });
     }
 
   };
@@ -151,7 +175,7 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
-      //<div style={{ backgroundColor:"#4682B4" }}>
+      <div style={{ backgroundColor:"#4682B4", height: "100vh" }}>
 
       <>
           <AppNavBar/> 
@@ -199,10 +223,9 @@ export const Syllables = React.memo(function SolidGameCard() {
           </Grid>
         </Grid>
         <div className={classes.root}>
-              <TransitionsSnackbar ref={childRef} />
             </div>
       </>
-     // </div>
+      </div>
     );
   }
   
