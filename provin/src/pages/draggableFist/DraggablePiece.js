@@ -7,6 +7,8 @@ import { useStyles } from "./style";
 import useForceUpdate from "use-force-update";
 import { Button } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
+//Function
+import getDataUser from "../../util/get";
 
 export default function DraggablePiece(props) {
   const [textContent, setTextContent] = useState(Array),
@@ -18,6 +20,14 @@ export default function DraggablePiece(props) {
     begingComponents();
     forceUpdate();
   }, []);
+  const getData = async () => {
+    const user = localStorage.getItem("user_id");
+    const url = process.env.REACT_APP_BACKEND + "/stage/" + user + "/vocablo";
+    await getDataUser(url).then((response) => {
+      const currentSubLvl = response[0].sub_level;
+      const currentLvl = response[0].level;
+    });
+  };
   const forceUpdate = useForceUpdate();
   const shuffle = (array) => {
     const mix = array.sort(() => Math.random() - 0.5);
@@ -46,7 +56,7 @@ export default function DraggablePiece(props) {
           worldtest += element[0];
         }
       });
-
+      getData();
       var found = wordsxx.includes(worldtest.toString());
 
       if (found) {
@@ -106,14 +116,14 @@ export default function DraggablePiece(props) {
   if (textContent && stateArrayItems) {
     let ikey = 0;
     return (
-      <div style={{ backgroundColor: "#4682B4",height: "100vh",    }}>
+      <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
         <Grid container className={classes.rootGrid}>
           <Grid item xs={12}>
             <Grid container justify="center">
               {puzzleSolve.map((content) => {
                 ikey += 1;
                 return (
-                  <Grid style={{ backgroundColor: "#4682B4"}} key={ikey} item>
+                  <Grid style={{ backgroundColor: "#4682B4" }} key={ikey} item>
                     <Zoom in={content !== undefined}>
                       <Card className={classes.rootEmptyCard}>
                         {content === undefined ? null : (
@@ -140,7 +150,7 @@ export default function DraggablePiece(props) {
                     <Zoom in={stateArrayItems[i] === undefined}>
                       <Card className={classes.rootEmptyCard}>
                         {stateArrayItems[i] !== undefined ? null : (
-                          <CardContent  onClick={() => setText(content, true)}>
+                          <CardContent onClick={() => setText(content, true)}>
                             <Typography className={classes.title}>
                               {stateArrayItems[i] !== undefined
                                 ? null

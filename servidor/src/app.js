@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
-const uri = "mongodb://localhost:27017" + "/ami";
 
 dotenv.config();
 
