@@ -18,6 +18,9 @@ import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
 import AppNavBar from '../../components/navbar'
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 let colors = [
   "#FFC300",
@@ -48,8 +51,7 @@ export const Syllables = React.memo(function SolidGameCard() {
 
   const getData = async () => {
     const user = localStorage.getItem("user_id");
-    const url =
-      "http://localhost:4000/stage/"+user+"/silaba";
+    const url = process.env.REACT_APP_BACKEND +"/stage/"+user+"/silabas";
     await getDataUser(url).then((response) => {
       const currentSubLvl = response[0].sub_level;
       const currentLvl = response[0].level;
