@@ -1,32 +1,13 @@
 import React, {  useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import { useHistory } from "react-router";
-
+import {useStyles} from "./style";
 import {   CardActionArea,  Grid } from "@material-ui/core";
 import Swal from 'sweetalert2';
 import AppNavBar from '../../components/navbar';
-
-
 import '../../css/game1.css';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-     
-      maxWidth: "60%",
-      maxHeight: "100%",
-      left: "20%",
-      position: "relative",
-      borderRadius: 50
-    },
-   
-    media: {
-      height: 0,
-      width: '100%',
-      paddingTop: "50.25%"
-    },
-}));
 
 function Game1() {
     const classes = useStyles();

@@ -1,12 +1,17 @@
 import { makeStyles } from "@material-ui/core/styles";
 let colors = [
-  "#005792",
-  "#b6c9f0",
-  "#34656d",
-  "#0061a8",
+  "#FF5733",
+  "#FFBE33",
+  "#56CA2D",
+  "#BD57B8",
   "#45526c",
   "#325288",
   "#77acf1",
+  "#1459E8 ",
+  "#E13D49",
+  "#B3888C",
+  "#7B219F",
+  
 ];
 let titleColor = colors[Math.floor(Math.random() * colors.length)];
 let color1 = colors[Math.floor(Math.random() * colors.length)];
@@ -38,25 +43,14 @@ export const useStyles = makeStyles((theme) => ({
     maxHeight: "60%",
     minHeight: "60%",
     minWidth: "90%",
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+    background:  `linear-gradient(45deg, ${color1} 40%, ${color2} 50%)`,
+
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
-  rootCard: {
-    // marginTop: theme.spacing(0),
-    // margin: theme.spacing(0),
-    maxWidth: "90%",
-    maxHeight: "60%",
-    minHeight: "60%",
-    minWidth: "90%",
-    background: `linear-gradient(45deg, ${color1} 70%, ${color2} 30%)`,
-    boxShadow: "0 3px 5px 2px rgba(130, 255, 105, .3)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+ 
   title: {
     fontSize: 80,
     color: "#FFFFFF",

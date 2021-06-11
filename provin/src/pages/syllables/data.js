@@ -2,14 +2,14 @@ export default {
   Monosílabas: {
     nivel1: [
       {
-        title: "Flan",
+        title: "mar",
         category: "Monosílabas",
-        img: "https://i.ibb.co/fD23t8v/flan-de-leche.jpg"
+        img: "../../../images/syllabesIma/mar.jpg",
       },
       {
-        title: "coral",
-        category: "Bisílabas",
-        img: "https://i.ibb.co/4dVx0PN/img-corales-hd.jpg"
+        title: "mariposa",
+        category: "Trisílabas",
+        img: "../../../images/syllabesIma/mariposa.jpg",
       },
     ],
 
@@ -17,74 +17,62 @@ export default {
       {
         title: "león",
         category: "Bisílabas",
-        img: "https://i.ibb.co/kcxFcKy/foto-leon-dm6945.jpg",
+        img: "../../../images/syllabesIma/leon.jpg",
       },
       {
         title: "Pez",
         category: "Monosílabas",
-        img: "https://i.ibb.co/3kzzL1m/peces-mutantes.jpg",
+        img: "../../../images/syllabesIma/pez.jpg",
       },
     ],
     nivel3: [
       {
         title: "Flor",
         category: "Monosílabas",
-        img: "https://i.ibb.co/980bY24/mandevilla-roja-830x623.jpg",
+        img: "../../../images/syllabesIma/flor.png",
       },
       {
-        title: "limbo",
+        title: "mamá",
         category: "Bisílabas",
-        img: "https://i.ibb.co/BzmcyFX/wordpress-5-limbo.png",
+        img: "../../../images/syllabesIma/mama.jpg",
       },
 
       {
-        title: "carta",
+        title: "casa",
         category: "Bisílabas",
-        img: "https://i.ibb.co/Dryv0BB/Consejos-para-escribir-una-carta-de-amor5.jpg",
+        img:"../../../images/syllabesIma/casa.jpg",
       },
     ],
     nivel4: [
       {
-        title: "trío",
+        title: "niño",
         category: "Bisílabas",
-        img: "https://i.ibb.co/hXN5HKb/los-10-trios-mas-emblematicos-del-manga-y-anime-3.jpg",
+        img: "../../../images/syllabesIma/niño.jpg",
       },
       {
-        title: "gorro",
+        title: "chango",
         category: "Bisílabas",
-        img: "https://i.ibb.co/YtGcTgL/og-img.jpg",
+        img: "../../../images/syllabesIma/chango.jpg",
       },
       {
         title: "Sol",
         category: "Monosílabas",
-        img: "https://i.ibb.co/HPJLK2S/sol-jpg-673822677.jpg",
+        img: "../../../images/syllabesIma/sol.png",
       },
     ],
     nivel5: [
       {
         title: "Perro",
         category: "Bisílabas",
-        img: "https://www.muyinteresante.com.mx/wp-content/uploads/2018/05/httpstved-prod.adobecqms.netcontentdamtbgmexicomuyinteresantemxcuriosidadestop171225perro.imgo_.jpg",
+        img: "../../../images/syllabesIma/perro.jpg",
       },
       {
         title: "Paz",
         category: "Monosílabas",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8t11bJPNmRdL3y3MwVFoB5aRC1XhUHC5XLA&usqp=CAU",
+        img: "../../../images/syllabesIma/paz.jpg",
       },
     ],
-    nivel6: [
-      {
-        title: "Arból",
-        category: "Bisílabas",
-        img: "https://fhernanb.github.io/libro_mod_pred/images/arbol.jpg",
-      },
-
-      {
-        title: "gol",
-        category: "Monosílabas",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Soccer_Youth_Goal_Keeper.jpg/330px-Soccer_Youth_Goal_Keeper.jpg",
-      },
-    ],
+    
   },
 
 
@@ -93,61 +81,61 @@ export default {
   Bisílabas: {
     nivel1: [
       {
-        title: "coral",
+        title: "árbol",
         category: "Bisílabas",
-        img: "https://i.ibb.co/4dVx0PN/img-corales-hd.jpg",
+        img: "../../../images/syllabesIma/arbol.jpg",
       },
       {
-        title: "Ley",
-        category: "Monosílabas",
-        img: "https://i.ibb.co/QcWT8jP/leyes-emprendedores.jpg",
+        title: "arcoiris",
+        category: "Trisílabas",
+        img: "../../../images/syllabesIma/arcoiris.jpg",
       },
     ],
     nivel2: [
       {
         title: "Diez",
         category: "Bisílabas",
-        img: "https://i.ibb.co/PgzQQnV/depositphotos-60704989-stock-photo-number-10.jpg",
+        img: "../../../images/syllabesIma/diez.jpg",
       },
       {
         title: "río",
         category: "Monosílabas",
-        img: "https://i.ibb.co/MhyPg5N/rio-portada.jpg",
+        img: "../../../images/syllabesIma/rio.jpg",
       },
     ],
     nivel3: [
       {
         title: "llave",
         category: "Bisílabas",
-        img: "https://i.ibb.co/5kXP4G0/key-e1485965123537.jpg",
+        img: "../../../images/syllabesIma/llaves.png",
       },
       {
-        title: "Domingo",
+        title: "elefante",
         category: "Trisílabas",
-        img: "https://i.ibb.co/60y90FF/DOMINGO-Calendar-on-Corkboard-3-D-Rendering.jpg",
+        img: "../../../images/syllabesIma/elefante.jpg",
       },
       {
-        title: "Pequeño",
+        title: "estrella",
         category: "Trisílabas",
-        img: "https://i.ibb.co/CHyLLj4/10-38-805x452.jpg",
+        img: "../../../images/syllabesIma/estrella.png",
       },
     ],
     nivel4: [
       {
-        title: "Distinto",
+        title: "Chocolate",
         category: "Trisílabas",
-        img: "https://i.ibb.co/bFftWHv/20130123-104249-a-m.jpg",
+        img: "../../../images/syllabesIma/chocolate.jpg",
       },
 
       {
-        title: "Tu",
-        category: "Monosílabas",
-        img: "https://i.ibb.co/P4YfS9Z/images-q-tbn-ANd9-Gc-Rf-s-IISSXOJTXr-p-QC3d-Ug-Qa-39k3-Ac-SGXh-Gq-T4luvlr-SEOqb-LCDWw-U1rd-Jzx-Yt-Fn.jpg",
+        title: "araña",
+        category: "Trisílabas",
+        img: "../../../images/syllabesIma/araña.jpg",
       },
       {
-        title: "foco",
+        title: "oso",
         category: "Bisílabas",
-        img: "https://i.ibb.co/ZXYJtmY/url-https-cherry-brightspot-s3-amazonaws-com-3a-6a-d0d80f5a44c99a765927de3e2414-istock-534595074.jpg",
+        img: "../../../images/syllabesIma/oso.jpg",
       },
     ],
   },
