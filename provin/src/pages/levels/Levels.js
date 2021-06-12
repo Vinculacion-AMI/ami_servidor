@@ -42,7 +42,7 @@ function Levels({ logout, ...rest }) {
     history.push("/game1");
   };
   const learn = () => {
-    history.push("/learn");
+    history.push("/learnSyllabes");
   };
   const puzzle = () => {
     history.push("/puzzle");
@@ -79,7 +79,7 @@ function Levels({ logout, ...rest }) {
                 <Card boxShadow={3} className={classes.root}>
                   <CardMedia
                     className={classes.media2}
-                    image="../../images/trazos.jpg"
+                    image="../../images/menu/trazos.jpg"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -107,7 +107,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/logo2.jpg"
+                    image="../../images/menu/letras.jpg"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -134,7 +134,34 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras1.png"
+                    image="../../images/menu/silabas.png"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      APRENDE LAS SILABAS
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Conoce las silabas
+                    </Typography>
+                    <br />
+                    <Button
+                      onClick={learn}
+                      variant="contained"
+                      color="primary"
+                      style={{ borderRadius: 20 }}
+                    >
+                      Jugar
+                    </Button>
+                  </CardContent>
+                </Card>
+                <Card className={classes.root}>
+                  <CardMedia
+                    className={classes.media}
+                    image="../../images/menu/forma_palabras1.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -161,7 +188,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras1.png"
+                    image="../../images/menu/forma_palabras1.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -188,7 +215,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/logo3.jpg"
+                    image="../../images/menu/animales.jpg"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -215,7 +242,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras.png"
+                    image="../../images/menu/forma_palabras.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">

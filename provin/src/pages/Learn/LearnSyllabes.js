@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
-import { Grid, Button } from "@material-ui/core";
+import { Grid} from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "../../css/draw.css";
@@ -39,7 +39,7 @@ function LearnSyllabes() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#FFFD5F", height: 659 }}>
+      <div style={{ backgroundColor: "#FFFD5F", height: "100vh" }}>
         <AppNavBar />
 
         <Grid container>
@@ -49,7 +49,7 @@ function LearnSyllabes() {
             sm={12}
           >
             <h2>Aprende las silabas</h2>
-            <Grid style={{ margin: 25, marginTop: 70, position: "relative" }}>
+            <Grid style={{ margin: 25 }}>
               <Carousel emulateTouch={true}>
                 {img.map((e) => (
                   <Card className={classes.root}>

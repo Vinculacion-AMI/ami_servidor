@@ -3,8 +3,11 @@ import { Grid, Button } from "@material-ui/core";
 import CanvasDraw from "react-canvas-draw";
 import { useHistory } from "react-router-dom";
 import AppNavBar from "../../components/navbar";
+import { Typography } from "@material-ui/core";
+import { useStyles } from "./style";
 
 function Draw2() {
+  const classes = useStyles();
   const [canvas] = useState("#4FA1F3 ");
   const [brush] = useState(6);
   const lienzo1 = useState(null);
@@ -14,6 +17,7 @@ function Draw2() {
   const draw3 = () => {
     history.push("/draw3");
   };
+  const heightResponsive = window.innerHeight < 45 ? 450 : 350;
 
   const clear = () => {
     lienzo.current.clear();
@@ -35,15 +39,19 @@ function Draw2() {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  style={{ width: 100 }}
+                  className={classes.btn}
                 >
                   Limpiar
                 </Button>
               </Grid>
               <Grid style={{ textAlign: "center" }} sm={8}>
-              <h2 style={{ fontSize: 22 }}>
-                Realiza las los circulos y las rayas
-              </h2>
+              <Typography
+                variant="h4"
+                component="h4"
+                className={classes.titleWord}
+              >
+                {`Realiza las los circulos y las rayas`}
+              </Typography>
               </Grid>
               <Grid sm={2}>
                 <Button
@@ -52,7 +60,8 @@ function Draw2() {
                   variant="contained"
                   color="primary"
                   onClick={draw3}
-                  style={{ width: 100 }}
+                  className={classes.btn}
+                  // style={{ width: 100 }}
                 >
                   Siguiente
                 </Button>
@@ -66,8 +75,8 @@ function Draw2() {
                   lazyRadius={1}
                   brushColor={canvas}
                   brushRadius={brush}
-                  canvasHeight={300}
-                  canvasWidth={655}
+                  canvasHeight={heightResponsive}
+                  canvasWidth={"100%"}
                   imgSrc="../../images/circulo2.jpg"
                   hideGrid={false}
                   style={{ border: "2px solid #14181C" }}
@@ -81,8 +90,8 @@ function Draw2() {
                   lazyRadius={1}
                   brushColor={canvas}
                   brushRadius={brush}
-                  canvasHeight={300}
-                  canvasWidth={655}
+                  canvasHeight={heightResponsive}
+                  canvasWidth={"100%"}
                   imgSrc="../../images/circulo3.jpg"
                   hideGrid={false}
                   style={{ border: "2px solid #14181C" }}
