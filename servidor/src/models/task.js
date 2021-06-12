@@ -8,6 +8,7 @@ const persons = Schema(
     email: { type: String, lowercase: true, required: true },
     image: { type: String, required: false },
     last_session: { type: Date, default: null },
+    is_admin: { type: Boolean, default: false },
     password: { type: String, required: true },
     token_session: { type: String, default: null },
     active_session: { type: Boolean, default: false },

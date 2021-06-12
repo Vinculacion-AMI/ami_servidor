@@ -67,7 +67,7 @@ function Registro() {
       });
       //result = await result.json();
       console.warn("result", result);
-      history.push("/");
+      history.push("/home");
     }
   }
 

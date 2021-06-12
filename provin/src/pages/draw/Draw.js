@@ -38,7 +38,7 @@ function Draw() {
   const clear = () => {
     lienzo.current.clear();
   };
-  const heightResponsive = window.innerHeight < 45 ? 450 : 300;
+  const heightResponsive = window.innerHeight < 45 ? 450 : 350;
 
   const img = [
     { photo: ["../../../images/abc1.png"] },
@@ -71,14 +71,15 @@ function Draw() {
   ];
 
   return (
-      <div style={{ backgroundColor: "#FFFD5F", height: "100vh" }}>
-        <AppNavBar />
-        <Grid container>
-          <Grid container style={{ margin: 8 }} xs={12} sm={12}>
-            <Grid xs={6} sm={6}>
-              <h2>Replica</h2>
-            </Grid>
-            <Grid xs={6} sm={6}>
+    <div style={{ backgroundColor: "#FFFD5F", height: "100vh" }}>
+      <AppNavBar />
+      <Grid container alignItems="center">
+        <Grid container style={{ margin: 8 }} xs={12} sm={12}>
+          <Grid style={{ textAlign: "center" }} xs={6} sm={6}>
+            <h2>Replica</h2>
+          </Grid>
+          <Grid container alignItems="center" xs={6} sm={6}>
+            <Grid item xs={12} sm={12}>
               <Button
                 onClick={clear}
                 className={classes.btn}
@@ -92,39 +93,40 @@ function Draw() {
               </Button>
             </Grid>
           </Grid>
-          <Grid
-            style={{ textAlign: "center", alignItems: "center" }}
-            xs={12}
-            sm={6}
-          >
-            <Grid style={{ margin: 25, position: "relative" }}>
-              <Carousel emulateTouch={true} onChange={clear}>
-                {img.map((e) => (
-                  <Card className={classes.root}>
-                    <CardMedia className={classes.media} image={e.photo} />
-                  </Card>
-                ))}
-              </Carousel>
-            </Grid>
-          </Grid>
-
-          <Grid xs={12} sm={6}>
-            <Grid style={{ position: "relative" }}>
-              <Card style={{ border: "2px solid #14181C" }}>
-                <CanvasDraw
-                  ref={lienzo}
-                  lazyRadius={1}
-                  brushColor={canvas}
-                  brushRadius={brush}
-                  canvasHeight={heightResponsive}
-                  canvasWidth={"100%"}
-                  hideGrid={false}
-                />
-              </Card>
-            </Grid>
+        </Grid>
+        <Grid
+          style={{ textAlign: "center", alignItems: "center" }}
+          xs={12}
+          sm={6}
+        >
+          <Grid style={{ margin: 25, position: "relative" }}>
+            <Carousel emulateTouch={true} onChange={clear}>
+              {img.map((e) => (
+                <Card className={classes.root}>
+                  <CardMedia className={classes.media} image={e.photo} />
+                </Card>
+              ))}
+            </Carousel>
           </Grid>
         </Grid>
-      </div>
+
+        <Grid item xs={12} sm={6}>
+          <Grid style={{ position: "relative" }}>
+            <Card style={{ border: "2px solid #14181C" }}>
+              <CanvasDraw
+                ref={lienzo}
+                lazyRadius={1}
+                brushColor={canvas}
+                brushRadius={brush}
+                canvasHeight={heightResponsive}
+                canvasWidth={"100%"}
+                hideGrid={false}
+              />
+            </Card>
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 

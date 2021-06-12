@@ -52,7 +52,7 @@ export default function Home() {
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras.png"
+                    image="../../images/menu/forma_palabras.png"
                     title="Niveles"
                     onClick={levels}
                   />
