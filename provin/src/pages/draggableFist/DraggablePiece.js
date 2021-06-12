@@ -24,8 +24,8 @@ export default function DraggablePiece(props) {
     const user = localStorage.getItem("user_id");
     const url = process.env.REACT_APP_BACKEND + "/stage/" + user + "/vocablo";
     await getDataUser(url).then((response) => {
-      const currentSubLvl = response[0].sub_level;
-      const currentLvl = response[0].level;
+      // const currentSubLvl = response[0].sub_level;
+      // const currentLvl = response[0].level;
     });
   };
   const forceUpdate = useForceUpdate();
@@ -35,7 +35,6 @@ export default function DraggablePiece(props) {
   };
   const begingComponents = () => {
     const word = props.arrayWord;
-    // const shuf = Inmutable.Map()
     setTextContent(shuffle(word));
 
     setStateArrayItems(new Array(props.arrayWord.length));
@@ -84,10 +83,6 @@ export default function DraggablePiece(props) {
   };
   const setText = (item, state) => {
     let arrayUpdated = stateArrayItems;
-    // let i = textContent.indexOf(item);
-    // arrayUpdated[i] === undefined
-    //   ? (arrayUpdated[i] = false)
-    //   : (arrayUpdated[i] = undefined);
     if (state) {
       for (let index = 0; index < arrayUpdated.length; index++) {
         let arrayPuzzleSolve = puzzleSolve;

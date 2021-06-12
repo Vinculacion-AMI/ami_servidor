@@ -24,7 +24,7 @@ export default function DraggablePiece(props) {
     const mix = array.sort(() => Math.random() - 0.5);
     return mix;
   };
-  
+
   const begingComponents = () => {
     const word = props.arrayWord;
     setTextContent(shuffle(word));

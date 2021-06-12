@@ -49,6 +49,9 @@ export default function MenuAppBar() {
     history.push("/home");
   };
 
+  const signup = () => {
+    history.push("/signup");
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -83,6 +86,7 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={home}>Inicio</MenuItem>
+                <MenuItem onClick={signup}>Registro</MenuItem>
                 <MenuItem onClick={logout}>Salir</MenuItem>
               </Menu>
             </div>

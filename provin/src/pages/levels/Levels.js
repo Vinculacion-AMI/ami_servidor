@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import AppNavBar from "../../components/navbar";
 
@@ -38,9 +38,11 @@ function Levels({ logout, ...rest }) {
   const draw = () => {
     history.push("/draw");
   };
-
   const game1 = () => {
     history.push("/game1");
+  };
+  const learn = () => {
+    history.push("/learn");
   };
   const puzzle = () => {
     history.push("/puzzle");
@@ -54,7 +56,7 @@ function Levels({ logout, ...rest }) {
 
   return (
     <div style={{ backgroundColor: "#4682B4" }}>
-      <AppNavBar  />
+      <AppNavBar />
       <br></br>
       <br></br>
       <Grid
