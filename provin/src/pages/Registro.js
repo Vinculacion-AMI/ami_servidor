@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/singin.css";
 import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
-// import { Search } from "@trejgun/material-ui-icons-google";
 import { useHistory } from "react-router";
 
 //import { makeStyles } from "@material-ui/core/styles";
@@ -30,10 +29,13 @@ function Registro() {
     validateEmail(email)
       ? true
       : false;
+
   const errorMessageNombre =
     name.length === 0 ? "El nombre es obligatorio" : "";
+
   const errorMessagePass =
     password.length === 0 ? "La contraseña es obligatoria" : "";
+
   const errorMessage =
     email.length === 0
       ? "El email es obligatorio"
@@ -46,15 +48,16 @@ function Registro() {
   };
 
   function goLogin() {
-      history.push("/");
+    history.push("/home");
   }
+
   async function signup() {
     if (name === "" || email === "" || password === "") {
       alert("Registrate por favor");
     } else {
       let data = { name, email, password };
       console.warn(data);
-      let result = await fetch("http://localhost:4000/register", {
+      let result = await fetch(process.env.REACT_APP_BACKEND + "/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -90,7 +93,7 @@ function Registro() {
             justify="center"
           >
             <Card className="content">
-              <h1>Registrate</h1>
+              <h1>Registrar</h1>
               <form>
                 <Container>
                   <Grid container spacing={2}>
@@ -140,7 +143,6 @@ function Registro() {
                     </Grid>
                   </Grid>
                   <Button
-                    // href="/"
                     variant="outlined"
                     color="primary"
                     style={{ margin: 15, borderRadius: 20 }}
@@ -148,7 +150,7 @@ function Registro() {
                     disabled={statusdisable}
                     startIcon={<SaveIcon />}
                   >
-                    Registrarse
+                    Guardar
                   </Button>
                   <Button
                     onClick={goLogin}
@@ -159,20 +161,6 @@ function Registro() {
                     Cancelar
                   </Button>
                 </Container>
-
-                {/* <p>O</p>
-              <Grid style={{ margin: 20 }}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={{ borderRadius: 20 }}
-                  startIcon={<Search />}
-                >
-                  Registrarse con Google
-                </Button>
-              </Grid> */}
               </form>
             </Card>
           </Grid>

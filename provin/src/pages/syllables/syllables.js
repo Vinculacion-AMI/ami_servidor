@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,8 +11,8 @@ import { useGridStyles } from "./style";
 import { useStyles } from "./style";
 import { Button } from "@material-ui/core";
 import dataJson from "./data.js";
-import useForceUpdate from "use-force-update";
-import TransitionsSnackbar from "../dialogNotifications/notification";
+// import useForceUpdate from "use-force-update";
+// import TransitionsSnackbar from "../dialogNotifications/notification";
 import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
@@ -45,7 +45,7 @@ export const Syllables = React.memo(function SolidGameCard() {
 
     // setLevel("nivel2");
   }, [!data, !level, !stage, !subLevel]);
-  const forceUpdate = useForceUpdate();
+  // const forceUpdate = useForceUpdate();
   const gridStyles = useGridStyles();
   const styles = useStyles({ color: colors[Math.floor(Math.random() * colors.length)] });
 

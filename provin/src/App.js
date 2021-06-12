@@ -1,12 +1,9 @@
 //Componentes React
 import React from "react";
 import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
-import {
-  Route,
-  BrowserRouter as Router,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 //Componentes Juegos
 import Game1 from "./pages/dragDrop/game1";
@@ -34,6 +31,7 @@ import Registro from "./pages/Registro";
 //Componentes de estilos css
 import "./App.css";
 import "./css/login.css";
+import { green, indigo, purple } from "@material-ui/core/colors";
 
 const authenticate = {
   isLoggedIn: false,
@@ -81,7 +79,7 @@ function Login(props) {
     } else {
       let data = { email, password };
       console.warn(data);
-      let result = await fetch("http://localhost:4000/login", {
+      let result = await fetch(process.env.REACT_APP_BACKEND + "/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -106,6 +104,7 @@ function Login(props) {
             style={{
               textAlign: "center",
               minHeight: "100vh",
+              borderRadius: 80,
             }}
             className="card"
             container
@@ -114,7 +113,7 @@ function Login(props) {
             alignItems="center"
             justify="center"
           >
-            <Card className="content">
+            <Card style={{ backgroundColor: "#F7DC6F" }} className="content">
               <h1>Bienvenidos</h1>
               <form noValidate>
                 <Container>
@@ -145,7 +144,7 @@ function Login(props) {
                     </Grid>
                     <Grid item xs={6} md={12}></Grid>
                   </Grid>
-                  <Grid item xs={12} md={12}>
+                  <Grid style={{ margin: 15 }} item xs={12} md={12}>
                     <Button
                       onClick={login}
                       fullWidth
@@ -155,13 +154,6 @@ function Login(props) {
                     >
                       Ingresar
                     </Button>
-                  </Grid>
-                  <Grid container justify="center">
-                    <Grid style={{ margin: 15 }}>
-                      <Link variant="body2" to="/signup">
-                        Aun no tienes cuenta?
-                      </Link>
-                    </Grid>
                   </Grid>
                 </Container>
               </form>
@@ -173,27 +165,41 @@ function Login(props) {
   );
 }
 function App() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        // Purple and green play nicely together.
+        main: indigo[300],
+      },
+      secondary: {
+        // This is green.A700 as hex.
+        main: green[900],
+      },
+    },
+  });
   return (
-    <Router>
-      <div>
-        <Route path="/" exact component={Login} />
-        <Route path="/signup" component={Registro} />
-        <SecuredRoute path="/home" component={Home} />
-        <SecuredRoute path="/levels" component={Levels} />
-        <SecuredRoute path="/draw" component={Draw} />
-        <SecuredRoute path="/draw2" component={Draw2} />
-        <SecuredRoute path="/draw3" component={Draw3} />
-        <SecuredRoute path="/draw4" component={Draw4} />
-        <SecuredRoute path="/draw5" component={Draw5} />
-        <SecuredRoute path="/game1" component={Game1} />
-        <SecuredRoute path="/syllables" component={Syllables} />
-        <SecuredRoute path="/puzzle" component={JigSaw} />
-        <SecuredRoute path="/puzzleInit" component={JigSawInit} />
-        <SecuredRoute path="/puntajes" component={Puntajes} />
-        <SecuredRoute path="/resultados" component={Resultados} />
-        <SecuredRoute path="/learn/syllables" component={LearnSyllabes} />
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div>
+          <Route path="/" exact component={Login} />
+          <SecuredRoute path="/signup" component={Registro} />
+          <SecuredRoute path="/home" component={Home} />
+          <SecuredRoute path="/levels" component={Levels} />
+          <SecuredRoute path="/draw" component={Draw} />
+          <SecuredRoute path="/draw2" component={Draw2} />
+          <SecuredRoute path="/draw3" component={Draw3} />
+          <SecuredRoute path="/draw4" component={Draw4} />
+          <SecuredRoute path="/draw5" component={Draw5} />
+          <SecuredRoute path="/game1" component={Game1} />
+          <SecuredRoute path="/syllables" component={Syllables} />
+          <SecuredRoute path="/puzzle" component={JigSaw} />
+          <SecuredRoute path="/puzzleInit" component={JigSawInit} />
+          <SecuredRoute path="/puntajes" component={Puntajes} />
+          <SecuredRoute path="/resultados" component={Resultados} />
+          <SecuredRoute path="/learnSyllabes" component={LearnSyllabes} />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 export default App;

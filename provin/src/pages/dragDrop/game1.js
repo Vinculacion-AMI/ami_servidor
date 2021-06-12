@@ -11,72 +11,69 @@ import '../../css/game1.css';
 
 function Game1() {
     const classes = useStyles();
- 
+
     const [dato1, setDato1] = React.useState({});
     const [contador, setContador] = React.useState(0);
-   let history = useHistory();
-    
-    let img = [
+    let history = useHistory();
 
-      {id: 1, name: "Perro", photo: "../../../images/gameDnD/perro.jpg" },
-      {id: 2, name: "Gato", photo: "../../../images/gameDnD/gati1.jpg" },
-      {id: 3, name: "Conejo", photo: "../../../images/gameDnD/cone1.jpg" },
-      {id: 4, name: "Gallina", photo: "../../../images/gameDnD/gal1.jpg" },
-      {id: 5, name: "Caballo", photo: "../../../images/gameDnD/cab1.jpg" },
-      {id: 6, name: "Perro", photo: "../../../images/gameDnD/perr1.jpg" },
-      {id: 7, name: "Gato", photo: "../../../images/gameDnD/gati2.jpg" },
-      {id: 8, name: "Conejo", photo: "../../../images/gameDnD/cone2.jpg" },
-      {id: 9, name: "Gallina", photo: "../../../images/gameDnD/gal2.jpg" },
-      {id: 10, name: "Caballo", photo: "../../../images/gameDnD/cab2.jpg" }
+    let img = [
+      { id: 1, name: "Perro", photo: "../../../images/gameDnD/perro.jpg" },
+      { id: 2, name: "Gato", photo: "../../../images/gameDnD/gati1.jpg" },
+      { id: 3, name: "Conejo", photo: "../../../images/gameDnD/cone1.jpg" },
+      { id: 4, name: "Gallina", photo: "../../../images/gameDnD/gal1.jpg" },
+      { id: 5, name: "Caballo", photo: "../../../images/gameDnD/cab1.jpg" },
+      { id: 6, name: "Perro", photo: "../../../images/gameDnD/perr1.jpg" },
+      { id: 7, name: "Gato", photo: "../../../images/gameDnD/gati2.jpg" },
+      { id: 8, name: "Conejo", photo: "../../../images/gameDnD/cone2.jpg" },
+      { id: 9, name: "Gallina", photo: "../../../images/gameDnD/gal2.jpg" },
+      { id: 10, name: "Caballo", photo: "../../../images/gameDnD/cab2.jpg" },
     ];
 
-    function generateRandomInt(){
-      return Math.floor((Math.random() * (10-0)) +0);
-  }
-  let numeros = Number(generateRandomInt()) 
-  
-  let prueba = img[numeros];
- 
-  let data = [
-    {id: 1, name: "Perro" },
-    {id: 2, name: "Conejo" },
-    {id: 3, name: "Gato" },
-    {id: 4, name: "Gallina" },
-    {id: 5, name: "Caballo" },
-  ]
-  const botones = () =>{
+    function generateRandomInt() {
+      return Math.floor(Math.random() * (10 - 0) + 0);
+    }
+    let numeros = Number(generateRandomInt());
 
+    let prueba = img[numeros];
+
+    let data = [
+      { id: 1, name: "Perro" },
+      { id: 2, name: "Conejo" },
+      { id: 3, name: "Gato" },
+      { id: 4, name: "Gallina" },
+      { id: 5, name: "Caballo" },
+    ];
+
+  const botones = () => {
     var data2 = [];
-    let aleatorio = data.map(item => {
+    let aleatorio = data.map((item) => {
       let random = data[Math.floor(Math.random() * data.length)];
 
-      if(!data2.includes(random))
-      {
-         data2.push(random);         
+      if (!data2.includes(random)) {
+        data2.push(random);
       }
       return data2;
     });
     console.log(aleatorio);
     data2.push(dato1);
     var datos = [];
-    for (let i = 0; i<data2.length; i++){
-        datos.push(data2[i].name)
+    for (let i = 0; i < data2.length; i++) {
+      datos.push(data2[i].name);
     }
     let sinRepeticion = [...new Set(datos)]; //Me quita los datos repetidos
     var quitadoUndfine = [];
-      for(let i=0; i<sinRepeticion.length; i++){
-        if (sinRepeticion[i] !== undefined){
-          quitadoUndfine.push(sinRepeticion[i]);
-        }
+    for (let i = 0; i < sinRepeticion.length; i++) {
+      if (sinRepeticion[i] !== undefined) {
+        quitadoUndfine.push(sinRepeticion[i]);
       }
+    }
 
-    var objetoAnimales = quitadoUndfine.map(function(elemento) {
-        var dividir = elemento.split(" ");
-        return {name: dividir[0]};
+    var objetoAnimales = quitadoUndfine.map(function (elemento) {
+      var dividir = elemento.split(" ");
+      return { name: dividir[0] };
     });
     return objetoAnimales;
-
-  }
+  };
 
   let btnR = botones();
 
@@ -118,7 +115,7 @@ function Game1() {
             nivel: 2,
             Ptotal: 5
           }
-          let result = await fetch("http://localhost:4000/score", {
+          let result = await fetch(process.env.REACT_APP_BACKEND+"/score", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -133,7 +130,7 @@ function Game1() {
               position: 'top-end',
               icon: 'success',
               title: 'Fin del juego',
-              text: ' Fecilicades has gando este nivel',
+              text: ' Felicidades has ganado este nivel',
               showConfirmButton: false,
               width: '22rem',
               timer: 1500
@@ -167,56 +164,52 @@ function Game1() {
 
   return (
     <div style={{ backgroundColor: "#B7FAD4", height: 759 }}>
-<AppNavBar/> 
+      <AppNavBar />
       <div>
-      <Grid container >
-          
-              <Grid xs={12} lg={12}  >
-                  
-                  <Grid className="perro" >
-                    <h2>Reconoce el animalito</h2>
-                 
-                 <Card className={classes.root}>
-                     <CardMedia
-                         className={classes.media}
-                         image={dato1.photo}
-                     />
-                 </Card>
-                  </Grid>        
-              </Grid>
-      </Grid>
-      <Grid className="opciones">
-      <Grid  container>
-      <Grid   sm={2}>
-      </Grid>
-      <Grid  xs={8} md={6}>
-      <Grid container>
-      {Object.values(btnR).map(item => (
-        // <Grid container justify="center">
-          <Grid xs={6} sm={3}>
-            
-              <Grid className="cards">
-              <CardActionArea  style={{borderRadius: 50,}} onClick={() => handleChange(item.name)} >
-              <Card  style={{borderRadius: 50,}}>
-                    <Card  style={{borderRadius: 50, background: 'linear-gradient(to right bottom,  #825191, #ff93c2)' }} >
-                        <h2 style={{ color: "#fff" }}>{item.name}</h2>
-                        
-                    </Card>
+        <Grid container>
+          <Grid xs={12} lg={12}>
+            <Grid className="perro">
+              <h2>Reconoce el animalito</h2>
+
+              <Card className={classes.root}>
+                <CardMedia className={classes.media} image={dato1.photo} />
               </Card>
-              </CardActionArea>
+            </Grid>
           </Grid>
+        </Grid>
+        <Grid className="opciones">
+          <Grid container>
+            <Grid sm={2}></Grid>
+            <Grid xs={8} md={6}>
+              <Grid container>
+                {Object.values(btnR).map((item) => (
+                  <Grid xs={6} sm={3}>
+                    <Grid className="cards">
+                      <CardActionArea
+                        style={{ borderRadius: 50 }}
+                        onClick={() => handleChange(item.name)}
+                      >
+                        <Card style={{ borderRadius: 50 }}>
+                          <Card
+                            style={{
+                              borderRadius: 50,
+                              background:
+                                "linear-gradient(to right bottom,  #825191, #ff93c2)",
+                            }}
+                          >
+                            <h2 style={{ color: "#fff" }}>{item.name}</h2>
+                          </Card>
+                        </Card>
+                      </CardActionArea>
+                    </Grid>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
           </Grid>
-          // </Grid>
-          ))}
-    </Grid>    
-      </Grid>
-      </Grid>
-  </Grid>
-      
+        </Grid>
       </div>
-
-    </div> 
-
+    </div>
   );
 }
 
