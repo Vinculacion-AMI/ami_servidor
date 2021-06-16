@@ -30,6 +30,7 @@ const JigSaw = () => {
 
   useEffect(() => {
     getClevel();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const forceUpdate = useForceUpdate();

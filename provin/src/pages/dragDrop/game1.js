@@ -86,6 +86,7 @@ function Game1() {
         setDato1({})
 
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleChange = async (dato) => {

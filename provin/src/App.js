@@ -31,7 +31,7 @@ import Registro from "./pages/Registro";
 //Componentes de estilos css
 import "./App.css";
 import "./css/login.css";
-import { green, indigo, purple } from "@material-ui/core/colors";
+import { green, indigo } from "@material-ui/core/colors";
 
 const authenticate = {
   isLoggedIn: false,
