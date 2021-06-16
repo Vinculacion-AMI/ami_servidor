@@ -17,6 +17,7 @@ export default function DraggablePiece(props) {
   useEffect(() => {
     begingComponents();
     forceUpdate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const forceUpdate = useForceUpdate();

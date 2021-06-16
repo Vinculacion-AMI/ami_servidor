@@ -44,6 +44,7 @@ export const Syllables = React.memo(function SolidGameCard() {
     getData();
 
     // setLevel("nivel2");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!data, !level, !stage, !subLevel]);
   // const forceUpdate = useForceUpdate();
   const gridStyles = useGridStyles();
