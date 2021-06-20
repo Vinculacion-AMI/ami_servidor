@@ -183,20 +183,20 @@ function App() {
         <div>
           <Route path="/" exact component={Login} />
           <SecuredRoute path="/signup" component={Registro} />
-          <SecuredRoute path="/home" component={Home} />
-          <SecuredRoute path="/levels" component={Levels} />
-          <SecuredRoute path="/draw" component={Draw} />
-          <SecuredRoute path="/draw2" component={Draw2} />
-          <SecuredRoute path="/draw3" component={Draw3} />
-          <SecuredRoute path="/draw4" component={Draw4} />
-          <SecuredRoute path="/draw5" component={Draw5} />
-          <SecuredRoute path="/game1" component={Game1} />
-          <SecuredRoute path="/syllables" component={Syllables} />
-          <SecuredRoute path="/puzzle" component={JigSaw} />
-          <SecuredRoute path="/puzzleInit" component={JigSawInit} />
-          <SecuredRoute path="/puntajes" component={Puntajes} />
-          <SecuredRoute path="/resultados" component={Resultados} />
-          <SecuredRoute path="/learnSyllabes" component={LearnSyllabes} />
+          <Route path="/home" component={Home} />
+          <Route path="/levels" component={Levels} />
+          <Route path="/draw" component={Draw} />
+          <Route path="/draw2" component={Draw2} />
+          <Route path="/draw3" component={Draw3} />
+          <Route path="/draw4" component={Draw4} />
+          <Route path="/draw5" component={Draw5} />
+          <Route path="/game1" component={Game1} />
+          <Route path="/syllables" component={Syllables} />
+          <Route path="/puzzle" component={JigSaw} />
+          <Route path="/puzzleInit" component={JigSawInit} />
+          <Route path="/puntajes" component={Puntajes} />
+          <Route path="/resultados" component={Resultados} />
+          <Route path="/learnSyllabes" component={LearnSyllabes} />
         </div>
       </Router>
     </ThemeProvider>
