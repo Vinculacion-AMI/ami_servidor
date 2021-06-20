@@ -142,14 +142,19 @@ export default {
   Trisílabas:{
     nivel1:[
       {
-        title: "Manzana",
+        title: "naranja",
         category: "Trisílabas",
-        img: "https://i2.wp.com/historiasdelahistoria.com/wordpress-2.3.1-ES-0.1-FULL/wp-content/uploads/2015/09/manzana.jpg?ssl=1",
+        img: "../../../images/syllabesIma/naranja.jpg",
       },
       {
         title: "cama",
         category: "Bisílabas",
         img: "https://i.pinimg.com/736x/2b/7f/76/2b7f768db24d3bd3b7b33beca59decfe.jpg",
+      },
+      {
+        title: "flores",
+        category: "Bisílabas",
+        img: "../../../images/syllabesIma/flores.jpg",
       },
     ],
     nivel2:[
@@ -168,6 +173,38 @@ export default {
         category: "Monosílabas",
         img: "https://image.freepik.com/vector-gratis/bar-interior-composicion-realista_1284-24320.jpg",
       },
+    ],
+    nivel3:[
+      {
+        title: "Cangrejo",
+        category: "Trisílabas",
+        img: "../../../images/syllabesIma/cangrejo.jpg",
+      },
+      {
+        title: "reloj",
+        category: "Bisílabas",
+        img: "../../../images/syllabesIma/reloj.png",      
+      },
+      {
+        title: "Gatos",
+        category: "Bisílabas",
+        img: "../../../images/syllabesIma/gato.jpg",      },
+    ],
+    nivel4:[
+      {
+        title: "Ratón",
+        category: "Bisílabas",
+        img: "../../../images/syllabesIma/raton.jpg",
+      },
+      {
+        title: "Caballo",
+        category: "Trisílabas",
+        img: "../../../images/syllabesIma/caballo.jpg",      
+      },
+      {
+        title: "tigre",
+        category: "Bisílabas",
+        img: "../../../images/syllabesIma/tigre.jpg",      },
     ],
   }
 };
