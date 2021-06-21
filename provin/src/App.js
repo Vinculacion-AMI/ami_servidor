@@ -132,8 +132,12 @@ function Login(props) {
     }
   }
   return (
-    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
-
+    <div style={{  
+      backgroundImage: "url(" + "../../images/menu/login.jpeg" + ")",
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Container>
         <Grid container>
           <Grid
@@ -149,7 +153,7 @@ function Login(props) {
             alignItems="center"
             justify="center"
           >
-            <Card style={{ backgroundColor: "#F7DC6F" }} className="content">
+            <Card style={{ backgroundColor: "#F9F9F9" }}>
               <h1>Bienvenidos</h1>
               <form noValidate>
                 <Container>
