@@ -47,7 +47,7 @@ function LearnSyllabes() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#FFFD5F", height: "13x  0vh" }}>
+      <div style={{ backgroundColor: "#6495ED", height: "13x  0vh" }}>
         <AppNavBar />
 
         <Grid container>

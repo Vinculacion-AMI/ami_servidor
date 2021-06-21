@@ -32,7 +32,7 @@ function Draw3() {
   };
   console.log(style.width);
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: 850 }}>
+    <div style={{ backgroundColor: "#6495ED", height: 850 }}>
       <AppNavBar />
 
       <Grid  container>

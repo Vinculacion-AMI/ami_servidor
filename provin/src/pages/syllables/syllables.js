@@ -178,7 +178,7 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
-      <div  style={{ backgroundColor:"#4682B4", height:"100vh", textAlign: "center", }}>
+      <div  style={{ backgroundColor:"#6495ED", height:"100vh", textAlign: "center", }}>
 
       <>
         <AppNavBar/> 

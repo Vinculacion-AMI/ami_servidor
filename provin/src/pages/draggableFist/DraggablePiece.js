@@ -112,14 +112,14 @@ export default function DraggablePiece(props) {
   if (textContent && stateArrayItems) {
     let ikey = 0;
     return (
-      <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+      <div style={{ backgroundColor: "#6495ED", height: "100vh" }}>
         <Grid container className={classes.rootGrid}>
           <Grid item xs={12}>
             <Grid container justify="center">
               {puzzleSolve.map((content) => {
                 ikey += 1;
                 return (
-                  <Grid style={{ backgroundColor: "#4682B4" }} key={ikey} item>
+                  <Grid style={{ backgroundColor: "#6495ED" }} key={ikey} item>
                     <Zoom in={content !== undefined}>
                       <Card className={classes.rootEmptyCard}>
                         {content === undefined ? null : (

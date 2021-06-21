@@ -19,7 +19,7 @@ function Draw5() {
   };
 
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: "100vh"}}>
+    <div style={{ backgroundColor: "#6495ED", height: "100vh"}}>
       <AppNavBar />
 
       <Grid container>
