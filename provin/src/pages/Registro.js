@@ -80,8 +80,8 @@ function Registro() {
           timer: 2500,
           background: "#E6E6FA",
           // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
-        }).then((result) => {
-          if (result.dismiss === Swal.DismissReason.timer || result.isDismissed) {
+        }).then((state) => {
+          if (state.dismiss === Swal.DismissReason.timer || state.isDismissed) {
             history.push("/home");
           }
         });
@@ -101,7 +101,7 @@ function Registro() {
 
   return (
     <div style={{  
-      backgroundImage: "url(" + "../../images/menu/login.jpeg" + ")",
+      backgroundImage: "url(../../images/menu/login.jpeg)",
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'

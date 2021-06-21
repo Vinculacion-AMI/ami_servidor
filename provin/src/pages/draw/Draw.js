@@ -71,7 +71,7 @@ function Draw() {
   ];
 
   return (
-    <div style={{ backgroundColor: "#FFFD5F", height: "100vh" }}>
+    <div style={{ backgroundColor: "#6495ED", height: "100vh" }}>
       <AppNavBar />
       <Grid container alignItems="center">
         <Grid container style={{ margin: 8 }} xs={12} sm={12}>

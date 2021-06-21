@@ -25,11 +25,10 @@ export default function Home() {
   const levels = () => {
     history.push("/levels");
   };
-  
+  const admin = localStorage.getItem("isadmin") === "true" ? true : false;
   return (
     <div style={{ backgroundColor: "#6495ED" }}>
-      <AppNavBar />
-    
+      <AppNavBar isAdmin={admin} />
       <Grid
         style={{
           textAlign: "center",
@@ -68,7 +67,6 @@ export default function Home() {
                 </CardActionArea>
               </Card>
             </Grid>
-            
           </Grid>
         </Container>
       </Grid>

@@ -145,6 +145,7 @@ router.post("/login", (req, res) => {
                 data: user,
                 id: content[0]._id,
                 token: token,
+                isAdmin: content[0].is_admin,
               };
               res.json(data);
             }

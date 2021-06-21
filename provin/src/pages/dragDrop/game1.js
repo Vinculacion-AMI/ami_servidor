@@ -164,7 +164,7 @@ function Game1() {
     };
 
   return (
-    <div style={{ backgroundColor: "#B7FAD4", height: 759 }}>
+    <div style={{ backgroundColor: "#6495ED", height: 759 }}>
       <AppNavBar />
       <div>
         <Grid container>

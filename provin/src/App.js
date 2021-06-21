@@ -32,7 +32,7 @@ import ResetPassoword from "./pages/ResetPassword";
 //import Login from "./pages/Login";
 
 //Componentes de estilos css
-// import "./App.css";
+import "./App.css";
 // import "./css/login.css";
 import { green, indigo } from "@material-ui/core/colors";
 
@@ -109,11 +109,11 @@ function Login(props) {
           timer: 2500,
           background: "#E6E6FA",
           // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
-        }).then((result) => {
-          console.log(result);
-          if (result.dismiss === Swal.DismissReason.timer || result.isDismissed) {
+        }).then((state) => {
+          if (state.dismiss === Swal.DismissReason.timer || state.isDismissed) {
             localStorage.setItem("token", result.token);
             localStorage.setItem("user_id", result.id);
+            localStorage.setItem("isadmin", result.isAdmin);
             authenticate.onAuthentication();
             props.history.push("/home");
           }
@@ -133,7 +133,7 @@ function Login(props) {
   }
   return (
     <div style={{  
-      backgroundImage: "url(" + "../../images/menu/login.jpeg" + ")",
+      backgroundImage: "url(../../images/menu/login.jpeg)",
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'
