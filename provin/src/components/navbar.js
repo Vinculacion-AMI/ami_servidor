@@ -52,6 +52,10 @@ export default function MenuAppBar() {
   const signup = () => {
     history.push("/signup");
   };
+  
+  const resetPassword = () => {
+    history.push("/resetpassword");
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -87,6 +91,7 @@ export default function MenuAppBar() {
               >
                 <MenuItem onClick={home}>Inicio</MenuItem>
                 <MenuItem onClick={signup}>Registro</MenuItem>
+                <MenuItem onClick={resetPassword}>Actualizar Contraseña</MenuItem>
                 <MenuItem onClick={logout}>Salir</MenuItem>
               </Menu>
             </div>

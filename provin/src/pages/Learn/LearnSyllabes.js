@@ -15,8 +15,9 @@ const useStyles = makeStyles({
   },
   media: {
     height: 0,
-    width: "100%",
+    width: "60%",
     paddingTop: "60.25%",
+    // paddingRight: "20%",
   },
   ancho: {
     margin: 10,
@@ -32,14 +33,21 @@ function LearnSyllabes() {
   const classes = useStyles();
 
   const img = [
-    { photo: ["../../../images/fonemas/LFonema.jpg"] },
-    { photo: ["../../../images/fonemas/DFonema.jpg"] },
-    { photo: ["../../../images/fonemas/Mfonema.png"] },
+    { photo: ["../../../images/fonemas/FonemaT.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaM.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaP.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaL.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaC.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaD.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaF.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaN.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaS.jpeg"] },
+    { photo: ["../../../images/fonemas/FonemaB.jpeg"] },
   ];
 
   return (
     <div>
-      <div style={{ backgroundColor: "#FFFD5F", height: "100vh" }}>
+      <div style={{ backgroundColor: "#FFFD5F", height: "13x  0vh" }}>
         <AppNavBar />
 
         <Grid container>
@@ -49,11 +57,11 @@ function LearnSyllabes() {
             sm={12}
           >
             <h2>Aprende las silabas</h2>
-            <Grid style={{ margin: 25 }}>
+            <Grid style={{marginLeft:75, marginRight:75}}>
               <Carousel emulateTouch={true}>
                 {img.map((e) => (
                   <Card className={classes.root}>
-                    <CardMedia className={classes.media} image={e.photo} />
+                    <CardMedia className={classes.media} image={e.photo}/>
                   </Card>
                 ))}
               </Carousel>
