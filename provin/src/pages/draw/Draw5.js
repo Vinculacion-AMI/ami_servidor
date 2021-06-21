@@ -19,7 +19,7 @@ function Draw5() {
   };
 
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: "100vh"}}>
+    <div style={{ backgroundColor: "#5DADEF", height: 800}}>
       <AppNavBar />
 
       <Grid container>
@@ -64,10 +64,10 @@ function Draw5() {
                 lazyRadius={1}
                 brushColor={canvas}
                 brushRadius={brush}
-                canvasHeight={380}
-                canvasWidth={655}
+                canvasHeight={590}
+                canvasWidth={800}
                 hideGrid={false}
-                imgSrc="../../images/draw7.jpg"
+                imgSrc="../../images/espiral6.jpg"
                 style={{ border: "2px solid #14181C" }}
               />
             </center>
