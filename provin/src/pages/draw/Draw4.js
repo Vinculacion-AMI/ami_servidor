@@ -31,6 +31,7 @@ function Draw4() {
   //     marginLeft: "50%"
   //   };
   return (
+
     <div style={{ backgroundColor: "#6495ED", height: 900 }}>
       <AppNavBar />
       <Grid container>
@@ -85,9 +86,9 @@ function Draw4() {
                   brushColor={canvas}
                   lazyRadius={1}
                   brushRadius={brush}
-                  canvasHeight={330}
+                  canvasHeight={345}
                   canvasWidth={655}
-                  imgSrc="../../images/draw4.jpg"
+                  imgSrc="../../images/curva7.png"
                   hideGrid={false}
                   style={{ border: "2px solid #14181C" }}
                 />
@@ -100,9 +101,9 @@ function Draw4() {
                   brushColor={canvas}
                   lazyRadius={1}
                   brushRadius={brush}
-                  canvasHeight={350}
+                  canvasHeight={450}
                   canvasWidth={655}
-                  imgSrc="../../images/draw5.jpg"
+                  imgSrc="../../images/curva8.png"
                   hideGrid={false}
                   style={{ border: "2px solid #14181C" }}
                 />

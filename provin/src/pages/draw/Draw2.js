@@ -82,6 +82,7 @@ function Draw2() {
                   style={{ border: "2px solid #14181C" }}
                 />
               </center>
+              &nbsp;
             </Grid>
             <Grid style={{ textAlign: "center" }}>
               <center>
