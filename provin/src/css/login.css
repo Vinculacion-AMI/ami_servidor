@@ -1,6 +1,6 @@
-.content {
-  /* margin-top: 80px; */
-  background: #B0C4DE;
-  /* background: rgb(180,174,238);
-  background: radial-gradient(circle, rgba(180,174,238,1) 4%, rgba(99,159,228,1) 91%);    */
+.fondo {
+  background-image: "url(" + "../../images/menu/login.jpeg" + ")";
+  background-position: 'center';
+  background-size: 'cover';
+  background-repeat: 'no-repeat';
 }

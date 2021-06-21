@@ -25,9 +25,9 @@ function Registro() {
 
   const statusdisable =
     email.length === 0 ||
-    name.length === 0 ||
-    password.length === 0 ||
-    validateEmail(email)
+      name.length === 0 ||
+      password.length === 0 ||
+      validateEmail(email)
       ? true
       : false;
 
@@ -41,8 +41,8 @@ function Registro() {
     email.length === 0
       ? "El email es obligatorio"
       : validateEmail(email) === true
-      ? "El email no es válido"
-      : "";
+        ? "El email no es válido"
+        : "";
 
   const helperTextProps = {
     error: true,
@@ -100,7 +100,12 @@ function Registro() {
   }
 
   return (
-    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+    <div style={{  
+      backgroundImage: "url(" + "../../images/menu/login.jpeg" + ")",
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Container>
         <Grid container>
           <Grid
@@ -120,7 +125,7 @@ function Registro() {
             alignItems="center"
             justify="center"
           >
-            <Card className="content">
+            <Card style={{ backgroundColor: "#F9F9F9" }}>
               <h1>Registrar</h1>
               <form>
                 <Container>
