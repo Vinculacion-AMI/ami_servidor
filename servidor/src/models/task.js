@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const persons = Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, uppercase: true,required: true },
     lastname: { type: String, required: false },
     email: { type: String, lowercase: true, required: true },
     image: { type: String, required: false },
