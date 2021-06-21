@@ -25,14 +25,10 @@ export default function Home() {
   const levels = () => {
     history.push("/levels");
   };
-  // const resultados = () => {
-  //   history.push("/resultados");
-  // };
+  const admin = localStorage.getItem("isadmin") === "true" ? true : false;
   return (
-    <div style={{ backgroundColor: "#4682B4" }}>
-      <AppNavBar />
-      <br></br>
-      <br></br>
+    <div style={{ backgroundColor: "#6495ED" }}>
+      <AppNavBar isAdmin={admin} />
       <Grid
         style={{
           textAlign: "center",
@@ -52,7 +48,7 @@ export default function Home() {
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/menu/forma_palabras.png"
+                    image="../../images/menu/inicio.jpeg"
                     title="Niveles"
                     onClick={levels}
                   />
@@ -65,38 +61,12 @@ export default function Home() {
                       color="textSecondary"
                       component="p"
                     >
-                      En este apartado encontraras todos los niveles
-                      correspondientes al juego
+                      Aprende y divierte con los diferentes niveles.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
-            {/* <Grid align="center" item xs={12} md={6} sm={6}>
-                  <Card className={classes.root}>
-                    <CardActionArea>
-                      <CardMedia
-                        className={classes.media}
-                        image="../../images/puntajes.jpg"
-                        title="Puntajes"
-                        onClick={resultados}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Puntajes
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          color="textSecondary"
-                          component="p"
-                        >
-                          Aqui podras revisar el avance que has obtenido en el
-                          juego
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid> */}
           </Grid>
         </Container>
       </Grid>

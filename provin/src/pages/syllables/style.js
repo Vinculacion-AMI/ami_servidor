@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: 30,
     },
     [theme.breakpoints.up("lg")]: {
-      fontSize: 40,
+      fontSize: 30,
     },
   },
   actionArea: {
@@ -123,10 +123,10 @@ export const useStyles = makeStyles((theme) => ({
   titleCard: {
     fontFamily: "Montserrat, sans-serif",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.5rem",
+      fontSize: "1rem",
     },
     [theme.breakpoints.up("md")]: {
-      fontSize: "1.7rem",
+      fontSize: "1.5rem",
     },
     [theme.breakpoints.up("lg")]: {
       fontSize: "2rem",

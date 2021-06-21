@@ -121,7 +121,7 @@ const JigSaw = () => {
     } else if (!changeLvl) {
       return (
         <>
-          <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
+          <div style={{ backgroundColor: "#6495ED", minheight: "100vh" }}>
             <AppNavBar />
             <div className={classes.root}>
               <form noValidate autoComplete="off">

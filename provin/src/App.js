@@ -4,6 +4,8 @@ import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import Swal from "sweetalert2";
+
 
 //Componentes Juegos
 import Game1 from "./pages/dragDrop/game1";
@@ -26,11 +28,12 @@ import Levels from "./pages/levels/Levels";
 //Componentes Iniciales
 import Home from "./pages/home/home";
 import Registro from "./pages/Registro";
+import ResetPassoword from "./pages/ResetPassword";
 //import Login from "./pages/Login";
 
 //Componentes de estilos css
 import "./App.css";
-import "./css/login.css";
+// import "./css/login.css";
 import { green, indigo } from "@material-ui/core/colors";
 
 const authenticate = {
@@ -73,12 +76,17 @@ function Login(props) {
     return props.history.goBack();
   }
 
+  const statusdisable =
+  email.length === 0 ||
+  password.length === 0 
+    ? true
+    : false;
+
   async function login() {
     if (email === "" || password === "") {
       alert("Registrate por favor");
     } else {
       let data = { email, password };
-      console.warn(data);
       let result = await fetch(process.env.REACT_APP_BACKEND + "/login", {
         method: "POST",
         body: JSON.stringify(data),
@@ -87,17 +95,49 @@ function Login(props) {
           Accept: "application/json",
         },
       });
-
       result = await result.json();
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("user_id", result.data._id);
-
-      authenticate.onAuthentication();
-      props.history.push("/home");
+      if (result.status === 200) {
+        Swal.fire({
+          // position: "top-end",
+          icon: "success",
+          imageUrl: "/images/alertas/ok1.png",
+          imageWidth: 150,
+          imageHeight: 150,
+          title: result.message,
+          showConfirmButton: false,
+          width: "22rem",
+          timer: 2500,
+          background: "#E6E6FA",
+          // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
+        }).then((state) => {
+          if (state.dismiss === Swal.DismissReason.timer || state.isDismissed) {
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user_id", result.id);
+            localStorage.setItem("isadmin", result.isAdmin);
+            authenticate.onAuthentication();
+            props.history.push("/home");
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: result.message,
+          imageUrl: "/images/alertas/error.png",
+          showConfirmButton: false,
+          width: "22rem",
+          timer: 2500,
+          background: "#E6E6FA",
+        });
+      }
     }
   }
   return (
-    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+    <div style={{  
+      backgroundImage: "url(../../images/menu/login.jpeg)",
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Container>
         <Grid container>
           <Grid
@@ -113,7 +153,7 @@ function Login(props) {
             alignItems="center"
             justify="center"
           >
-            <Card style={{ backgroundColor: "#F7DC6F" }} className="content">
+            <Card style={{ backgroundColor: "#F9F9F9" }}>
               <h1>Bienvenidos</h1>
               <form noValidate>
                 <Container>
@@ -150,6 +190,7 @@ function Login(props) {
                       fullWidth
                       variant="outlined"
                       color="primary"
+                      disabled={statusdisable}
                       style={{ borderRadius: 20 }}
                     >
                       Ingresar
@@ -183,6 +224,7 @@ function App() {
         <div>
           <Route path="/" exact component={Login} />
           <SecuredRoute path="/signup" component={Registro} />
+          <SecuredRoute path="/resetpassword" component={ResetPassoword} />
           <SecuredRoute path="/home" component={Home} />
           <SecuredRoute path="/levels" component={Levels} />
           <SecuredRoute path="/draw" component={Draw} />

@@ -9,7 +9,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,13 +21,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar(props) {
   const classes = useStyles();
   const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   let history = useHistory();
-
+  
+  const state = {
+    isComponenetMenuVisisble : props.isAdmin, // by default to disable it
+};
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,6 +40,7 @@ export default function MenuAppBar() {
     localStorage.removeItem("token");
     localStorage.removeItem("user_id");
     localStorage.removeItem("session");
+    localStorage.removeItem("isadmin");
     history.push("/");
   };
 
@@ -51,6 +54,10 @@ export default function MenuAppBar() {
 
   const signup = () => {
     history.push("/signup");
+  };
+
+  const resetPassword = () => {
+    history.push("/resetpassword");
   };
   return (
     <div className={classes.root}>
@@ -86,7 +93,12 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={home}>Inicio</MenuItem>
-                <MenuItem onClick={signup}>Registro</MenuItem>
+                {state.isComponenetMenuVisisble && (
+                  <MenuItem onClick={signup}>Registro</MenuItem>
+                )}
+                <MenuItem onClick={resetPassword}>
+                  Actualizar Contraseña
+                </MenuItem>
                 <MenuItem onClick={logout}>Salir</MenuItem>
               </Menu>
             </div>

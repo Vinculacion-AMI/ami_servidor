@@ -111,7 +111,7 @@ const JigSawInit = () => {
       );
     } else if (!changeLvl) {
       return (
-        <div style={{ backgroundColor: "#4682B4" }}>
+        <div style={{ backgroundColor: "#6495ED" }}>
           <AppNavBar />
           <div className={classes.root}>
             <form noValidate autoComplete="off">

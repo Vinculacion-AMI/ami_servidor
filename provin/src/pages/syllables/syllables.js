@@ -178,13 +178,13 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
-      <div style={{ backgroundColor:"#4682B4", height: "100vh" }}>
+      <div  style={{ backgroundColor:"#6495ED", height:"100vh", textAlign: "center", }}>
 
       <>
-          <AppNavBar/> 
-          
+        <AppNavBar/> 
+        <br></br>
         <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
-
+        <br></br>
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
             return (

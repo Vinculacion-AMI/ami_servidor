@@ -31,7 +31,8 @@ function Draw4() {
   //     marginLeft: "50%"
   //   };
   return (
-    <div style={{ backgroundColor: "#5DADEF", height: 1000 }}>
+
+    <div style={{ backgroundColor: "#6495ED", height: 900 }}>
       <AppNavBar />
       <Grid container>
         <Grid xs={12} sm={12}>
