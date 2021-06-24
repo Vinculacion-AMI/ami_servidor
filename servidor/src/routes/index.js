@@ -7,10 +7,10 @@ require("dotenv").config(),
   (mongodb = require("../models/task"));
 
 const tokenEncrypt = process.env.TOKEN_SECRET;
+const saltRounds = 12;
 
 function authToken(req, res, next) {
   const bearerheader = req.headers["authorization"];
-  console.log(bearerheader);
   if (typeof bearerheader !== "undefined") {
     req.token = bearerheader;
     next();
@@ -19,8 +19,6 @@ function authToken(req, res, next) {
   }
 }
 router.post("/register", (req, res) => {
-  console.log(req.body);
-  const saltRounds = 12;
   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
     try {
       mongodb.Persons.insertMany(
@@ -40,7 +38,7 @@ router.post("/register", (req, res) => {
           } else {
             res.status(200).json({
               status: 200,
-              message: "!Creado con exito",
+              message: "Usuario creado con exito",
             });
           }
         }
@@ -53,6 +51,52 @@ router.post("/register", (req, res) => {
     }
   });
 });
+
+//Actualizar contraseña
+router.post("/resetpass", (req, res) => {
+  mongodb.Persons.find({
+    email: req.body.email,
+  }).exec((err, content) => {
+    if (err || content === null || content.length === 0) {
+      res.status(404).json({
+        status: 404,
+        message: "Correo Incorrecto",
+        data: req.body.email,
+      });
+    } else {
+      bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+        try {
+          var conditions = {
+            _id: content[0]._id,
+          };
+          var update = {
+            password: hash,
+          };
+          mongodb.Persons.findOneAndUpdate(conditions, update, (err) => {
+            if (err) {
+              res.status(404).json({
+                status: 404,
+                message: "!No se pudo actualizar intentelo nuevamente!",
+              });
+            } else {
+              res.status(200).json({
+                status: 200,
+                message: "Contraseña actualizada con exito",
+              });
+            }
+          });
+        } catch (error) {
+          res.status(404).json({
+            status: 404,
+            message:
+              "!Error en el servidor, intentelo nuevamente en unos minutos!",
+          });
+        }
+      });
+    }
+  });
+});
+
 router.post("/login", (req, res) => {
   mongodb.Persons.find({
     email: req.body.email,
@@ -68,11 +112,12 @@ router.post("/login", (req, res) => {
           req.body.password,
           content[0].password,
           (err, response) => {
-            if (err) {
-              res.status(404).json({
-                status: 404,
-                message: "!Usuario Incorrecto!",
-              });
+            if (!response) {
+              const data = {
+                status: 204,
+                message: "Correo/Contraseña no son correctos",
+              };
+              res.json(data);
             } else {
               const token = jwt.sign(req.body.email, tokenEncrypt);
               //Actualizamos los valores de inicio de sesion
@@ -86,11 +131,21 @@ router.post("/login", (req, res) => {
               });
               let user = content[0].toJSON();
 
+              //Eliminamos informacion no necesaria
               delete user.password;
+              delete user.createdAt;
+              delete user.updatedAt;
+              delete user.token_session;
+              delete user.__v;
+              delete user._id;
 
               const data = {
+                status: 200,
+                message: "Ingreso Exitoso",
                 data: user,
+                id: content[0]._id,
                 token: token,
+                isAdmin: content[0].is_admin,
               };
               res.json(data);
             }
@@ -105,6 +160,7 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
 router.post("/session", (req, res) => {
   mongodb.Persons.findById(req.body.user).exec((err, content) => {
     if (err || content === null || content.length === 0) {
@@ -139,11 +195,8 @@ router.post("/session", (req, res) => {
     }
   });
 });
+
 router.post("/score", (req, res) => {
-  // jwt.verify(req.token, tokenEncrypt, (err) => {
-  //   if (err) {
-  // res.status(404).send("error en el servidor");
-  // } else {
   mongodb.Score.create(req.body, (err) => {
     if (err) {
       res.status(404).send("error en el servidor");
@@ -151,12 +204,9 @@ router.post("/score", (req, res) => {
       res.status(200).send("creado exitosamente");
     }
   });
-  // }
-  // });
 });
+
 router.post("/stage", (req, res) => {
-  console.log(req.body);
-  // mongodb.Stages.findById(req.body)
   mongodb.Stages.findByIdAndUpdate(req.body._id, req.body, (err, doc) => {
     if (err) {
       res.status(404).send("error en el servidor");
@@ -165,11 +215,8 @@ router.post("/stage", (req, res) => {
     }
   });
 });
-router.get("/stage/:idPerson/:stage", (req, res) => {
-  // jwt.verify(req.token, tokenEncrypt, (err) => {
-  //   if (err) {
 
-  // } else {
+router.get("/stage/:idPerson/:stage", (req, res) => {
   const idPerson = req.params.idPerson;
   const stage = req.params.stage;
   mongodb.Stages.find({ _person: idPerson, stage: stage }, (err, doc) => {
@@ -195,9 +242,8 @@ router.get("/stage/:idPerson/:stage", (req, res) => {
       res.status(200);
     }
   });
-  // }
 });
-// });
+
 router.get("/getscore/:id", authToken, (req, res) => {
   jwt.verify(req.token, tokenEncrypt, (err) => {
     if (err) {

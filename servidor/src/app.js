@@ -8,12 +8,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 mongoose.connect(
-  process.env.NODE_ENV === 'development'
+  process.env.NODE_ENV === "development"
     ? process.env.MONGO_PATH_DEV
     : process.env.MONGO_PATH,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   }
 );
 
