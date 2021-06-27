@@ -47,15 +47,17 @@ function Game1() {
   const botones = () => {
     var data2 = [];
     let aleatorio = data.map((item) => {
-      let random = data[Math.floor(Math.random() * data.length)];
-
-      if (!data2.includes(random)) {
-        data2.push(random);
-      }
+      let random = data[Math.floor(Math.random() * data.length/5)];
+        if (!data2.includes(random)) {
+          data2.push(random);
+        }
       return data2;
     });
     console.log(aleatorio);
     data2.push(dato1);
+    if(data2[1].name == "Perro"){
+      data2.push(data[1]);
+    }
     var datos = [];
     for (let i = 0; i < data2.length; i++) {
       datos.push(data2[i].name);
@@ -168,7 +170,7 @@ function Game1() {
       <AppNavBar />
       <div>
         <Grid container>
-          <Grid xs={12} lg={12}>
+          <Grid xs={12} lg={12} sm={12}>
             <Grid className="perro">
               <h2>Reconoce el animalito</h2>
 
@@ -184,7 +186,7 @@ function Game1() {
             <Grid xs={8} md={6}>
               <Grid container>
                 {Object.values(btnR).map((item) => (
-                  <Grid xs={6} sm={3}>
+                  <Grid xs={12} sm={6}>
                     <Grid className="cards">
                       <CardActionArea
                         style={{ borderRadius: 50 }}
