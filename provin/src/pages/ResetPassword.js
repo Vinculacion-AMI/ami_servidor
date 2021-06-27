@@ -17,22 +17,15 @@ const validateEmail = (values) => {
   }
 };
 
-function Registro() {
-  const [name, setName] = React.useState("");
+function ResetPassoword() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   let history = useHistory();
 
   const statusdisable =
-    email.length === 0 ||
-    name.length === 0 ||
-    password.length === 0 ||
-    validateEmail(email)
+    email.length === 0 || password.length === 0 || validateEmail(email)
       ? true
       : false;
-
-  const errorMessageNombre =
-    name.length === 0 ? "El nombre es obligatorio" : "";
 
   const errorMessagePass =
     password.length === 0 ? "La contraseña es obligatoria" : "";
@@ -48,54 +41,50 @@ function Registro() {
     error: true,
   };
 
-  function goLogin() {
+  function goHome() {
     history.push("/home");
   }
 
-  async function signup() {
-    if (name === "" || email === "" || password === "") {
-      alert("Registrate por favor");
-    } else {
-      let data = { name, email, password };
-      console.warn(data);
-      let result = await fetch(process.env.REACT_APP_BACKEND + "/register", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+  async function resetpass() {
+    let data = { email, password };
+    let result = await fetch(process.env.REACT_APP_BACKEND + "/resetpass", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    if (result.status === 200) {
+      Swal.fire({
+        // position: "top-end",
+        icon: "success",
+        imageUrl: "/images/alertas/ok1.png",
+        imageWidth: 150,
+        imageHeight: 150,
+        title: "Felicitaciones",
+        text: result.message,
+        showConfirmButton: false,
+        width: "22rem",
+        timer: 2500,
+        background: "#E6E6FA",
+        // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer || result.isDismissed) {
+          history.push("/home");
+        }
       });
-      result = await result.json();
-      if (result.status === 200) {
-        Swal.fire({
-          // position: "top-end",
-          icon: "success",
-          imageUrl: "/images/alertas/ok1.png",
-          imageWidth: 150,
-          imageHeight: 150,
-          title: result.message,
-          showConfirmButton: false,
-          width: "22rem",
-          timer: 2500,
-          background: "#E6E6FA",
-          // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
-        }).then((result) => {
-          if (result.dismiss === Swal.DismissReason.timer || result.isDismissed) {
-            history.push("/home");
-          }
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: result.message,
-          imageUrl: "/images/alertas/error.png",
-          showConfirmButton: false,
-          width: "22rem",
-          timer: 2500,
-          background: "#E6E6FA",
-        });
-      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        imageUrl: "/images/alertas/error.png",
+        text: result.message,
+        showConfirmButton: false,
+        width: "22rem",
+        timer: 2500,
+      });
     }
   }
 
@@ -121,33 +110,18 @@ function Registro() {
             justify="center"
           >
             <Card className="content">
-              <h1>Registrar</h1>
+              <h1>Actualizar Contraseña</h1>
               <form>
                 <Container>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={12} sm={12}>
                       <TextField
-                        name="Nombre"
-                        variant="outlined"
-                        required
-                        fullWidth
-                        value={name}
-                        FormHelperTextProps={helperTextProps}
-                        helperText={errorMessageNombre}
-                        label="Nombre Completo"
-                        autoFocus
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={12} sm={12}>
-                      <TextField
-                        name="Email"
+                        name="Correo"
                         variant="outlined"
                         required
                         fullWidth
                         id="email"
-                        label="Email"
+                        label="Correo del usuario"
                         helperText={errorMessage}
                         FormHelperTextProps={helperTextProps}
                         value={email}
@@ -174,14 +148,14 @@ function Registro() {
                     variant="outlined"
                     color="primary"
                     style={{ margin: 15, borderRadius: 20 }}
-                    onClick={signup}
+                    onClick={resetpass}
                     disabled={statusdisable}
                     startIcon={<SaveIcon />}
                   >
                     Guardar
                   </Button>
                   <Button
-                    onClick={goLogin}
+                    onClick={goHome}
                     variant="outlined"
                     color="secondary"
                     style={{ margin: 15, borderRadius: 20 }}
@@ -198,4 +172,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default ResetPassoword;
