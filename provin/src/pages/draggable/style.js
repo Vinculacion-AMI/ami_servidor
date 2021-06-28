@@ -58,18 +58,18 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: 80,
-    color: "#FFFFFF",
+    color: "withe",
   },
   titleWord: {
     color: "#FFFFFF",
     [theme.breakpoints.down("sm")]: {
-      fontSize: 20,
-    },
-    [theme.breakpoints.up("md")]: {
       fontSize: 30,
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: 40,
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: 50,
     },
   },
   rootGrid: {
@@ -82,7 +82,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: "#2ECC71 ",
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-    color: "white",
+    color: "black",
     boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
     [theme.breakpoints.down("sm")]: {
       fontSize: 20,
