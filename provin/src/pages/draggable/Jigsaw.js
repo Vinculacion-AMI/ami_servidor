@@ -126,8 +126,8 @@ const JigSaw = () => {
             <div className={classes.root}>
               <form noValidate autoComplete="off">
                 <Typography
-                  variant="h4"
-                  component="h4"
+                  variant="h3"
+                  component="h3"
                   className={classes.titleWord}
                 >
                   {`Forma la siguiente palabra "${word}"`}
