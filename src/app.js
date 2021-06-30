@@ -32,7 +32,7 @@ mongoose.set("debug", true);
 const indexRoutes = require("./routes/index");
 
 //settings
-app.set("port", process.env.PORT_APP || 4000);
+app.set("port", process.env.PORT||process.env.PORT_APP);
 
 //middlewares
 app.use(morgan("dev"));
@@ -49,6 +49,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //routes
 app.use("/", indexRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 //starting the server
 app.listen(app.get("port"), () => {
