@@ -1,21 +1,20 @@
-const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
-const uri = "mongodb://localhost:27017" + "/ami";
 
 dotenv.config();
 
 mongoose.connect(
-  process.env.NODE_ENV === 'development'
+  process.env.NODE_ENV === "development"
     ? process.env.MONGO_PATH_DEV
     : process.env.MONGO_PATH,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   }
 );
 

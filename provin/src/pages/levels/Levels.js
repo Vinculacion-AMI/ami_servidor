@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import AppNavBar from "../../components/navbar";
 
@@ -38,9 +38,11 @@ function Levels({ logout, ...rest }) {
   const draw = () => {
     history.push("/draw");
   };
-
   const game1 = () => {
     history.push("/game1");
+  };
+  const learn = () => {
+    history.push("/learnSyllabes");
   };
   const puzzle = () => {
     history.push("/puzzle");
@@ -53,8 +55,8 @@ function Levels({ logout, ...rest }) {
   };
 
   return (
-    <div style={{ backgroundColor: "#4682B4" }}>
-      <AppNavBar  />
+    <div style={{ backgroundColor: "#6495ED" }}>
+      <AppNavBar />
       <br></br>
       <br></br>
       <Grid
@@ -77,7 +79,7 @@ function Levels({ logout, ...rest }) {
                 <Card boxShadow={3} className={classes.root}>
                   <CardMedia
                     className={classes.media2}
-                    image="../../images/trazos.jpg"
+                    image="../../images/menu/conecta.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -88,7 +90,7 @@ function Levels({ logout, ...rest }) {
                       color="textSecondary"
                       component="p"
                     >
-                      Aqui pondras en prueba tus habilidades
+                      Aqui pondras a prueba tus habilidades.
                     </Typography>
                     <br />
                     <Button
@@ -105,18 +107,18 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/logo2.jpg"
+                    image="../../images/menu/abecedario.jpg"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      REPETIR LETRAS
+                      REPITE EL ABECEDARIO
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Deberas repetir las letras o numeros
+                      Deberas repetir las letras del abecedario.
                     </Typography>
                     <br />
                     <Button
@@ -132,11 +134,38 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras1.png"
+                    image="../../images/menu/fonema.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Forma los silabas con el abecedario
+                      APRENDE LOS FONEMAS 
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Conoce las fonemas para escribir palabras.
+                    </Typography>
+                    <br />
+                    <Button
+                      onClick={learn}
+                      variant="contained"
+                      color="primary"
+                      style={{ borderRadius: 20 }}
+                    >
+                      Jugar
+                    </Button>
+                  </CardContent>
+                </Card>
+                <Card className={classes.root}>
+                  <CardMedia
+                    className={classes.media}
+                    image="../../images/menu/forma_palabras1.png"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Forma silabas con el abecedario
                     </Typography>
                     <Typography
                       variant="body2"
@@ -159,18 +188,18 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras1.png"
+                    image="../../images/menu/ordena.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Forma las palabras
+                      Ordena las palabras
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Deberas ordenar las letras para formar las palabras
+                      Deberas ordenar las palabra de manera correcta.
                     </Typography>
                     <br />
                     <Button
@@ -186,7 +215,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/logo3.jpg"
+                    image="../../images/menu/animales.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -197,7 +226,7 @@ function Levels({ logout, ...rest }) {
                       color="textSecondary"
                       component="p"
                     >
-                      Deberas reconocer que animalito es !!
+                      Deberas reconocer que animal es.
                     </Typography>
                     <br />
                     <Button
@@ -213,7 +242,7 @@ function Levels({ logout, ...rest }) {
                 <Card className={classes.root}>
                   <CardMedia
                     className={classes.media}
-                    image="../../images/forma_palabras.png"
+                    image="../../images/menu/silabas.png"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -224,7 +253,7 @@ function Levels({ logout, ...rest }) {
                       color="textSecondary"
                       component="p"
                     >
-                      Deberas reconocer las fraces monosilabas y bisilabas
+                      Deberas reconocer las palabras monosilabas y bisilabas
                     </Typography>
                     <br />
                     <Button

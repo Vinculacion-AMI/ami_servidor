@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,12 +11,16 @@ import { useGridStyles } from "./style";
 import { useStyles } from "./style";
 import { Button } from "@material-ui/core";
 import dataJson from "./data.js";
-import useForceUpdate from "use-force-update";
-import TransitionsSnackbar from "../dialogNotifications/notification";
+// import useForceUpdate from "use-force-update";
+// import TransitionsSnackbar from "../dialogNotifications/notification";
 import getDataUser from "../../util/get";
 import postDataUser from "../../util/post";
 import  nofound  from "../../assets/nofound.png";
 import AppNavBar from '../../components/navbar'
+import Swal from 'sweetalert2';
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 let colors = [
@@ -36,20 +40,19 @@ export const Syllables = React.memo(function SolidGameCard() {
     [subLevel, setSubLevel] = useState(false),
     [stage, setStage] = useState(false);
   const classes = useStyles();
-  const childRef = useRef();
   useEffect(() => {
     getData();
 
     // setLevel("nivel2");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!data, !level, !stage, !subLevel]);
-  const forceUpdate = useForceUpdate();
+  // const forceUpdate = useForceUpdate();
   const gridStyles = useGridStyles();
   const styles = useStyles({ color: colors[Math.floor(Math.random() * colors.length)] });
 
   const getData = async () => {
     const user = localStorage.getItem("user_id");
-    const url =
-      "http://localhost:4000/stage/"+user+"/silaba";
+    const url = process.env.REACT_APP_BACKEND +"/stage/"+user+"/silabas";
     await getDataUser(url).then((response) => {
       const currentSubLvl = response[0].sub_level;
       const currentLvl = response[0].level;
@@ -79,9 +82,25 @@ export const Syllables = React.memo(function SolidGameCard() {
         sub_level: subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]?subLevel:`nivel${nxt}`
       })
       if(subLevel===arr[lastItem]&&level===nameLvls[nameLvls.length-1]){
-        childRef.current.handleClick('finish');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Fin del juego',
+          text: ' Fecilicades has gando este nivel',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        });        
       }else{
-        childRef.current.handleClick('correct');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Felicitaciones',
+          text: ' Respuesta correcta',
+          showConfirmButton: false,
+          width: '22rem',
+          timer: 1500
+        })
       }
       
       const url ="http://localhost:4000/stage";
@@ -97,7 +116,15 @@ export const Syllables = React.memo(function SolidGameCard() {
         })
       }, 1000);
     }else{
-      childRef.current.handleClick('wrong');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Vuelve Intentar',
+        text: ' Respuesta Incorrecta',
+        showConfirmButton: false,
+        width: '22rem',
+        timer: 1500
+      });
     }
 
   };
@@ -151,13 +178,13 @@ export const Syllables = React.memo(function SolidGameCard() {
     return <Typography>Cargando...</Typography>;
   } else {
     return (
-      //<div style={{ backgroundColor:"#4682B4" }}>
+      <div  style={{ backgroundColor:"#6495ED", height:"100vh", textAlign: "center", }}>
 
       <>
-          <AppNavBar/> 
-          
+        <AppNavBar/> 
+        <br></br>
         <Typography className={classes.titleWord}>{`Selecciona la opción correspondiente a ${level}`}</Typography>
-
+        <br></br>
         <Grid classes={gridStyles} container spacing={4}>
           {data.map((content) => {
             return (
@@ -199,10 +226,9 @@ export const Syllables = React.memo(function SolidGameCard() {
           </Grid>
         </Grid>
         <div className={classes.root}>
-              <TransitionsSnackbar ref={childRef} />
             </div>
       </>
-     // </div>
+      </div>
     );
   }
   

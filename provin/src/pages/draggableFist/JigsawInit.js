@@ -10,21 +10,19 @@ const { List } = require("immutable");
 const httpGetProvin = {
   currentLvl: "nivel1",
 };
-// const letters = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
 const words = ["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"];
 const wordsx = ["AEIOU", "DA", "DE"];
-
 
 const JigSawInit = () => {
   const [word, setWord] = useState(false),
     [arrayWord, setArrayWord] = useState([]),
-    // [arrayWordOriginal, setArrayWordOriginal] = useState([]),
     [currentLevel, setCurrentLevel] = useState(false),
     [levels, setlevels] = useState([]),
     [changeLvl, setchangeLvl] = useState(false);
 
   useEffect(() => {
     getClevel();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const forceUpdate = useForceUpdate();
   const childRef = useRef();
@@ -41,10 +39,10 @@ const JigSawInit = () => {
     }
   };
   const encodeLevels = (item) => {
-    let array = new Array();
+    let array = [];
     let i = 0;
     let lettersContainer = [];
-    let lettersOriginal = [];
+    // let lettersOriginal = [];
 
     words.forEach((element) => {
       let i = words.indexOf(element) + 1;
@@ -57,16 +55,9 @@ const JigSawInit = () => {
       lettersContainer.push(element + i);
       i += 1;
     });
-    // lettersOriginal = List(lettersContainer)._tail.array;
-    // let ramdomWord = letters[0];
-    // // Add other letter
-    // Array.from(ramdomWord).forEach((element) => {
-    //   lettersContainer.push(element + i);
-    //   i += 1;
-    // });
+
     lettersContainer = List(lettersContainer)._tail.array;
     setArrayWord(lettersContainer);
-    // setArrayWordOriginal(lettersOriginal);
     setWord(lvlWordx);
     setlevels(array);
   };
@@ -86,7 +77,6 @@ const JigSawInit = () => {
     let i = levels.indexOf(currentLevel) + 2;
     let changeLvlvar = "nivel" + i;
     httpGetProvin.currentLvl = changeLvlvar;
-    // setCurrentLevel(nextLevel)
     getClevel(changeLvlvar);
 
     forceUpdate();
@@ -121,7 +111,7 @@ const JigSawInit = () => {
       );
     } else if (!changeLvl) {
       return (
-        <div style={{ backgroundColor: "#4682B4"}}>
+        <div style={{ backgroundColor: "#6495ED" }}>
           <AppNavBar />
           <div className={classes.root}>
             <form noValidate autoComplete="off">

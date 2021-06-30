@@ -30,6 +30,7 @@ const JigSaw = () => {
 
   useEffect(() => {
     getClevel();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const forceUpdate = useForceUpdate();
@@ -120,13 +121,13 @@ const JigSaw = () => {
     } else if (!changeLvl) {
       return (
         <>
-          <div style={{ backgroundColor: "#4682B4", minheight: "100vh" }}>
+          <div style={{ backgroundColor: "#6495ED", minheight: "100vh" }}>
             <AppNavBar />
             <div className={classes.root}>
               <form noValidate autoComplete="off">
                 <Typography
-                  variant="h4"
-                  component="h4"
+                  variant="h3"
+                  component="h3"
                   className={classes.titleWord}
                 >
                   {`Forma la siguiente palabra "${word}"`}

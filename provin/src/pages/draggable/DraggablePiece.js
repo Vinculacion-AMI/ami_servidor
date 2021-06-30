@@ -17,6 +17,7 @@ export default function DraggablePiece(props) {
   useEffect(() => {
     begingComponents();
     forceUpdate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const forceUpdate = useForceUpdate();
@@ -24,7 +25,7 @@ export default function DraggablePiece(props) {
     const mix = array.sort(() => Math.random() - 0.5);
     return mix;
   };
-  
+
   const begingComponents = () => {
     const word = props.arrayWord;
     setTextContent(shuffle(word));

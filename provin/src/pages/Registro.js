@@ -1,8 +1,8 @@
 import React from "react";
 import "../css/singin.css";
 import { Grid, TextField, Button, Card, Container } from "@material-ui/core";
-// import { Search } from "@trejgun/material-ui-icons-google";
 import { useHistory } from "react-router";
+import Swal from "sweetalert2";
 
 //import { makeStyles } from "@material-ui/core/styles";
 
@@ -25,36 +25,40 @@ function Registro() {
 
   const statusdisable =
     email.length === 0 ||
-    name.length === 0 ||
-    password.length === 0 ||
-    validateEmail(email)
+      name.length === 0 ||
+      password.length === 0 ||
+      validateEmail(email)
       ? true
       : false;
+
   const errorMessageNombre =
     name.length === 0 ? "El nombre es obligatorio" : "";
+
   const errorMessagePass =
     password.length === 0 ? "La contraseña es obligatoria" : "";
+
   const errorMessage =
     email.length === 0
       ? "El email es obligatorio"
       : validateEmail(email) === true
-      ? "El email no es válido"
-      : "";
+        ? "El email no es válido"
+        : "";
 
   const helperTextProps = {
     error: true,
   };
 
   function goLogin() {
-      history.push("/");
+    history.push("/home");
   }
+
   async function signup() {
     if (name === "" || email === "" || password === "") {
       alert("Registrate por favor");
     } else {
       let data = { name, email, password };
       console.warn(data);
-      let result = await fetch("http://localhost:4000/register", {
+      let result = await fetch(process.env.REACT_APP_BACKEND + "/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -62,14 +66,46 @@ function Registro() {
           Accept: "application/json",
         },
       });
-      //result = await result.json();
-      console.warn("result", result);
-      history.push("/");
+      result = await result.json();
+      if (result.status === 200) {
+        Swal.fire({
+          // position: "top-end",
+          icon: "success",
+          imageUrl: "/images/alertas/ok1.png",
+          imageWidth: 150,
+          imageHeight: 150,
+          title: result.message,
+          showConfirmButton: false,
+          width: "22rem",
+          timer: 2500,
+          background: "#E6E6FA",
+          // background: '#ffff url(/images/alertas/ok1.png) center no-repeat ',
+        }).then((state) => {
+          if (state.dismiss === Swal.DismissReason.timer || state.isDismissed) {
+            history.push("/home");
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: result.message,
+          imageUrl: "/images/alertas/error.png",
+          showConfirmButton: false,
+          width: "22rem",
+          timer: 2500,
+          background: "#E6E6FA",
+        });
+      }
     }
   }
 
   return (
-    <div style={{ backgroundColor: "#4682B4", height: "100vh" }}>
+    <div style={{  
+      backgroundImage: "url(../../images/menu/login.jpeg)",
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Container>
         <Grid container>
           <Grid
@@ -89,8 +125,8 @@ function Registro() {
             alignItems="center"
             justify="center"
           >
-            <Card className="content">
-              <h1>Registrate</h1>
+            <Card style={{ backgroundColor: "#F9F9F9" }}>
+              <h1>Registrar</h1>
               <form>
                 <Container>
                   <Grid container spacing={2}>
@@ -140,7 +176,6 @@ function Registro() {
                     </Grid>
                   </Grid>
                   <Button
-                    // href="/"
                     variant="outlined"
                     color="primary"
                     style={{ margin: 15, borderRadius: 20 }}
@@ -148,7 +183,7 @@ function Registro() {
                     disabled={statusdisable}
                     startIcon={<SaveIcon />}
                   >
-                    Registrarse
+                    Guardar
                   </Button>
                   <Button
                     onClick={goLogin}
@@ -159,20 +194,6 @@ function Registro() {
                     Cancelar
                   </Button>
                 </Container>
-
-                {/* <p>O</p>
-              <Grid style={{ margin: 20 }}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={{ borderRadius: 20 }}
-                  startIcon={<Search />}
-                >
-                  Registrarse con Google
-                </Button>
-              </Grid> */}
               </form>
             </Card>
           </Grid>
