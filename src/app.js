@@ -18,14 +18,15 @@ dotenv.config();
   }
 ); */
 
-const URI = "mongodb://localhost/ami2";
+/* const URI = "mongodb://localhost/ami2"; */
 
 mongoose
-  .connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  })
+.connect( process.env.DB_CNN , {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+})
   .then((db) => console.log("db is connected"))
   .catch((err) => console.error(err));
 
